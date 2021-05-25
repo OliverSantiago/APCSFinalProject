@@ -1,15 +1,15 @@
 public class Player{
   float x, y;
   
-  Player(float x, float y){
-    this.x = x;
-    this.y = y;
+  Player(){
+    x=830;
+    y=140;
   }
  
   void display(){
     stroke(0);
     fill(0,203,103);
-    rect(x,y,10,10);
+    rect(x,y,10,20);
   }
   
   void Up(){
