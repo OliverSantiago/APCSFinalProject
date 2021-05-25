@@ -37,4 +37,8 @@ class Seed{
     watered = false;
   }
   
+  //sets watered to true
+  void water(){
+    watered = true;
+  }
 }
