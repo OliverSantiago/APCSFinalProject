@@ -28,4 +28,13 @@ class Seed{
   Crop getCrop(){
    return thisCrop; 
   }
+  
+  //increments days elapsed if plant has been watered
+  void addDay(){
+    if (watered){
+      daysElapsed++;
+    }
+    watered = false;
+  }
+  
 }
