@@ -1,10 +1,10 @@
 class Seed{
   
   //keeps track of the time passes since planted
-  private float timeElapsed;
+  private float daysElapsed;
   
   //the total time needed for the seed to become a crop
-  private float timeForHarvest;
+  private float daysForHarvest;
   
   //tracks whether the seed has been watered for the day
   private boolean watered;
@@ -13,11 +13,19 @@ class Seed{
   private Crop thisCrop;
   
   public Seed(float harvestTime, Crop typeOfCrop){
-    timeElapsed = 0;
-    timeForHarvest = harvestTime;
+    daysElapsed = 0;
+    daysForHarvest = harvestTime;
     watered = false;
     thisCrop = typeOfCrop;
   }
   
+  //returns whether the seed has been watered
+  boolean isWatered(){
+    return watered;
+  }
   
+  //returns corresponding crop
+  Crop getCrop(){
+   return thisCrop; 
+  }
 }
