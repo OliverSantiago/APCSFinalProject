@@ -1,14 +1,14 @@
-class Crop{
+class Crop extends Item{
   private float value;
   private String quality;
   
   public Crop(float cropWorth){
     float rand = random(100);
-    if (rand < 80){
+    if (rand < 70){
       quality = "standard";
       value = cropWorth;
     }
-    else if (rand < 95){
+    else if (rand < 90){
       quality = "silver";
       value = (float) cropWorth * 1.2;
     }
