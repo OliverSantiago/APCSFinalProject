@@ -1,3 +1,4 @@
+ArrayList<Item> inventory;
 public class Player{
   float x, y;
   
@@ -26,5 +27,13 @@ public class Player{
   
   void Right(){
     x+=10;
+  }
+  
+  void add(Item i){
+    inventory.add(i);
+  }
+  
+  void remove(Item i){
+    inventory.remove(i);
   }
 }

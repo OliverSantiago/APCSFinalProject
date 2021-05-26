@@ -19,10 +19,26 @@ void draw(){
   }
   if(!first_screen){
     background(255,241,191);
+    strokeWeight(0);
     stroke(0);
+    player.display();
     fill(34,121,224);
     rect(800,100,80,50);
-    player.display();
+    
+    stroke(0);
+    strokeWeight(4);
+    stroke(0);
+    noFill();
+    rect(250, 700, 50,50);
+    rect(300, 700, 50,50);
+    rect(350, 700, 50,50);
+    rect(400, 700, 50,50);
+    rect(450, 700, 50,50);
+    rect(500, 700, 50,50);
+    rect(550, 700, 50,50);
+    rect(600, 700, 50,50);
+    rect(650, 700, 50,50);
+    rect(700, 700, 50,50);
   }
 }
 
