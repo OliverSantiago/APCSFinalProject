@@ -1,4 +1,4 @@
-class Seed{
+class Seed extends Item{
   
   //keeps track of the time passes since planted
   private float daysElapsed;
