@@ -1,4 +1,4 @@
-ArrayList<Item> inventory;
+ArrayList<ArrayList<Item>> inventory = new ArrayList<ArrayList<Item>>();
 public class Player{
   float x, y;
   
@@ -29,11 +29,29 @@ public class Player{
     x+=10;
   }
   
-  void add(Item i){
-    inventory.add(i);
+  void addNextItem(Item i){
+    ArrayList<Item> temp = new ArrayList<Item>();
+    temp.add(i);
+    inventory.add(temp);
   }
   
-  void remove(Item i){
+  void removeItem(Item i){
     inventory.remove(i);
+  }
+  
+  int size(){
+    return inventory.size();
+  }
+  
+  void addToStack(int index, Item i){
+    inventory.get(index).add(i);
+  }
+  
+  void removeFromStack(int index, Item i){
+    inventory.get(index).remove(i);
+  }
+  
+  int Stacksize(int index){
+    return inventory.get(index).size();
   }
 }
