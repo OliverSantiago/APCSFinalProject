@@ -1,7 +1,7 @@
 Player player;
 boolean first_screen = true;
 int savedTime;
-int time_increment = 5000;
+int time_increment = 500;
 int time = 600;
 int money = 0;
 
@@ -69,6 +69,12 @@ void draw(){
     fill(0, 102, 153, 204);
     text("Money: "+money, 10, 60);
     
+    //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
+     if (time>1200){
+      noStroke();
+      fill(34,126,237,100);
+      rect(0,0,width,height);
+     }
   }
 }
 

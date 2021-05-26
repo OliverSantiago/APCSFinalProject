@@ -50,7 +50,7 @@ public class Plot{
       current_seed.water();
       current_seed.addDay();
       if (current_seed.getCrop()!=null){
-        current_crop = current_seed.getCrop();
+        current_crop = (Crop)current_seed.getCrop();
       }
       watered = false;
     }
