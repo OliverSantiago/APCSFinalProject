@@ -55,6 +55,55 @@ void draw(){
       //This is where we will show the image of each item in inventory at x index of counter
       counter+=100;
     }
+    if (player.get_current_item()==0){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(250,700,50,50);
+    }
+    if (player.get_current_item()==1){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(300, 700, 50,50);
+    }
+    if (player.get_current_item()==2){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(350, 700, 50,50);
+    }
+    if (player.get_current_item()==3){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(400, 700, 50,50);
+    }
+    if (player.get_current_item()==4){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(450, 700, 50,50);
+    }
+    if (player.get_current_item()==5){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(500, 700, 50,50);
+    }
+    if (player.get_current_item()==6){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(550, 700, 50,50);
+    }
+    if (player.get_current_item()==7){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(600, 700, 50,50);
+    }
+    if (player.get_current_item()==8){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(650, 700, 50,50);
+    }if (player.get_current_item()==9){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(700, 700, 50,50);
+    }
     
     //Displays money and time
     int passedTime = millis() - savedTime;
@@ -80,6 +129,7 @@ void draw(){
 
 void keyPressed(){
   //println(keyCode);
+  //Movement Controls
   if(keyCode == 87){
     player.Up();
   }
@@ -91,6 +141,38 @@ void keyPressed(){
   }
   if(keyCode == 68){
     player.Right();
+  }
+  
+  //Item Select
+  if(keyCode == 49){
+    player.hold_item(0);
+  }
+  if(keyCode == 50){
+    player.hold_item(1);
+  }
+  if(keyCode == 51){
+    player.hold_item(2);
+  }
+  if(keyCode == 52){
+    player.hold_item(3);
+  }
+  if(keyCode == 53){
+    player.hold_item(4);
+  }
+  if(keyCode == 54){
+    player.hold_item(5);
+  }
+  if(keyCode == 55){
+    player.hold_item(6);
+  }
+  if(keyCode == 56){
+    player.hold_item(7);
+  }
+  if(keyCode == 57){
+    player.hold_item(8);
+  }
+  if(keyCode == 48){
+    player.hold_item(9);
   }
   
 }

@@ -37,6 +37,10 @@ public class Player{
       current_item = x;
     }
   }
+  
+  int get_current_item(){
+    return current_item;
+  }
   void addNextItem(Item i){
     ArrayList<Item> temp = new ArrayList<Item>();
     temp.add(i);

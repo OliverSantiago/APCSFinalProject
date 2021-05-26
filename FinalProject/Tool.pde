@@ -2,7 +2,7 @@ class Tool extends Item{
   boolean watering_can;
   boolean hoe;
   
-  public Tool{
+  public Tool(){
     watering_can = false;
     hoe = false;
   }
