@@ -17,4 +17,12 @@ class Crop{
       value = (float) cropWorth * 1.5;
     }
   }
+  
+  float getValue(){
+    return value;
+  }
+  
+  String getQuality(){
+    return quality;
+  }
 }
