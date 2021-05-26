@@ -1,5 +1,9 @@
 Player player;
 boolean first_screen = true;
+int savedTime;
+int time_increment = 5000;
+int time = 600;
+int money = 0;
 
 void setup(){
   size(1000,800);//TBD
@@ -11,6 +15,7 @@ void setup(){
   fill(0, 102, 153, 204);
   text("Controls:", 12, 100);
   player = new Player();
+  savedTime = millis();
 }
 
 void draw(){
@@ -18,13 +23,19 @@ void draw(){
     first_screen = false;
   }
   if(!first_screen){
+    //Makes the background
     background(255,241,191);
+    
+    //Makes the player
     strokeWeight(0);
     stroke(0);
     player.display();
+    
+    //Makes the house
     fill(34,121,224);
     rect(800,100,80,50);
     
+    //Makes the inventory
     stroke(0);
     strokeWeight(4);
     stroke(0);
@@ -41,9 +52,23 @@ void draw(){
     rect(700, 700, 50,50);
     int counter = 275;
     for (int i = 0; i < player.size(); i++){
-      //This is where we will show the image of each item in inventory
+      //This is where we will show the image of each item in inventory at x index of counter
       counter+=100;
     }
+    
+    //Displays money and time
+    int passedTime = millis() - savedTime;
+    if(passedTime > time_increment){
+      time += 10;
+      savedTime = millis();
+    }
+    textSize(20);
+    fill(0, 102, 153, 204);
+    text("Time: " + time, 10, 30);
+    textSize(20);
+    fill(0, 102, 153, 204);
+    text("Money: "+money, 10, 60);
+    
   }
 }
 

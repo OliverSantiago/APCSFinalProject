@@ -1,10 +1,12 @@
 ArrayList<ArrayList<Item>> inventory = new ArrayList<ArrayList<Item>>();
 public class Player{
   float x, y;
+  int current_item;
   
   Player(){
     x=830;
     y=140;
+    current_item = 0;
   }
  
   void display(){
@@ -29,6 +31,12 @@ public class Player{
     x+=10;
   }
   
+  //Changes held item
+  void hold_item(int x){
+    if (0<=x && x<10){
+      current_item = x;
+    }
+  }
   void addNextItem(Item i){
     ArrayList<Item> temp = new ArrayList<Item>();
     temp.add(i);
