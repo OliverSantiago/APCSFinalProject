@@ -1,4 +1,4 @@
-class Crop{
+class Crop extends Item{
   private float value;
   private String quality;
   
