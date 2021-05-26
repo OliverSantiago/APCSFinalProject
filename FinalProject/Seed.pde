@@ -32,6 +32,10 @@ class Seed{
     return null;
   }
   
+  float getDaysElapsed(){
+    return daysElapsed;
+  }
+  
   //increments days elapsed if plant has been watered
   void addDay(){
     if (watered){
