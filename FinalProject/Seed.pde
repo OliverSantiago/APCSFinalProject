@@ -26,7 +26,10 @@ class Seed{
   
   //returns corresponding crop
   Crop getCrop(){
-   return thisCrop; 
+    if (daysElapsed >= daysForHarvest){
+      return thisCrop;
+    }
+    return null;
   }
   
   //increments days elapsed if plant has been watered
