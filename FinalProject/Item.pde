@@ -12,4 +12,7 @@ public class Item{
   public void display(){
   }
   
+  public float getPrice(){
+    return price;
+  }
 }

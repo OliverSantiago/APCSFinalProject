@@ -52,4 +52,8 @@ class Seed extends Item{
     watered = true;
   }
   
+  float getPrice(){
+    return super.getPrice();
+  }
+  
 }
