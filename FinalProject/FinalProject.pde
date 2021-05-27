@@ -1,21 +1,45 @@
 Player player;
+Plot [][] all_plots;
 boolean first_screen = true;
 int savedTime;
-int time_increment = 500;
+int time_increment = 1000;
 int time = 600;
 int money = 0;
+Plot test;
 
 void setup(){
+  //Size and background
   size(1000,800);//TBD
   background(100,184,255);
+  
+  //Title and Controls
   textSize(32);
   fill(0, 102, 153, 204);
   text("Stardew Valley", 12, 60);
   textSize(25);
   fill(0, 102, 153, 204);
   text("Controls:", 12, 100);
+  
+  //Player, plots, tools, and time
   player = new Player();
-  savedTime = millis();
+  
+  all_plots = new Plot[10][10];
+  for(int i = 0; i < all_plots.length; i++){
+    for(int j = 0; j < all_plots[i].length; j++){
+      all_plots[i][j]=new Plot();
+    }
+  }
+  
+  Tool watering_can = new Tool();
+  watering_can.set_watering_can();
+  Tool hoe = new Tool();
+  hoe.set_hoe();
+  player.addNextItem(watering_can);
+  player.addNextItem(hoe);
+  
+  savedTime = millis(); 
+  
+  
 }
 
 void draw(){
@@ -25,6 +49,35 @@ void draw(){
   if(!first_screen){
     //Makes the background
     background(255,241,191);
+    
+    //Makes plots
+    int x_coor = 300;
+    int y_coor = 300;
+    for(int i = 0; i < all_plots.length; i++){
+      for(int j = 0; j < all_plots[i].length; j++){
+        
+        //Hitbox around plot
+        if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+            dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+          all_plots[i][j].mouse_on();
+        }else{
+          all_plots[i][j].mouse_off();
+        }
+        
+        //Changes state of plot if close enough and depending on held items
+        if (mouseButton == 37){
+          if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+              dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+            all_plots[i][j].till();
+          }
+        }
+        all_plots[i][j].display(x_coor,y_coor);
+        y_coor += 30;
+        
+      }
+      x_coor+=30;
+      y_coor = 300;
+    }
     
     //Makes the player
     strokeWeight(0);

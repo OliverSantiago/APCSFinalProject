@@ -3,6 +3,7 @@ public class Plot{
   private boolean tilled;
   private boolean watered;
   private boolean ready_to_harvest;
+  private boolean mouse_on = false;
   private Crop current_crop;
   
   //Default constructor for new plot
@@ -35,13 +36,36 @@ public class Plot{
     }
     return null;
   }
-  void display(){
+  
+  void mouse_on(){
+    mouse_on = true;
+  }
+  
+  void mouse_off(){
+    mouse_on = false;
+  }
+  
+  void display(int x, int y){
     if (tilled && !watered){
-      //Need to Complete
+      if (mouse_on){
+        strokeWeight(2);
+        stroke(0);
+      }else{
+        noStroke();
+      }
+      fill(165,129,0);
+      rect(x,y,30,30);
     }else if(tilled && watered){
       //Need to Complete
     }else{
-      //Need to Complete
+      if (mouse_on){
+        strokeWeight(2);
+        stroke(0);
+      }else{
+        noStroke();
+      }
+      fill(222,188,65);
+      rect(x,y,30,30);
     }
   }
   
