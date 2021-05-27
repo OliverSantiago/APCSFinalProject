@@ -19,6 +19,7 @@ class Seed extends Item{
   public Seed(float seed_type){
     daysElapsed = 0;
     watered = false;
+    crop = new Crop(-1);
     if (seed_type == 1){
       corn = true;
       daysForHarvest = 14;
@@ -54,7 +55,7 @@ class Seed extends Item{
   //returns corresponding crop
   Item getCrop(){
     if (daysElapsed >= daysForHarvest){
-      return thisCrop;
+      return crop;
     }
     return null;
   }

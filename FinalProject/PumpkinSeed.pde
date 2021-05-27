@@ -1,7 +1,6 @@
-class PumpkinSeed extends Seed{
+class PumpkinSeed{
   float x,y;
   PumpkinSeed(float x, float y){
-    super(13,100,new Crop(1));
     this.x = x;
     this. y = y;
   }

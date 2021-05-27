@@ -1,7 +1,6 @@
-class MelonSeed extends Seed{
+class MelonSeed{
   float x,y;
   public MelonSeed(float x, float y){
-    super(12,80,new Crop(1));
     this.x = x;
     this.y = y;
   }

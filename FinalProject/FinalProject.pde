@@ -104,7 +104,8 @@ void draw(){
     rect(650, 700, 50,50);
     rect(700, 700, 50,50);
     int counter = 265;
-    for (int i = 0; i < 9; i++){
+    for (int i = 0; i < player.size(); i++){ 
+      
       //This is where we will show the image of each item in inventory at x index of counter
       counter+=50;
     }

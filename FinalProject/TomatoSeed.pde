@@ -1,7 +1,6 @@
-class TomatoSeed extends Seed{
+class TomatoSeed{
   float x,y;
   TomatoSeed(float x, float y){
-    super(11,50,new Crop(1));
     this.x = x;
     this.y = y;
   }
