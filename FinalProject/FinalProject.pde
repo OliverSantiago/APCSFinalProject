@@ -103,10 +103,10 @@ void draw(){
     rect(600, 700, 50,50);
     rect(650, 700, 50,50);
     rect(700, 700, 50,50);
-    int counter = 275;
-    for (int i = 0; i < player.size(); i++){
+    int counter = 265;
+    for (int i = 0; i < 9; i++){
       //This is where we will show the image of each item in inventory at x index of counter
-      counter+=100;
+      counter+=50;
     }
     if (player.get_current_item()==0){
       noStroke();
