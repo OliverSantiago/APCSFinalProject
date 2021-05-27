@@ -1,12 +1,15 @@
 public class Item{
-  int price = 0;
+  float price = 0;
   
   public Item(){ 
   }
   
-  public Item(int p){
+  public Item(float p){
     price = p;
   }
   //Need to add classes of subclasses to compile//
+  
+  public void display(){
+  }
   
 }

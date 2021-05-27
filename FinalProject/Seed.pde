@@ -1,5 +1,5 @@
 class Seed extends Item{
-  
+  float x,y;  
   //keeps track of the time passes since planted
   private float daysElapsed;
   
@@ -11,15 +11,14 @@ class Seed extends Item{
   
   //tracks the type of crop that corresponds to the type of seed
   private Item thisCrop;
-  
-  private float value;
+ 
   
   public Seed(float harvestTime, float value, Crop typeOfCrop){
+    super(value);
     daysElapsed = 0;
     daysForHarvest = harvestTime;
     watered = false;
     thisCrop = (Item)typeOfCrop;
-    this.value = value;
   }
   
   //returns whether the seed has been watered
@@ -39,9 +38,6 @@ class Seed extends Item{
     return daysElapsed;
   }
   
-  float getValue(){
-    return value;
-  }
   
   //increments days elapsed if plant has been watered
   void addDay(){
