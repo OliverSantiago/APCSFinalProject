@@ -7,7 +7,7 @@ class TomatoSeed extends Seed{
   }
   void display(){
     stroke(0);
-    fill(#C17935);
+    fill(#43760C);
     rect(x,y,24,30);
   }
   

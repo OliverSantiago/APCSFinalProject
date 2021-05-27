@@ -7,7 +7,7 @@ class PumpkinSeed extends Seed{
   }
   void display(){
     stroke(0);
-    fill(#C17935);
+    fill(#FFE667);
     rect(x,y,24,30);
   }
   

@@ -7,7 +7,7 @@ class CornSeed extends Seed{
   }
   void display(){
     stroke(0);
-    fill(#C17935);
+    fill(#E3CE30);
     rect(x,y,24,30);
   }
   

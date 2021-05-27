@@ -7,7 +7,7 @@ class MelonSeed extends Seed{
   }
   void display(){
     stroke(0);
-    fill(#C17935);
+    fill(#E898B0);
     rect(x,y,24,30);
   }
   
