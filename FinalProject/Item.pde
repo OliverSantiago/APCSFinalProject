@@ -20,6 +20,10 @@ public class Item{
     return "bluh";
   }
   
+  int get_type(){
+    return -1;
+  }
+  
   public float getPrice(){
     return price;
   }

@@ -47,4 +47,23 @@ class Crop extends Item{
   String getQuality(){
     return quality;
   }
+  
+  int get_type(){
+    if (corn){
+      return 1;
+    }
+    if (melon){
+      return 2;
+    }
+    if (potato){
+      return 3;
+    }
+    if (pumpkin){
+      return 4;
+    }
+    if (tomato){
+      return 5;
+    }
+    return -1;
+  }
 }

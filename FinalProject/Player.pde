@@ -71,7 +71,7 @@ public class Player{
   }
   
   //Remove slot
-  void removeItem(Item i){
+  void removeStack(int i){
     inventory.remove(i);
   }
   
@@ -86,8 +86,11 @@ public class Player{
   }
   
   //Remove from existing stack of items
-  void removeFromStack(int index, Item i){
-    inventory.get(index).remove(i);
+  void removeFromStack(int index){
+    inventory.get(index).remove(0);
+    if (inventory.get(index).size()==0){
+        removeStack(index);
+    }
   }
   
   //Size of a stack

@@ -56,7 +56,14 @@ public class Plot{
       fill(165,129,0);
       rect(x,y,30,30);
     }else if(tilled && watered){
-      //Need to Complete
+            if (mouse_on){
+        strokeWeight(2);
+        stroke(0);
+      }else{
+        noStroke();
+      }
+      fill(111,81,3);
+      rect(x,y,30,30);
     }else{
       if (mouse_on){
         strokeWeight(2);

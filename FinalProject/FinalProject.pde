@@ -5,6 +5,13 @@ int savedTime;
 int time_increment = 1000;
 int time = 600;
 int money = 0;
+
+int new_money = 0;
+boolean moving_item;
+boolean moving_Stack;
+int moving_item_index;
+ArrayList<ArrayList<Item>> Sold = new ArrayList<ArrayList<Item>>();
+
 Plot test;
 
 void setup(){
@@ -30,16 +37,14 @@ void setup(){
     }
   }
   
-  Tool watering_can = new Tool();
-  watering_can.set_watering_can();
-  Tool hoe = new Tool();
-  hoe.set_hoe();
+  Tool watering_can = new Tool(1);
+  Tool hoe = new Tool(2);
   player.addNextItem(watering_can);
   player.addNextItem(hoe);
   
   savedTime = millis(); 
   
-  //Testing seeds
+  //Testing seeds: To be removed
   Item seed1 = new Seed(1);
   Item seed2 = new Seed(2);
   Item seed3 = new Seed(3);
@@ -63,6 +68,8 @@ void draw(){
     //Makes plots
     int x_coor = 300;
     int y_coor = 300;
+    
+          
     for(int i = 0; i < all_plots.length; i++){
       for(int j = 0; j < all_plots[i].length; j++){
         
@@ -75,16 +82,16 @@ void draw(){
         }
         
         //Changes state of plot if close enough and depending on held items
-        if (mouseButton == 37){
+        if (mouseButton == 37&&!moving_item){
           
           //If Player is holding Tool
           if (player.get_current_item_index() < player.size()
             &&player.get_current_item().get_Class().equals("Tool")){
-            println("works1");
+            //println("works1");
             
             //If player is holding hoe, till
             if (player.get_current_item().tool_type().equals("hoe")){
-              println("works2");
+              //println("works2");
               if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
                   dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
                 all_plots[i][j].till();
@@ -93,7 +100,7 @@ void draw(){
             
             //If player is holding watering can, water
             if (player.get_current_item().tool_type().equals("watering_can")){
-              println("works3");
+              //println("works3");
               if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
                   dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
                 all_plots[i][j].water();
@@ -114,9 +121,12 @@ void draw(){
     stroke(0);
     player.display();
     
-    //Makes the house
+    //Makes the house and bin
     fill(34,121,224);
     rect(800,100,80,50);
+    
+    fill(232,211,108);
+    rect(725,125,30,15);
     
     //Makes the inventory
     stroke(0);
@@ -189,6 +199,91 @@ void draw(){
       rect(700, 700, 50,50);
     }
     
+    //Putting items in the bin
+    if(mouseButton == 37){
+      if (dist((float)mouseX,(float)mouseY,375,725)<=25){
+        moving_item = true;
+        moving_item_index = 2;
+      }else if (dist((float)mouseX,(float)mouseY,425,725)<=25){
+        moving_item = true;
+        moving_item_index = 3;
+      }else if (dist((float)mouseX,(float)mouseY,475,725)<=25){
+        moving_item = true;
+        moving_item_index = 4;
+      }else if (dist((float)mouseX,(float)mouseY,525,725)<=25){
+        moving_item = true;
+        moving_item_index = 5;
+      }else if (dist((float)mouseX,(float)mouseY,575,725)<=25){
+        moving_item = true;
+        moving_item_index = 6;
+      }else if (dist((float)mouseX,(float)mouseY,625,725)<=25){
+        moving_item = true;
+        moving_item_index = 7;
+      }else if (dist((float)mouseX,(float)mouseY,675,725)<=25){
+        moving_item = true;
+        moving_item_index = 8;
+      }else if (dist((float)mouseX,(float)mouseY,725,725)<=25){
+        moving_item = true;
+        moving_item_index = 9;
+      }
+    }
+    if(moving_item_index>=player.size()){
+      moving_item = false;
+    }
+    if(moving_item){
+      player.get_selected_item(moving_item_index).display(mouseX,mouseY);
+    }
+    if(moving_item&&mouseButton==37){
+      if (dist((float)mouseX,(float)mouseY,740,132)<15){
+        sell(player.get_selected_item(moving_item_index));
+        player.removeFromStack(moving_item_index);
+        moving_item = false;
+      }
+      //moving_item = false;
+    }
+    
+    if(mouseButton == 39){
+      if (dist((float)mouseX,(float)mouseY,375,725)<=25){
+        moving_Stack = true;
+        moving_item_index = 2;
+      }else if (dist((float)mouseX,(float)mouseY,425,725)<=25){
+        moving_Stack = true;
+        moving_item_index = 3;
+      }else if (dist((float)mouseX,(float)mouseY,475,725)<=25){
+        moving_Stack = true;
+        moving_item_index = 4;
+      }else if (dist((float)mouseX,(float)mouseY,525,725)<=25){
+        moving_Stack = true;
+        moving_item_index = 5;
+      }else if (dist((float)mouseX,(float)mouseY,575,725)<=25){
+        moving_Stack = true;
+        moving_item_index = 6;
+      }else if (dist((float)mouseX,(float)mouseY,625,725)<=25){
+        moving_Stack = true;
+        moving_item_index = 7;
+      }else if (dist((float)mouseX,(float)mouseY,675,725)<=25){
+        moving_Stack = true;
+        moving_item_index = 8;
+      }else if (dist((float)mouseX,(float)mouseY,725,725)<=25){
+        moving_Stack = true;
+        moving_item_index = 9;
+      }
+    }
+    if(moving_item_index>=player.size()){
+      moving_Stack = false;
+    }
+    if(moving_Stack){
+      player.get_selected_item(moving_item_index).display(mouseX,mouseY);
+    }
+    if(moving_item&&mouseButton==37){
+      if (dist((float)mouseX,(float)mouseY,740,1532)<15){
+        sell(player.get_selected_item(moving_item_index));
+        player.removeFromStack(moving_item_index);
+        moving_item = false;
+      }
+      //moving_item = false;
+    }
+    
     //Displays money and time
     int passedTime = millis() - savedTime;
     if(passedTime > time_increment){
@@ -203,7 +298,7 @@ void draw(){
     text("Money: "+money, 10, 60);
     
     //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
-     if (time>1200){
+    if (time>1200){
       noStroke();
       fill(34,126,237,100);
       rect(0,0,width,height);
@@ -257,6 +352,21 @@ void keyPressed(){
   }
   if(keyCode == 48){
     player.hold_item(9);
+  }  
+}
+
+//Selling items
+void sell(ArrayList<Item> sold_item){
+  Sold.add(sold_item);
+}
+
+void sell(Item sold_item){
+  for(int i = 0; i < Sold.size(); i++){
+    if (Sold.get(i).get(0).getClass().equals(sold_item.getClass())&&      
+        Sold.get(i).get(0).get_type()==sold_item.get_type()){
+        
+      Sold.get(i).add(sold_item);
+      break;
+    }
   }
-  
 }
