@@ -30,9 +30,10 @@ class Tool extends Item{
   
   void display(int x, int y){
     if (watering_can){
-      stroke(0);
+      stroke(#5D3526);
       strokeWeight(10);
       line(x,y+35,x+15,y-3);
+      stroke(0);
       strokeWeight(20);
       line(x+15,y,x+25,y+15);
       strokeWeight(1);    
