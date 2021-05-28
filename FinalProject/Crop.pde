@@ -5,23 +5,23 @@ class Crop extends Item{
   private boolean corn,melon,potato,pumpkin,tomato;
   
   public Crop(float crop_type){
-    if (crop_type == 1){
+    if (crop_type == 1.0){
       corn = true;
       value = 50;
     }
-    if (crop_type == 2){
+    if (crop_type == 2.0){
       melon = true;
       value = 250;
     }
-    if (crop_type == 3){
+    if (crop_type == 3.0){
       potato = true; 
       value = 80;
     }
-    if (crop_type == 4){
+    if (crop_type == 4.0){
       pumpkin = true;
       value = 320;
     }
-    if (crop_type == 5){
+    if (crop_type == 5.0){
       tomato = true;
       value = 80;
     }

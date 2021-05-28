@@ -39,7 +39,17 @@ void setup(){
   
   savedTime = millis(); 
   
-  
+  //Testing seeds
+  Item seed1 = new Seed(1);
+  Item seed2 = new Seed(2);
+  Item seed3 = new Seed(3);
+  Item seed4 = new Seed(4);
+  Item seed5 = new Seed(5);
+  player.addNextItem(seed1);
+  player.addNextItem(seed2);
+  player.addNextItem(seed3);
+  player.addNextItem(seed4);
+  player.addNextItem(seed5);
 }
 
 void draw(){
@@ -66,9 +76,29 @@ void draw(){
         
         //Changes state of plot if close enough and depending on held items
         if (mouseButton == 37){
-          if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-              dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
-            all_plots[i][j].till();
+          
+          //If Player is holding Tool
+          if (player.get_current_item_index() < player.size()
+            &&player.get_current_item().get_Class().equals("Tool")){
+            println("works1");
+            
+            //If player is holding hoe, till
+            if (player.get_current_item().tool_type().equals("hoe")){
+              println("works2");
+              if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                all_plots[i][j].till();
+              }
+            }
+            
+            //If player is holding watering can, water
+            if (player.get_current_item().tool_type().equals("watering_can")){
+              println("works3");
+              if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                all_plots[i][j].water();
+              }
+            }
           }
         }
         all_plots[i][j].display(x_coor,y_coor);
@@ -103,57 +133,57 @@ void draw(){
     rect(600, 700, 50,50);
     rect(650, 700, 50,50);
     rect(700, 700, 50,50);
-    int counter = 265;
+    int counter = 263;
     for (int i = 0; i < player.size(); i++){ 
-      
+      player.get_selected_item(i).display(counter,710);
       //This is where we will show the image of each item in inventory at x index of counter
       counter+=50;
     }
-    if (player.get_current_item()==0){
+    if (player.get_current_item_index()==0){
       noStroke();
       fill(216, 252, 110,150);
       rect(250,700,50,50);
     }
-    if (player.get_current_item()==1){
+    if (player.get_current_item_index()==1){
       noStroke();
       fill(216, 252, 110,150);
       rect(300, 700, 50,50);
     }
-    if (player.get_current_item()==2){
+    if (player.get_current_item_index()==2){
       noStroke();
       fill(216, 252, 110,150);
       rect(350, 700, 50,50);
     }
-    if (player.get_current_item()==3){
+    if (player.get_current_item_index()==3){
       noStroke();
       fill(216, 252, 110,150);
       rect(400, 700, 50,50);
     }
-    if (player.get_current_item()==4){
+    if (player.get_current_item_index()==4){
       noStroke();
       fill(216, 252, 110,150);
       rect(450, 700, 50,50);
     }
-    if (player.get_current_item()==5){
+    if (player.get_current_item_index()==5){
       noStroke();
       fill(216, 252, 110,150);
       rect(500, 700, 50,50);
     }
-    if (player.get_current_item()==6){
+    if (player.get_current_item_index()==6){
       noStroke();
       fill(216, 252, 110,150);
       rect(550, 700, 50,50);
     }
-    if (player.get_current_item()==7){
+    if (player.get_current_item_index()==7){
       noStroke();
       fill(216, 252, 110,150);
       rect(600, 700, 50,50);
     }
-    if (player.get_current_item()==8){
+    if (player.get_current_item_index()==8){
       noStroke();
       fill(216, 252, 110,150);
       rect(650, 700, 50,50);
-    }if (player.get_current_item()==9){
+    }if (player.get_current_item_index()==9){
       noStroke();
       fill(216, 252, 110,150);
       rect(700, 700, 50,50);

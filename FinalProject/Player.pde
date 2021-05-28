@@ -48,9 +48,19 @@ public class Player{
   
   //Use current item
   
-  //Return current item
-  int get_current_item(){
+  //Return current item index
+  int get_current_item_index(){
     return current_item;
+  }
+  
+  //Return current item
+  Item get_current_item(){
+     return inventory.get(current_item).get(0);
+  }
+
+  //Get selected item
+  Item get_selected_item(int x){
+    return inventory.get(x).get(0);
   }
   
   //Add new item at next available slot

@@ -9,7 +9,15 @@ public class Item{
   }
   //Need to add classes of subclasses to compile//
   
-  public void display(){
+  void display(int x, int y){
+  }
+  
+  String get_Class(){
+    return "blah";
+  }
+  
+  String tool_type(){
+    return "bluh";
   }
   
   public float getPrice(){

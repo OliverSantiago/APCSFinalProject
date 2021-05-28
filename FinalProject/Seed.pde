@@ -1,5 +1,5 @@
 class Seed extends Item{
-  float x,y;
+  //float x,y;
   //keeps track of the time passes since planted
   private float daysElapsed;
   
@@ -20,27 +20,27 @@ class Seed extends Item{
     daysElapsed = 0;
     watered = false;
     crop = new Crop(-1);
-    if (seed_type == 1){
+    if (seed_type == 1.0){
       corn = true;
       daysForHarvest = 14;
       value = 20;
     }
-    if (seed_type == 2){
+    if (seed_type == 2.0){
       melon = true;
       daysForHarvest = 18;
       value = 80;
     }
-    if (seed_type == 3){
+    if (seed_type == 3.0){
       potato = true;
       daysForHarvest = 6; 
       value = 50;
     }
-    if (seed_type == 4){
+    if (seed_type == 4.0){
       pumpkin = true;
       daysForHarvest = 13;
       value = 100;
     }
-    if (seed_type == 5){
+    if (seed_type == 5.0){
       tomato = true;
       daysForHarvest = 11;
       value = 50;
@@ -82,12 +82,16 @@ class Seed extends Item{
     return value;
   }
   
-  void newCor(float x, float y){
-    this.x = x;
-    this.y = y;
+  //void newCor(float x, float y){
+  //  this.x = x;
+  //  this.y = y;
+  //}
+  
+  String get_Class(){
+    return "Seed";
   }
   
-  void display(){
+  void display(int x,int y){
     if (corn){
       stroke(0);
       fill(#E3CE30);
