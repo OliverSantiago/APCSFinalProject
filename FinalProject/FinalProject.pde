@@ -82,7 +82,7 @@ void draw(){
         }
         
         //Changes state of plot if close enough and depending on held items
-        if (mouseButton == 37&&!moving_item){
+        if (mouseButton == 37&&!moving_item&&!moving_Stack){
           
           //If Player is holding Tool
           if (player.get_current_item_index() < player.size()
@@ -239,8 +239,7 @@ void draw(){
         player.removeFromStack(moving_item_index);
         moving_item = false;
       }
-      //moving_item = false;
-    }
+     }
     
     if(mouseButton == 39){
       if (dist((float)mouseX,(float)mouseY,375,725)<=25){
@@ -275,13 +274,12 @@ void draw(){
     if(moving_Stack){
       player.get_selected_item(moving_item_index).display(mouseX,mouseY);
     }
-    if(moving_item&&mouseButton==37){
+    if(moving_Stack&&mouseButton==37){
       if (dist((float)mouseX,(float)mouseY,740,1532)<15){
         sell(player.get_selected_item(moving_item_index));
         player.removeFromStack(moving_item_index);
-        moving_item = false;
+        moving_Stack = false;
       }
-      //moving_item = false;
     }
     
     //Displays money and time
@@ -352,7 +350,13 @@ void keyPressed(){
   }
   if(keyCode == 48){
     player.hold_item(9);
-  }  
+  } 
+  
+  //Stop holding item
+  if(keyCode==81){
+    moving_item=false;
+    moving_Stack=false;
+  }
 }
 
 //Selling items
