@@ -1,12 +1,14 @@
 Player player;
 Plot [][] all_plots;
 boolean first_screen = true;
+boolean end_day = false;
 int savedTime;
-int time_increment = 1000;
+
+int time_increment = 500;
 int time = 600;
 int money = 0;
-
 int new_money = 0;
+
 boolean moving_item;
 boolean moving_Stack;
 int moving_item_index;
@@ -57,11 +59,23 @@ void setup(){
   player.addNextItem(seed5);
 }
 
-void draw(){
+void draw(){  
   if(mousePressed||keyPressed){
     first_screen = false;
   }
-  if(!first_screen){
+    //End of Screen
+  if(end_day){
+    background(59,59,59);
+    textSize(50);
+    fill(255);
+    text(money+" + "+new_money+" = " + Integer.toString(money+new_money), 12, 60);
+    if(mousePressed||keyPressed){
+      end_day = false;
+      money+=new_money;
+      new_money = 0;
+      time = 600;
+    }
+  }else if(!first_screen){
     //Makes the background
     background(255,241,191);
     
@@ -296,11 +310,14 @@ void draw(){
     text("Money: "+money, 10, 60);
     
     //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
-    if (time>1200){
+    if (time>1200&&time<2400){
       noStroke();
       fill(34,126,237,100);
       rect(0,0,width,height);
-     }
+    }else if(time>2400){
+       end_day = true;
+       end_of_day_calculate();
+    }
   }
 }
 
@@ -365,12 +382,34 @@ void sell(ArrayList<Item> sold_item){
 }
 
 void sell(Item sold_item){
+  boolean added = false;
   for(int i = 0; i < Sold.size(); i++){
     if (Sold.get(i).get(0).getClass().equals(sold_item.getClass())&&      
         Sold.get(i).get(0).get_type()==sold_item.get_type()){
         
       Sold.get(i).add(sold_item);
+      added = true;
       break;
+    }
+  }
+  if (!added){
+    ArrayList<Item> temp = new ArrayList<Item>();
+    temp.add(sold_item);
+    Sold.add(temp);
+  }
+}
+
+void end_of_day_calculate(){
+  for(int i = 0; i < Sold.size(); i++){
+    new_money+=Sold.get(i).get(0).getPrice() * Sold.get(i).size();
+  }
+  while(Sold.size()>0){
+    Sold.remove(0);
+  }
+  
+  for(int i = 0; i < all_plots.length; i++){
+    for(int j = 0; j < all_plots[0].length;j++){
+      all_plots[i][j].end_of_day();
     }
   }
 }

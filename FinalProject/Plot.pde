@@ -77,13 +77,22 @@ public class Plot{
   }
   
   void end_of_day(){
-    if (watered){
+    if (watered&&current_seed!=null){
       current_seed.water();
       current_seed.addDay();
       if (current_seed.getCrop()!=null){
         current_crop = (Crop)current_seed.getCrop();
       }
       watered = false;
+    }else if (watered&&current_seed==null){
+      float rand = random(100);
+      if (rand>25){
+        watered = false;
+        tilled = false;
+      }
+    }else{
+      watered = false;
+      tilled = false;
     }
   }
 }

@@ -40,7 +40,7 @@ class Crop extends Item{
     }
   }
   
-  float getValue(){
+  float getPrice(){
     return value;
   }
   

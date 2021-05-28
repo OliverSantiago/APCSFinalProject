@@ -26,18 +26,6 @@ class Tool extends Item{
   
   void display(int x, int y){
     if (watering_can){
-<<<<<<< HEAD
-=======
-      stroke(#5D3526);
-      strokeWeight(10);
-      line(x,y+35,x+15,y-3);
-      stroke(0);
-      strokeWeight(20);
-      line(x+15,y,x+25,y+15);
-      strokeWeight(1);    
-    }
-    if (hoe){
->>>>>>> 7c7b630b232424475e06e1838276bb5c55a9ff86
       noStroke();
       fill(64,101,245);
       rect(x-3,y+10,20,20);
