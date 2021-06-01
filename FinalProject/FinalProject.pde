@@ -313,13 +313,13 @@ void draw(){
     text("Money: "+money, 10, 60);
     
     //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
-    if (time>1200&&time<2400){
+    if (time>=1200 && time<=2400){
       noStroke();
       fill(34,126,237,100);
       rect(0,0,width,height);
-    }else if(time>2400){
-       end_day = true;
+    }if(time>=2400){
        end_of_day_calculate();
+       end_day = true;
     }
   }
 }
