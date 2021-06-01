@@ -20,6 +20,10 @@ public class Item{
     return "bluh";
   }
   
+  String getQuality(){
+    return "bloh";
+  }
+  
   int get_type(){
     return -1;
   }

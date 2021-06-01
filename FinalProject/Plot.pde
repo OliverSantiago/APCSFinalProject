@@ -24,14 +24,16 @@ public class Plot{
     }
   }
   
-  void plant(Seed s){
-    if (watered){
-      current_seed = s;
+  void plant(Item s){
+    if (watered && current_seed == null){
+      current_seed = (Seed)s;
     }
   }
   
   Item harvest(){
     if (ready_to_harvest){
+      current_seed = null;
+      //ready_to_harvest = false;
       return current_crop;
     }
     return null;
@@ -82,6 +84,9 @@ public class Plot{
       current_seed.addDay();
       if (current_seed.getCrop()!=null){
         current_crop = (Crop)current_seed.getCrop();
+      }
+      if (current_seed.is_grown()){
+        ready_to_harvest = true;
       }
       watered = false;
     }else if (watered&&current_seed==null){

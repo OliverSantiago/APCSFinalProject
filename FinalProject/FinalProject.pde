@@ -96,7 +96,7 @@ void draw(){
         }
         
         //Changes state of plot if close enough and depending on held items
-        if (mouseButton == 37&&!moving_item&&!moving_Stack){
+        if (mouseButton == LEFT&&!moving_item&&!moving_Stack){
           
           //If Player is holding Tool
           if (player.get_current_item_index() < player.size()
@@ -120,6 +120,30 @@ void draw(){
                 all_plots[i][j].water();
               }
             }
+            
+            //If player is holding seed, plant seed
+          }else if(player.get_current_item_index() <  player.size()
+                   &&player.get_current_item().get_Class().equals("Seed")){
+                  if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+                      dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                    all_plots[i][j].plant(player.get_current_item());
+                   }
+          }
+          
+           //If player is holding none of above, harvest crop (if possible)
+          else{
+            if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                    for (int x = 0; x < player.size(); x++){
+                      if (player.Stacksize(x)>0 && all_plots[i][j].harvest() != null && player.get_selected_item(x).get_Class().equals("Crop") &&
+                          player.get_selected_item(x).get_type() == all_plots[i][j].harvest().get_type() &&
+                          player.get_selected_item(x).getQuality().equals(all_plots[i][j].harvest().getQuality())){
+                            player.addToStack(x,all_plots[i][j].harvest());
+                       }else if(x == player.size()-1 && all_plots[i][j].harvest() != null){
+                         player.addNextItem(all_plots[i][j].harvest());
+                       }
+                    }
+                  }
           }
         }
         all_plots[i][j].display(x_coor,y_coor);
@@ -214,7 +238,7 @@ void draw(){
     }
     
     //Putting items in the bin
-    if(mouseButton == 37){
+    if(mouseButton == LEFT){
       if (dist((float)mouseX,(float)mouseY,375,725)<=25){
         moving_item = true;
         moving_item_index = 2;
@@ -247,7 +271,7 @@ void draw(){
     if(moving_item){
       player.get_selected_item(moving_item_index).display(mouseX,mouseY);
     }
-    if(moving_item&&mouseButton==37){
+    if(moving_item&&mouseButton==LEFT){
       if (dist((float)mouseX,(float)mouseY,740,132)<15){
         sell(player.get_selected_item(moving_item_index));
         player.removeFromStack(moving_item_index);
@@ -255,7 +279,7 @@ void draw(){
       }
      }
     
-    if(mouseButton == 39){
+    if(mouseButton == RIGHT){
       if (dist((float)mouseX,(float)mouseY,375,725)<=25){
         moving_Stack = true;
         moving_item_index = 2;
@@ -288,7 +312,7 @@ void draw(){
     if(moving_Stack){
       player.get_selected_item(moving_item_index).display(mouseX,mouseY);
     }
-    if(moving_Stack&&mouseButton==37){
+    if(moving_Stack&&mouseButton==LEFT){
       if (dist((float)mouseX,(float)mouseY,740,1532)<15){
         sell(player.get_selected_item(moving_item_index));
         player.removeFromStack(moving_item_index);

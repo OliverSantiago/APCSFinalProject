@@ -19,31 +19,35 @@ class Seed extends Item{
   public Seed(float seed_type){
     daysElapsed = 0;
     watered = false;
-    crop = new Crop(-1);
     if (seed_type == 1.0){
       corn = true;
-      daysForHarvest = 14;
+      daysForHarvest = 1; //14, less for testing purpose
       value = 20;
+      crop = new Crop(1.0);
     }
     if (seed_type == 2.0){
       melon = true;
-      daysForHarvest = 18;
+      daysForHarvest = 1; //18, less for testing purpose
       value = 80;
+      crop = new Crop(2.0);
     }
     if (seed_type == 3.0){
       potato = true;
-      daysForHarvest = 6; 
+      daysForHarvest = 1; //6, less for testing purposes
       value = 50;
+      crop = new Crop(3.0);
     }
     if (seed_type == 4.0){
       pumpkin = true;
-      daysForHarvest = 13;
+      daysForHarvest = 1; //13, less for testing purpose
       value = 100;
+      crop = new Crop(4.0);
     }
     if (seed_type == 5.0){
       tomato = true;
-      daysForHarvest = 11;
+      daysForHarvest = 1; //11, less for testing purpose
       value = 50;
+      crop = new Crop(5.0);
     }
   }
   
@@ -60,8 +64,8 @@ class Seed extends Item{
     return null;
   }
   
-  float getDaysElapsed(){
-    return daysElapsed;
+  boolean is_grown(){
+    return daysElapsed >= daysForHarvest;
   }
   
   

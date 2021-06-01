@@ -86,11 +86,12 @@ public class Player{
   }
   
   //Remove from existing stack of items
-  void removeFromStack(int index){
-    inventory.get(index).remove(0);
+  Item removeFromStack(int index){
+    Item removed_item = inventory.get(index).remove(0);
     if (inventory.get(index).size()==0){
         removeStack(index);
     }
+    return removed_item;
   }
   
   //Size of a stack
