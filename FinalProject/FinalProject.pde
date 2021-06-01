@@ -134,13 +134,14 @@ void draw(){
           else{
             if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
                   dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                    Item crop = all_plots[i][j].harvest();
                     for (int x = 0; x < player.size(); x++){
-                      if (player.Stacksize(x)>0 && all_plots[i][j].harvest() != null && player.get_selected_item(x).get_Class().equals("Crop") &&
-                          player.get_selected_item(x).get_type() == all_plots[i][j].harvest().get_type() &&
-                          player.get_selected_item(x).getQuality().equals(all_plots[i][j].harvest().getQuality())){
-                            player.addToStack(x,all_plots[i][j].harvest());
-                       }else if(x == player.size()-1 && all_plots[i][j].harvest() != null){
-                         player.addNextItem(all_plots[i][j].harvest());
+                      if (player.Stacksize(x)>0 && crop != null && player.get_selected_item(x).get_Class().equals("Crop") &&
+                          player.get_selected_item(x).get_type() == crop.get_type() &&
+                          player.get_selected_item(x).getQuality().equals(crop.getQuality())){
+                            player.addToStack(x,crop);
+                       }else if(x == player.size()-1 && crop != null){
+                         player.addNextItem(crop);
                        }
                     }
                   }
@@ -184,6 +185,7 @@ void draw(){
     int counter = 263;
     for (int i = 0; i < player.size(); i++){ 
       player.get_selected_item(i).display(counter,710);
+      //text(player.Stacksize(i),counter-10,700);
       //This is where we will show the image of each item in inventory at x index of counter
       counter+=50;
     }

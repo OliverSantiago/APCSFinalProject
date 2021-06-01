@@ -33,7 +33,7 @@ public class Plot{
   Item harvest(){
     if (ready_to_harvest){
       current_seed = null;
-      //ready_to_harvest = false;
+      ready_to_harvest = false;
       return current_crop;
     }
     return null;

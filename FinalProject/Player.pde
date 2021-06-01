@@ -16,19 +16,19 @@ public class Player{
   }
   
   void Up(){
-    y-=10;
+    y-=20;
   }
   
   void Down(){
-    y+=10;
+    y+=20;
   }
   
   void Left(){
-    x-=10;
+    x-=20;
   }
   
   void Right(){
-    x+=10;
+    x+=20;
   }
   
   float getX(){
