@@ -39,6 +39,13 @@ public class Player{
     return y;
   }
   
+  void setX(float x){
+    this.x = x;
+  }
+  
+  void setY(float y){
+    this.y = y;
+  }
   //Changes held item
   void hold_item(int x){
     if (0<=x && x<10){

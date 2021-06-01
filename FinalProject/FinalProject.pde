@@ -4,6 +4,10 @@ boolean first_screen = true;
 boolean end_day = false;
 int savedTime;
 
+boolean town = false;
+boolean can_move_back = true;
+boolean set_x_coor = true;;
+
 int time_increment = 500;
 int time = 600;
 int money = 0;
@@ -75,7 +79,28 @@ void draw(){
       new_money = 0;
       time = 600;
     }
-  }else if(!first_screen){
+  }else if(town){//Screen for Town
+    
+    background(124,227,124);
+    
+    if(!set_x_coor){
+      player.setX(1);
+      set_x_coor = true;
+    }
+    strokeWeight(0);
+    stroke(0);
+    player.display();
+    if(player.getX()>=20){
+      can_move_back = true;
+    }
+    if(player.getX()<=10&&can_move_back){
+      town = false;
+      set_x_coor = false;
+      can_move_back = false;
+    }
+    
+  }else if(!first_screen && !town){//Screen for Farm
+  
     //Makes the background
     background(255,241,191);
     
@@ -133,7 +158,22 @@ void draw(){
     //Makes the player
     strokeWeight(0);
     stroke(0);
+    if(!set_x_coor){
+      player.setX(990);
+      set_x_coor = true;
+    }
     player.display();
+    
+    //Checks if close to edge
+    if(player.getX()>=990&&can_move_back){
+      town = true;
+      set_x_coor = false;
+      can_move_back = false;
+    }
+    
+    if(player.getX()<=980){
+      can_move_back = true;
+    }
     
     //Makes the house and bin
     fill(34,121,224);
