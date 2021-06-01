@@ -137,8 +137,9 @@ void draw(){
                     Item crop = all_plots[i][j].harvest();
                     for (int x = 0; x < player.size(); x++){
                       if (player.Stacksize(x)>0 && crop != null && player.get_selected_item(x).get_Class().equals("Crop") &&
-                          player.get_selected_item(x).get_type() == crop.get_type() &&
-                          player.get_selected_item(x).getQuality().equals(crop.getQuality())){
+                          player.get_selected_item(x).get_type() == crop.get_type() 
+                          //&&player.get_selected_item(x).getQuality().equals(crop.getQuality())
+                          ){
                             player.addToStack(x,crop);
                        }else if(x == player.size()-1 && crop != null){
                          player.addNextItem(crop);
