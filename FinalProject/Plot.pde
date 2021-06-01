@@ -30,7 +30,7 @@ public class Plot{
     }
   }
   
-  Crop harvest(){
+  Item harvest(){
     if (ready_to_harvest){
       return current_crop;
     }

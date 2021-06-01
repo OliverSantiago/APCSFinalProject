@@ -300,11 +300,14 @@ void draw(){
     int passedTime = millis() - savedTime;
     if(passedTime > time_increment){
       time += 10;
+      if (time % 100 >= 60){
+        time += 40;
+      }
       savedTime = millis();
     }
     textSize(20);
     fill(0, 102, 153, 204);
-    text("Time: " + time, 10, 30);
+    text("Time: " + time/100+ ":" + time%100/10 + "0", 10, 30);
     textSize(20);
     fill(0, 102, 153, 204);
     text("Money: "+money, 10, 60);
