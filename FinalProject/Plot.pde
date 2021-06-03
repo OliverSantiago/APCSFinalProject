@@ -24,17 +24,21 @@ public class Plot{
     }
   }
   
-  void plant(Item s){
-    if (watered && current_seed == null){
+  boolean plant(Item s){
+    if (watered && current_seed == null && current_crop == null){
       current_seed = (Seed)s;
+      return true;
     }
+    return false;
   }
   
   Item harvest(){
     if (ready_to_harvest){
+      Item temp = current_crop;
+      current_crop = null;
       current_seed = null;
       ready_to_harvest = false;
-      return current_crop;
+      return temp;
     }
     return null;
   }
@@ -76,6 +80,21 @@ public class Plot{
       fill(222,188,65);
       rect(x,y,30,30);
     }
+    if (current_seed != null){
+      noStroke();
+      if (current_seed.percent_grown() < 50){
+        fill(#46E53F);
+        circle(x+15,y+15,5);
+      }
+      else if (current_seed.percent_grown() < 100){
+        fill(#46E53F);
+        circle(x+15,y+15,10);
+      }
+      if (current_seed.percent_grown() == 100){
+        fill(#46E53F);
+        circle(x+15,y+15,15);
+      }
+    }
   }
   
   void end_of_day(){
@@ -88,16 +107,14 @@ public class Plot{
       if (current_seed.is_grown()){
         ready_to_harvest = true;
       }
-      watered = false;
     }else if (watered&&current_seed==null){
       float rand = random(100);
       if (rand>25){
-        watered = false;
         tilled = false;
       }
-    }else{
-      watered = false;
+    }else if (current_seed==null&&current_crop==null){
       tilled = false;
     }
+    watered = false;
   }
 }
