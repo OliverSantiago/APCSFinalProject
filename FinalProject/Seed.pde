@@ -39,7 +39,7 @@ class Seed extends Item{
     }
     if (seed_type == 4.0){
       pumpkin = true;
-      daysForHarvest = 1; //13, less for testing purpose
+      daysForHarvest = 2; //13, less for testing purpose
       value = 100;
       crop = new Crop(4.0);
     }
@@ -68,6 +68,9 @@ class Seed extends Item{
     return daysElapsed >= daysForHarvest;
   }
   
+  float percent_grown(){
+    return daysElapsed / daysForHarvest * 100;
+  }
   
   //increments days elapsed if plant has been watered
   void addDay(){
