@@ -9,7 +9,9 @@ boolean can_move_back = true;
 boolean set_x_coor = true;;
 
 boolean buy_screen = false;
+boolean buy_screen_opened = false;
 boolean can_press = true;
+
 
 int time_increment = 1000;
 int time = 600;
@@ -61,16 +63,16 @@ void setup(){
   savedTime = millis();   
   
   //Testing seeds: To be removed
-  //Item seed1 = new Seed(1);
-  //Item seed2 = new Seed(2);
-  //Item seed3 = new Seed(3);
-  //Item seed4 = new Seed(4);
-  //Item seed5 = new Seed(5);
-  //player.addNextItem(seed1);
-  //player.addNextItem(seed2);
-  //player.addNextItem(seed3);
-  //player.addNextItem(seed4);
-  //player.addNextItem(seed5);
+  Item seed1 = new Seed(1);
+  Item seed2 = new Seed(2);
+  Item seed3 = new Seed(3);
+  Item seed4 = new Seed(4);
+  Item seed5 = new Seed(5);
+  player.addNextItem(seed1);
+  player.addNextItem(seed2);
+  player.addNextItem(seed3);
+  player.addNextItem(seed4);
+  player.addNextItem(seed5);
   
   //Testing money: To be removed
   money += 1000;
@@ -127,10 +129,16 @@ void draw(){
     
     if(buy_screen){
       
+      
+      if(!buy_screen_opened){
+        can_press = false;
+        buy_screen_opened = true;
+      }
+      
       if(dist(525.0,130.0, player.getX(),  player.getY())>50 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
         buy_screen = false;
+        buy_screen_opened = false;
       }
-
       
       //Main Box
       strokeWeight(10);
@@ -189,7 +197,7 @@ void draw(){
         boolean added = false;
         Item corn = new Seed(1.0);
         for(int i = 0; i < player.size(); i++){
-          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==1){
+          if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==1){
             player.addToStack(i,corn);
             added = true;
             break;
@@ -206,7 +214,7 @@ void draw(){
         boolean added = false;
         Item melon = new Seed(2.0);
         for(int i = 0; i < player.size(); i++){
-          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==2){
+          if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==2){
             player.addToStack(i,melon);
             added = true;
             break;
@@ -223,7 +231,7 @@ void draw(){
         boolean added = false;
         Item potato = new Seed(3.0);
         for(int i = 0; i < player.size(); i++){
-          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==3){
+          if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==3){
             player.addToStack(i,potato);
             added = true;
             break;
@@ -240,7 +248,7 @@ void draw(){
         boolean added = false;
         Item pumpkin = new Seed(4.0);
         for(int i = 0; i < player.size(); i++){
-          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==4){
+          if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==4){
             player.addToStack(i,pumpkin);
             added = true;
             break;
@@ -257,7 +265,7 @@ void draw(){
         boolean added = false;
         Item tomato = new Seed(5.0);
         for(int i = 0; i < player.size(); i++){
-          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==5){
+          if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==5){
             player.addToStack(i,tomato);
             added = true;
             break;
@@ -285,10 +293,22 @@ void draw(){
     rect(600, 700, 50,50);
     rect(650, 700, 50,50);
     rect(700, 700, 50,50);
-    int counter = 263;
+    int counter = 260;
     for (int i = 0; i < player.size(); i++){ 
       player.get_selected_item(i).display(counter,710);
       //This is where we will show the image of each item in inventory at x index of counter
+
+      if (!player.get_selected_item(i).get_Class().equals("Tool")){
+        textSize(18);
+        fill(0);
+        if(player.Stacksize(i)<10){
+          text(Integer.toString(player.Stacksize(i)), counter+25, 745);
+        }else if(player.Stacksize(i)<100){
+          text(Integer.toString(player.Stacksize(i)), counter+16, 745);
+        }else{
+          text(Integer.toString(player.Stacksize(i)), counter+7, 745);
+        }
+      }
       
       counter+=50;
       
@@ -466,10 +486,23 @@ void draw(){
     rect(600, 700, 50,50);
     rect(650, 700, 50,50);
     rect(700, 700, 50,50);
-    int counter = 263;
+    int counter = 260;
     for (int i = 0; i < player.size(); i++){ 
       player.get_selected_item(i).display(counter,710);
       //This is where we will show the image of each item in inventory at x index of counter
+      
+      if (!player.get_selected_item(i).get_Class().equals("Tool")){
+        textSize(18);
+        fill(0);
+        if(player.Stacksize(i)<10){
+          text(Integer.toString(player.Stacksize(i)), counter+25, 745);
+        }else if(player.Stacksize(i)<100){
+          text(Integer.toString(player.Stacksize(i)), counter+16, 745);
+        }else{
+          text(Integer.toString(player.Stacksize(i)), counter+7, 745);
+        }
+      }
+      
       counter+=50;
     }
     if (player.get_current_item_index()==0){
