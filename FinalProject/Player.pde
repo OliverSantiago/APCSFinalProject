@@ -72,9 +72,11 @@ public class Player{
   
   //Add new item at next available slot
   void addNextItem(Item i){
-    ArrayList<Item> temp = new ArrayList<Item>();
-    temp.add(i);
-    inventory.add(temp);
+    if(inventory.size()<10){
+      ArrayList<Item> temp = new ArrayList<Item>();
+      temp.add(i);
+      inventory.add(temp);
+    }
   }
   
   //Remove slot

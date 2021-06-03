@@ -8,7 +8,10 @@ boolean town = false;
 boolean can_move_back = true;
 boolean set_x_coor = true;;
 
-int time_increment = 500;
+boolean buy_screen = false;
+boolean can_press = true;
+
+int time_increment = 1000;
 int time = 600;
 int money = 0;
 int new_money = 0;
@@ -17,6 +20,13 @@ boolean moving_item;
 boolean moving_Stack;
 int moving_item_index;
 ArrayList<ArrayList<Item>> Sold = new ArrayList<ArrayList<Item>>();
+
+//Seeds for shop, do not remove
+Item shop_corn = new Seed(1);
+Item shop_melon = new Seed(2);
+Item shop_potato = new Seed(3);
+Item shop_pumpkin = new Seed(4);
+Item shop_tomato = new Seed(5);
 
 Plot test;
 
@@ -48,19 +58,22 @@ void setup(){
   player.addNextItem(watering_can);
   player.addNextItem(hoe);
   
-  savedTime = millis(); 
+  savedTime = millis();   
   
   //Testing seeds: To be removed
-  Item seed1 = new Seed(1);
-  Item seed2 = new Seed(2);
-  Item seed3 = new Seed(3);
-  Item seed4 = new Seed(4);
-  Item seed5 = new Seed(5);
-  player.addNextItem(seed1);
-  player.addNextItem(seed2);
-  player.addNextItem(seed3);
-  player.addNextItem(seed4);
-  player.addNextItem(seed5);
+  //Item seed1 = new Seed(1);
+  //Item seed2 = new Seed(2);
+  //Item seed3 = new Seed(3);
+  //Item seed4 = new Seed(4);
+  //Item seed5 = new Seed(5);
+  //player.addNextItem(seed1);
+  //player.addNextItem(seed2);
+  //player.addNextItem(seed3);
+  //player.addNextItem(seed4);
+  //player.addNextItem(seed5);
+  
+  //Testing money: To be removed
+  money += 1000;
 }
 
 void draw(){  
@@ -69,7 +82,7 @@ void draw(){
   }
     //End of Screen
   if(end_day){
-    background(59,59,59);
+    background(196,234,99);
     textSize(50);
     fill(255);
     text(money+" + "+new_money+" = " + Integer.toString(money+new_money), 12, 60);
@@ -83,6 +96,7 @@ void draw(){
     
     background(124,227,124);
     
+    //Movement Between Screens
     if(!set_x_coor){
       player.setX(1);
       set_x_coor = true;
@@ -97,6 +111,261 @@ void draw(){
       town = false;
       set_x_coor = false;
       can_move_back = false;
+    }
+    
+    //Makes shop
+    noStroke();
+    fill(227,207,30);
+    rect(500,100,50,60);
+    fill(196,234,99);
+    rect(505,115,40,20);
+    
+    //Buying items
+    if(mouseButton == LEFT && dist(525.0,130.0, player.getX(), player.getY())<= 50 && dist(mouseX,mouseY,525.0,130.0)<=50){
+      buy_screen = true; 
+    }
+    
+    if(buy_screen){
+      
+      if(dist(525.0,130.0, player.getX(),  player.getY())>50 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
+        buy_screen = false;
+      }
+
+      
+      //Main Box
+      strokeWeight(10);
+      stroke(0);
+      fill(255,207,116);
+      rect(150,100,700,500);
+      
+      //X out box
+      strokeWeight(5);
+      stroke(0);
+      fill(216,216,216);
+      rect(130,80,50,50);
+      
+      //Displayed items to be purchased
+      strokeWeight(3);
+      stroke(0);
+      line(150,200,850,200);
+      shop_corn.display(200,135);
+      textSize(50);
+      fill(0);
+      text("Corn: "+ shop_corn.getPrice() + "0 coins", 260, 170);
+  
+      strokeWeight(3);
+      stroke(0);
+      line(150,300,850,300);
+      shop_melon.display(200,235);
+      textSize(50);
+      fill(0);
+      text("Melon: "+ shop_melon.getPrice() + "0 coins", 260, 270);
+      
+      strokeWeight(3);
+      stroke(0);
+      line(150,400,850,400);
+      shop_potato.display(200,335);
+      textSize(50);
+      fill(0);
+      text("Potato: "+ shop_potato.getPrice() + "0 coins", 260, 370);
+      
+      strokeWeight(3);
+      stroke(0);
+      line(150,500,850,500);
+      shop_pumpkin.display(200,435);
+      textSize(50);
+      fill(0);
+      text("Pumpkin: "+ shop_pumpkin.getPrice() + "0 coins", 260, 470);
+      
+      shop_tomato.display(200,535);
+      textSize(50);
+      fill(0);
+      text("Tomato: "+ shop_tomato.getPrice() + "0 coins", 260, 570);
+      strokeWeight(0);
+      
+      //Purchasing items
+      if(mousePressed && can_press && (150<=mouseX && mouseX <= 850 && 100<mouseY && mouseY<=200) && money >= shop_corn.getPrice()){
+        can_press = false;
+        boolean added = false;
+        Item corn = new Seed(1.0);
+        for(int i = 0; i < player.size(); i++){
+          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==1){
+            player.addToStack(i,corn);
+            added = true;
+            break;
+          }
+        }
+        if (!added){
+          player.addNextItem(corn);
+        }
+        money -= corn.getPrice();
+      }
+      
+      if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 200<mouseY && mouseY<=300) && money >= shop_melon.getPrice()){
+        can_press = false;
+        boolean added = false;
+        Item melon = new Seed(2.0);
+        for(int i = 0; i < player.size(); i++){
+          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==2){
+            player.addToStack(i,melon);
+            added = true;
+            break;
+          }
+        }
+        if (!added){
+          player.addNextItem(melon);
+        }
+        money -= melon.getPrice();
+      }
+      
+      if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 300<mouseY && mouseY<=400) && money >= shop_potato.getPrice()){
+        can_press = false;
+        boolean added = false;
+        Item potato = new Seed(3.0);
+        for(int i = 0; i < player.size(); i++){
+          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==3){
+            player.addToStack(i,potato);
+            added = true;
+            break;
+          }
+        }
+        if (!added){
+          player.addNextItem(potato);
+        }
+        money -= potato.getPrice();
+      }
+      
+      if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 400<mouseY && mouseY<=500) && money >= shop_pumpkin.getPrice()){
+        can_press = false;
+        boolean added = false;
+        Item pumpkin = new Seed(4.0);
+        for(int i = 0; i < player.size(); i++){
+          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==4){
+            player.addToStack(i,pumpkin);
+            added = true;
+            break;
+          }
+        }
+        if (!added){
+          player.addNextItem(pumpkin);
+        }
+        money -= pumpkin.getPrice();
+      }
+      
+      if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 500<mouseY && mouseY<=600) && money >= shop_tomato.getPrice()){
+        can_press = false;
+        boolean added = false;
+        Item tomato = new Seed(5.0);
+        for(int i = 0; i < player.size(); i++){
+          if (player.get_selected_item(i).getClass().equals("Seed")&&player.get_selected_item(i).get_type()==5){
+            player.addToStack(i,tomato);
+            added = true;
+            break;
+          }
+        }
+        if (!added){
+          player.addNextItem(tomato);
+        }
+        money -= tomato.getPrice();
+      }
+    }
+    
+    //Duplicate Code for inventory/time/money, etc
+    stroke(0);
+    strokeWeight(4);
+    stroke(0);
+    noFill();
+    rect(250, 700, 50,50);
+    rect(300, 700, 50,50);
+    rect(350, 700, 50,50);
+    rect(400, 700, 50,50);
+    rect(450, 700, 50,50);
+    rect(500, 700, 50,50);
+    rect(550, 700, 50,50);
+    rect(600, 700, 50,50);
+    rect(650, 700, 50,50);
+    rect(700, 700, 50,50);
+    int counter = 263;
+    for (int i = 0; i < player.size(); i++){ 
+      player.get_selected_item(i).display(counter,710);
+      //This is where we will show the image of each item in inventory at x index of counter
+      
+      counter+=50;
+      
+    }
+    if (player.get_current_item_index()==0){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(250,700,50,50);
+    }
+    if (player.get_current_item_index()==1){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(300, 700, 50,50);
+    }
+    if (player.get_current_item_index()==2){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(350, 700, 50,50);
+    }
+    if (player.get_current_item_index()==3){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(400, 700, 50,50);
+    }
+    if (player.get_current_item_index()==4){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(450, 700, 50,50);
+    }
+    if (player.get_current_item_index()==5){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(500, 700, 50,50);
+    }
+    if (player.get_current_item_index()==6){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(550, 700, 50,50);
+    }
+    if (player.get_current_item_index()==7){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(600, 700, 50,50);
+    }
+    if (player.get_current_item_index()==8){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(650, 700, 50,50);
+    }if (player.get_current_item_index()==9){
+      noStroke();
+      fill(216, 252, 110,150);
+      rect(700, 700, 50,50);
+    }
+     //Displays money and time
+    int passedTime = millis() - savedTime;
+    if(passedTime > time_increment){
+      time += 10;
+      if (time % 100 >= 60){
+        time += 40;
+      }
+      savedTime = millis();
+    }
+    textSize(20);
+    fill(0, 102, 153, 204);
+    text("Time: " + time/100+ ":" + time%100/10 + "0", 10, 30);
+    textSize(20);
+    fill(0, 102, 153, 204);
+    text("Money: "+money, 10, 60);
+    
+    //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
+    if (time>=1200 && time<=2400){
+      noStroke();
+      fill(34,126,237,100);
+      rect(0,0,width,height);
+    }if(time>=2400){
+       end_of_day_calculate();
+       end_day = true;
     }
     
   }else if(!first_screen && !town){//Screen for Farm
@@ -417,6 +686,10 @@ void keyPressed(){
     moving_item=false;
     moving_Stack=false;
   }
+}
+
+void mouseReleased(){
+  can_press = true;
 }
 
 //Selling items
