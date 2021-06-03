@@ -335,7 +335,7 @@ void mousePressed(){
                    &&player.get_current_item().get_Class().equals("Seed")){
                   if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
                       dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
-                    all_plots[i][j].plant(player.get_current_item());
+                    all_plots[i][j].plant(player.removeFromStack(player.get_current_item_index()));
                    }
           }
           
