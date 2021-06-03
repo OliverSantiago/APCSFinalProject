@@ -83,7 +83,6 @@ void draw(){
     int x_coor = 300;
     int y_coor = 300;
     
-          
     for(int i = 0; i < all_plots.length; i++){
       for(int j = 0; j < all_plots[i].length; j++){
         
@@ -95,59 +94,7 @@ void draw(){
           all_plots[i][j].mouse_off();
         }
         
-        //Changes state of plot if close enough and depending on held items
-        if (mouseButton == LEFT&&!moving_item&&!moving_Stack){
-          
-          //If Player is holding Tool
-          if (player.get_current_item_index() < player.size()
-            &&player.get_current_item().get_Class().equals("Tool")){
-            //println("works1");
-            
-            //If player is holding hoe, till
-            if (player.get_current_item().tool_type().equals("hoe")){
-              //println("works2");
-              if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
-                all_plots[i][j].till();
-              }
-            }
-            
-            //If player is holding watering can, water
-            if (player.get_current_item().tool_type().equals("watering_can")){
-              //println("works3");
-              if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
-                all_plots[i][j].water();
-              }
-            }
-            
-            //If player is holding seed, plant seed
-          }else if(player.get_current_item_index() <  player.size()
-                   &&player.get_current_item().get_Class().equals("Seed")){
-                  if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                      dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
-                    all_plots[i][j].plant(player.get_current_item());
-                   }
-          }
-          
-           //If player is holding none of above, harvest crop (if possible)
-          else{
-            if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
-                    Item crop = all_plots[i][j].harvest();
-                    for (int x = 0; x < player.size(); x++){
-                      if (player.Stacksize(x)>0 && crop != null && player.get_selected_item(x).get_Class().equals("Crop") &&
-                          player.get_selected_item(x).get_type() == crop.get_type() 
-                          //&&player.get_selected_item(x).getQuality().equals(crop.getQuality())
-                          ){
-                            player.addToStack(x,crop);
-                       }else if(x == player.size()-1 && crop != null){
-                         player.addNextItem(crop);
-                       }
-                    }
-                  }
-          }
-        }
+        
         all_plots[i][j].display(x_coor,y_coor);
         y_coor += 30;
         
@@ -348,6 +295,72 @@ void draw(){
        end_of_day_calculate();
        end_day = true;
     }
+  }
+}
+
+void mousePressed(){
+  int x_coor = 300;
+  int y_coor = 300;
+  
+  for (int i = 0; i < all_plots.length; i++){
+    for (int j = 0; j < all_plots[0].length; j++){
+  //Changes state of plot if close enough and depending on held items
+        if (mouseButton == LEFT&&!moving_item&&!moving_Stack){
+          
+          //If Player is holding Tool
+          if (player.get_current_item_index() < player.size()
+            &&player.get_current_item().get_Class().equals("Tool")){
+            //println("works1");
+            
+            //If player is holding hoe, till
+            if (player.get_current_item().tool_type().equals("hoe")){
+              //println("works2");
+              if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                all_plots[i][j].till();
+              }
+            }
+            
+            //If player is holding watering can, water
+            if (player.get_current_item().tool_type().equals("watering_can")){
+              //println("works3");
+              if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                all_plots[i][j].water();
+              }
+            }
+            
+            //If player is holding seed, plant seed
+          }else if(player.get_current_item_index() <  player.size()
+                   &&player.get_current_item().get_Class().equals("Seed")){
+                  if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+                      dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                    all_plots[i][j].plant(player.get_current_item());
+                   }
+          }
+          
+           //If player is holding none of above, harvest crop (if possible)
+          else{
+            if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                    Item crop = all_plots[i][j].harvest();
+                    for (int x = 0; x < player.size(); x++){
+                      if (player.Stacksize(x)>0 && crop != null && player.get_selected_item(x).get_Class().equals("Crop") &&
+                          player.get_selected_item(x).get_type() == crop.get_type() 
+                          //&&player.get_selected_item(x).getQuality().equals(crop.getQuality())
+                          ){
+                            player.addToStack(x,crop);
+                       }else if(x == player.size()-1 && crop != null){
+                         player.addNextItem(crop);
+                       }
+                    }
+                  }
+          }
+        }
+        y_coor += 30;
+    }
+    x_coor += 30;
+    y_coor = 300;
   }
 }
 
