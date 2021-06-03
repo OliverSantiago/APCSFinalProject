@@ -142,6 +142,11 @@ void draw(){
         fill(255,10,14);
         rect(645,340,50,50);
         
+        if(time>=2400){
+           end_of_day_calculate();
+           end_day = true;
+        }
+        
       }else{
         if(town){//Screen for Town
         
@@ -666,7 +671,17 @@ void keyPressed(){
         player.Up();
       }
     }else{
-      player.Up();
+      
+      if(830<=player.getX()&&player.getX()<=845&&player.getY()-10<=140){
+        inside = true;
+        player.setX(330);
+        player.setY(470);
+      }
+      
+      if(!(800<=player.getX()&&player.getX()<=880&&player.getY()-10<=125) && !(720<=player.getX()&&player.getX()<=755&&player.getY()-10<=120)){
+        player.Up();
+      }
+      
     }
   }
   
@@ -682,7 +697,11 @@ void keyPressed(){
         player.Down();
       }
     }else{
-      player.Down();
+      
+      if(!(800<player.getX()&&player.getX()<880&&player.getY()+10>90&&player.getY()<110)
+        && !(725<player.getX()&&player.getX()<755&&player.getY()+10>110&&player.getY()<116)){
+        player.Down();
+      }
     }
   }
   
@@ -692,7 +711,11 @@ void keyPressed(){
         player.Left();
       }
     }else{
-      player.Left();
+      
+      if(!(80<player.getY()&&player.getY()<150&&player.getX()-10<880&&player.getX()>800)
+      &&!(115<player.getY()&&player.getY()<140&&player.getX()-10<755&&player.getX()>725)){
+        player.Left();
+      }
     }
   }
   if(keyCode == 68){
@@ -701,7 +724,11 @@ void keyPressed(){
         player.Right();
       }
     }else{
-      player.Right();
+      
+      if(!(80<player.getY()&&player.getY()<150&&player.getX()+10>790&&player.getX()<880)
+        && !(115<player.getY()&&player.getY()<140&&player.getX()+10>715&&player.getX()<755)){
+        player.Right();
+      }
     }
   }
   
