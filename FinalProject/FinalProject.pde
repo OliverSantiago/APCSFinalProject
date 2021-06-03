@@ -344,15 +344,18 @@ void mousePressed(){
             if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
                   dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
                     Item crop = all_plots[i][j].harvest();
+                    boolean existing_stack = false;
                     for (int x = 0; x < player.size(); x++){
                       if (player.Stacksize(x)>0 && crop != null && player.get_selected_item(x).get_Class().equals("Crop") &&
                           player.get_selected_item(x).get_type() == crop.get_type() 
                           //&&player.get_selected_item(x).getQuality().equals(crop.getQuality())
                           ){
                             player.addToStack(x,crop);
-                       }else if(x == player.size()-1 && crop != null){
-                         player.addNextItem(crop);
+                            existing_stack = true;
+                          }
                        }
+                       if (crop != null && !existing_stack){
+                         player.addNextItem(crop);
                     }
                   }
           }
