@@ -39,7 +39,7 @@ class Tool extends Item{
       strokeWeight(1);
     }
     if (hoe){
-      stroke(0);
+      stroke(160,111,13);
       strokeWeight(10);
       line(x,y+35,x+15,y-3);
       strokeWeight(20);
