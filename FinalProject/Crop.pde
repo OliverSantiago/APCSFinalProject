@@ -27,10 +27,10 @@ class Crop extends Item{
     }
     
     float rand = random(100);
-    if (rand < 70){
+    if (rand < 40){
       quality = "standard";
     }
-    else if (rand < 90){
+    else if (rand < 70){
       quality = "silver";
       value *= 1.2;
     }
@@ -122,6 +122,21 @@ class Crop extends Item{
       bezier(x+12,y+13,x+11,y+12,x+10,y+11,x+9,y+11);
       bezier(x+11,y+13,x+10,y+12,x+9,y+12,x+7,y+13);
       bezier(x+12,y+13,x+14,y+12,x+15,y+11,x+16,y+11);
+    }
+    if (quality.equals("silver")){
+      noStroke();
+      fill(#DBDBDB);
+      circle(x+30,y+2,10);
+    }
+    else if (quality.equals("gold")){
+      noStroke();
+      fill(#F7CF2A);
+      circle(x+30,y+2,10);
+    }
+    else{
+      noStroke();
+      fill(#D39F0F);
+      circle(x+30,y+2,10);
     }
   }
 }

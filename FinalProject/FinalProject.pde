@@ -15,7 +15,7 @@ boolean can_press = true;
 boolean inside = true;
 boolean new_day = true;
 
-int time_increment = 1000;
+int time_increment = 300;
 int time = 600;
 int money = 0;
 int new_money = 0;
@@ -645,7 +645,7 @@ void mousePressed(){
                     for (int x = 0; x < player.size(); x++){
                       if (player.Stacksize(x)>0 && crop != null && player.get_selected_item(x).get_Class().equals("Crop") &&
                           player.get_selected_item(x).get_type() == crop.get_type() 
-                          //&&player.get_selected_item(x).getQuality().equals(crop.getQuality())
+                          &&player.get_selected_item(x).getQuality().equals(crop.getQuality())
                           ){
                             player.addToStack(x,crop);
                             existing_stack = true;

@@ -25,7 +25,7 @@ public class Plot{
   }
   
   boolean plant(Item s){
-    if (watered && current_seed == null && current_crop == null){
+    if (tilled && current_seed == null && current_crop == null){
       current_seed = (Seed)s;
       return true;
     }
