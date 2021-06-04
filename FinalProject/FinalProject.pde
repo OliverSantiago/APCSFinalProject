@@ -14,6 +14,8 @@ boolean can_press = true;
 
 boolean inside = true;
 boolean new_day = true;
+boolean ask_to_sleep = false;
+boolean has_left_bed = false;
 
 int time_increment = 1000;
 int time = 600;
@@ -32,8 +34,6 @@ Item shop_potato = new Seed(3);
 Item shop_pumpkin = new Seed(4);
 Item shop_tomato = new Seed(5);
 
-Plot test;
-
 void setup(){
   //Size and background
   size(1000,800);//TBD
@@ -45,7 +45,7 @@ void setup(){
   text("Stardew Valley", 12, 60);
   textSize(25);
   fill(0, 102, 153, 204);
-  text("Controls:", 12, 100);
+  text("Controls: WASD to move, Right-click to use.", 12, 100);
   
   //Player, plots, tools, and time
   player = new Player();
@@ -65,19 +65,31 @@ void setup(){
   savedTime = millis();   
   
   //Testing seeds: To be removed
-  Item seed1 = new Seed(1);
-  Item seed2 = new Seed(2);
-  Item seed3 = new Seed(3);
-  Item seed4 = new Seed(4);
-  Item seed5 = new Seed(5);
-  player.addNextItem(seed1);
-  player.addNextItem(seed2);
-  player.addNextItem(seed3);
-  player.addNextItem(seed4);
-  player.addNextItem(seed5);
+  //Item seed1 = new Seed(1);
+  //Item seed2 = new Seed(2);
+  //Item seed3 = new Seed(3);
+  //Item seed4 = new Seed(4);
+  //Item seed5 = new Seed(5);
+  //player.addNextItem(seed1);
+  //player.addNextItem(seed2);
+  //player.addNextItem(seed3);
+  //player.addNextItem(seed4);
+  //player.addNextItem(seed5);
   
-  //Testing money: To be removed
-  money += 1000;
+  //Starting seeds
+  Item seed1 = new Seed(1);
+  Item seed2 = new Seed(1);
+  Item seed3 = new Seed(1);
+  Item seed4 = new Seed(1);
+  Item seed5 = new Seed(1);
+  player.addNextItem(seed1);
+  player.addToStack(2,seed2);
+  player.addToStack(2,seed3);
+  player.addToStack(2,seed4);
+  player.addToStack(2,seed5);
+  
+  //Starting money
+  money += 500;
 }
 
 void draw(){  
@@ -142,9 +154,55 @@ void draw(){
         fill(255,10,14);
         rect(645,340,50,50);
         
+        
+        //Sleep
+        if(!(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<390)){
+          has_left_bed = true;
+          ask_to_sleep = false;
+        }
+        
+        if(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<390&&has_left_bed){
+          ask_to_sleep = true;
+        }
+        
+        if(ask_to_sleep){
+          stroke(255,166,0);
+          strokeWeight(5);
+          fill(255,207,116);
+          rect(200,75,600,100);
+          strokeWeight(0);
+          
+          textSize(50);
+          fill(0);
+          text("Sleep?", 250, 145);
+          
+          textSize(30);
+          fill(255,166,0);
+          rect(500,105,80,50);
+          fill(100);
+          text("Yes", 515, 140);
+          
+          fill(255,166,0);
+          rect(650,105,80,50);
+          fill(100);
+          text("No", 670, 140);
+          
+          
+          if(mouseButton == LEFT && 500<mouseX&&mouseX<580&&105<mouseY&&mouseY<155&&can_press){
+            can_press = false;
+            end_of_day_calculate();
+            ask_to_sleep = false;
+          }
+          
+          if(mouseButton == LEFT && 650<mouseX&&mouseX<730&&105<mouseY&&mouseY<155){
+            ask_to_sleep = false;
+            has_left_bed = false;
+          }
+          
+        }
+        
         if(time>=2400){
            end_of_day_calculate();
-           end_day = true;
         }
         
       }else{
@@ -487,7 +545,6 @@ void draw(){
           rect(0,0,width,height);
         }if(time>=2400){
            end_of_day_calculate();
-           end_day = true;
         }
       }
       //Code for inventory/time/money, etc
@@ -510,7 +567,7 @@ void draw(){
         //This is where we will show the image of each item in inventory at x index of counter
              if (!player.get_selected_item(i).get_Class().equals("Tool")){
           textSize(18);
-          fill(0);
+          fill(150);
           if(player.Stacksize(i)<10){
             text(Integer.toString(player.Stacksize(i)), counter+25, 745);
           }else if(player.Stacksize(i)<100){
@@ -814,9 +871,11 @@ void sell(Item sold_item){
 }
 
 void end_of_day_calculate(){
+  end_day = true;
   new_day = true;
   inside = true;
   town = false;
+  has_left_bed = false;
   for(int i = 0; i < Sold.size(); i++){
     new_money+=Sold.get(i).get(0).getPrice() * Sold.get(i).size();
   }
@@ -829,4 +888,5 @@ void end_of_day_calculate(){
       all_plots[i][j].end_of_day();
     }
   }
+  delay(500);
 }
