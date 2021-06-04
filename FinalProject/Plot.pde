@@ -116,6 +116,13 @@ public class Plot{
         ellipse(x+11,y+14,7,5);
         ellipse(x+20,y+14,7,5);
       }
+      if (current_crop.get_type() == 3){
+        stroke(#07790C);
+        strokeWeight(2);
+        line(x+15,y+21,x+15,y+14);
+        strokeWeight(5);
+        line(x+17,y+16,x+12,y+13);
+      }
       //fill(#46E53F);
       //circle(x+15,y+15,10);
     }
