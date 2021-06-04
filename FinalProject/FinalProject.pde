@@ -133,7 +133,7 @@ void draw(){
         //Door
         stroke(0);
         fill(0);
-        rect(330,530,30,30);
+        rect(330,530,50,30);
         
         //Top of Bed
         noStroke();
@@ -156,12 +156,12 @@ void draw(){
         
         
         //Sleep
-        if(!(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<390)){
+        if(!(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<400)){
           has_left_bed = true;
           ask_to_sleep = false;
         }
         
-        if(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<390&&has_left_bed){
+        if(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<400&&has_left_bed){
           ask_to_sleep = true;
         }
         
@@ -421,13 +421,15 @@ void draw(){
           
                     
           //Makes the house and bin
-          fill(34,121,224);
-          rect(800,100,80,50);
+          fill(255,159,13);
+          rect(780,80,100,100);
           fill(0);
-          rect(830,125,15,25);
+          rect(810,130,40,50);
+          fill(234,59,0);
+          triangle(760,90,830,60,900,90);
           
           fill(232,211,108);
-          rect(725,125,30,15);
+          rect(715,150,60,30);
           
           
           //Makes the player
@@ -726,41 +728,41 @@ void keyPressed(){
   //Movement Controls
   if(keyCode == 87){
     if(inside){
-      if(player.getY()-10>=315){
+      if(player.getY()-10>=300){
         player.Up();
       }
     }else{
       
-      if(830<=player.getX()&&player.getX()<=845&&player.getY()-10<=140){
+      if(820<=player.getX()&&player.getX()<=835&&player.getY()-10<=160){
         inside = true;
-        player.setX(330);
+        player.setX(340);
         player.setY(470);
       }
       
-      if(!(800<=player.getX()&&player.getX()<=880&&player.getY()-10<=125) && !(720<=player.getX()&&player.getX()<=755&&player.getY()-10<=120)){
+      //if(!(800<=player.getX()&&player.getX()<=880&&player.getY()-10<=125) && !(720<=player.getX()&&player.getX()<=755&&player.getY()-10<=120)){
         player.Up();
-      }
+      //}
       
     }
   }
   
   if(keyCode == 83){
     if(inside){
-      if(330<=player.getX()&&player.getX()<=360&&player.getY()+40>=530){
+      if(330<=player.getX()&&player.getX()<=380&&player.getY()+40>=520){
         inside = false;
-        player.setX(831);
-        player.setY(131);
+        player.setX(821);
+        player.setY(121);
       }
       
-      if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=509){
+      if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=480){
         player.Down();
       }
     }else{
       
-      if(!(800<player.getX()&&player.getX()<880&&player.getY()+10>90&&player.getY()<110)
-        && !(725<player.getX()&&player.getX()<755&&player.getY()+10>110&&player.getY()<116)){
+      //if(!(800<player.getX()&&player.getX()<880&&player.getY()+10>90&&player.getY()<110)
+        //&& !(725<player.getX()&&player.getX()<755&&player.getY()+10>110&&player.getY()<116)){
         player.Down();
-      }
+      //}
     }
   }
   
@@ -771,23 +773,23 @@ void keyPressed(){
       }
     }else{
       
-      if(!(80<player.getY()&&player.getY()<150&&player.getX()-10<880&&player.getX()>800)
-      &&!(115<player.getY()&&player.getY()<140&&player.getX()-10<755&&player.getX()>725)){
+      //if(!(80<player.getY()&&player.getY()<150&&player.getX()-10<880&&player.getX()>800)
+      //&&!(115<player.getY()&&player.getY()<140&&player.getX()-10<755&&player.getX()>725)){
         player.Left();
-      }
+      //}
     }
   }
   if(keyCode == 68){
     if(inside){
-      if(player.getX()+10<=680){
+      if(player.getX()+10<=665){
         player.Right();
       }
     }else{
       
-      if(!(80<player.getY()&&player.getY()<150&&player.getX()+10>790&&player.getX()<880)
-        && !(115<player.getY()&&player.getY()<140&&player.getX()+10>715&&player.getX()<755)){
+      //if(!(80<player.getY()&&player.getY()<150&&player.getX()+10>790&&player.getX()<880)
+       //&& !(115<player.getY()&&player.getY()<140&&player.getX()+10>715&&player.getX()<755)){
         player.Right();
-      }
+      //}
     }
   }
   

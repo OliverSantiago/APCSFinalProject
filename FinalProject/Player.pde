@@ -10,9 +10,28 @@ public class Player{
   }
  
   void display(){
-    stroke(0);
-    fill(0,203,103);
-    rect(x,y,10,20);
+    //Head
+    noStroke();
+    fill(255,238,139);
+    circle(x+10,y-5,20);
+    
+    //Pants
+    stroke(52,59,255);
+    strokeWeight(10);
+    line(x+5,y+30,x+1,y+43);
+    line(x+15,y+30,x+17,y+43);
+    
+    //Shirt
+    noStroke();
+    //fill(0,203,103);
+    fill(33,155,6);
+    rect(x,y,20,30);
+    stroke(33,155,6);
+    strokeWeight(5);
+    line(x,y+3,x-10,y+15);
+    line(x+18,y+3,x+30,y+15);
+    
+
   }
   
   void Up(){
