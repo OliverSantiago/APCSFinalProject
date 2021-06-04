@@ -135,7 +135,7 @@ class Crop extends Item{
     }
     else{
       noStroke();
-      fill(#D39F0F);
+      fill(#A0780A);
       circle(x+30,y+2,10);
     }
   }

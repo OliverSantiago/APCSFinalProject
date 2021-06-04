@@ -90,7 +90,7 @@ public class Plot{
         fill(#46E53F);
         circle(x+15,y+15,10);
       }
-      if (current_seed.percent_grown() == 100){
+      if (ready_to_harvest){
         fill(#46E53F);
         circle(x+15,y+15,15);
       }
@@ -107,7 +107,7 @@ public class Plot{
       if (current_seed.is_grown()){
         ready_to_harvest = true;
       }
-    }else if (watered&&current_seed==null){
+    }else if (watered&&current_seed==null&&current_crop==null){
       float rand = random(100);
       if (rand>25){
         tilled = false;
