@@ -14,7 +14,7 @@ boolean can_press = true;
 
 boolean inside = true;
 
-int time_increment = 300;
+int time_increment = 1000;
 int time = 600;
 int money = 0;
 int new_money = 0;
