@@ -435,7 +435,7 @@ void draw(){
               player.removeFromStack(moving_item_index);
               moving_item = false;
             }
-           }
+          }
           
           if(mouseButton == RIGHT){
             if (dist((float)mouseX,(float)mouseY,375,725)<=25){
@@ -471,9 +471,9 @@ void draw(){
             player.get_selected_item(moving_item_index).display(mouseX,mouseY);
           }
           if(moving_Stack&&mouseButton==LEFT){
-            if (dist((float)mouseX,(float)mouseY,740,1532)<15){
+            if (dist((float)mouseX,(float)mouseY,740,132)<15){
               sell(player.get_selected_item(moving_item_index));
-              player.removeFromStack(moving_item_index);
+              player.removeStack(moving_item_index);
               moving_Stack = false;
             }
           }
@@ -789,16 +789,27 @@ void sell(Item sold_item){
   for(int i = 0; i < Sold.size(); i++){
     if (Sold.get(i).get(0).getClass().equals(sold_item.getClass())&&      
         Sold.get(i).get(0).get_type()==sold_item.get_type()){
-        
-      Sold.get(i).add(sold_item);
+       if(moving_Stack){
+         for(int j = 0; j < player.Stacksize(moving_item_index); j++){
+           Sold.get(i).add(sold_item);           
+         }
+       }
       added = true;
       break;
     }
   }
   if (!added){
-    ArrayList<Item> temp = new ArrayList<Item>();
-    temp.add(sold_item);
-    Sold.add(temp);
+    if(moving_Stack){
+      ArrayList<Item> temp = new ArrayList<Item>();
+      for(int j = 0; j < player.Stacksize(moving_item_index); j++){
+        temp.add(sold_item);           
+      }
+      Sold.add(temp);
+    }else{
+      ArrayList<Item> temp = new ArrayList<Item>();
+      temp.add(sold_item);
+      Sold.add(temp);
+    }
   }
 }
 
