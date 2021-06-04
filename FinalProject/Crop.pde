@@ -27,10 +27,10 @@ class Crop extends Item{
     }
     
     float rand = random(100);
-    if (rand < 40){
+    if (rand < 70){
       quality = "standard";
     }
-    else if (rand < 70){
+    else if (rand < 90){
       quality = "silver";
       value *= 1.2;
     }

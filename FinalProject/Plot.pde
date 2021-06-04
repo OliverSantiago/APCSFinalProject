@@ -91,8 +91,8 @@ public class Plot{
         circle(x+15,y+15,10);
       }
       if (ready_to_harvest){
-        fill(#46E53F);
-        circle(x+15,y+15,15);
+        fill(#43FF2C);
+        circle(x+15,y+15,17);
       }
     }
   }
