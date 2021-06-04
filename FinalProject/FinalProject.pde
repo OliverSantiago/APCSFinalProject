@@ -728,7 +728,7 @@ void keyPressed(){
   //Movement Controls
   if(keyCode == 87){
     if(inside){
-      if(player.getY()-10>=300){
+      if(player.getY()-10>=300&&(!(640<player.getX()&&player.getX()<690&&player.getY()-10<400))){
         player.Up();
       }
     }else{
