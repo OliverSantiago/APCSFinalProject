@@ -451,8 +451,7 @@ void draw(){
             x_coor+=30;
             y_coor = 300;
           }
-          
-                    
+                              
           //Makes the house and bin
           fill(255,159,13);
           rect(780,80,100,100);
@@ -464,6 +463,7 @@ void draw(){
           fill(232,211,108);
           rect(715,150,60,30);
           
+   
           
           //Makes the player
           strokeWeight(0);
@@ -486,7 +486,54 @@ void draw(){
           }
 
           
-
+          //Tree Border
+          noStroke();
+          fill(102,191,90);
+          circle(990,-1,100);
+          circle(930,5,80);
+          circle(870,2,90);
+          circle(820,-3,100);
+          circle(760,-10,90);
+          circle(690,0,100);
+          circle(620,2,80);
+          circle(570,2,90);
+          circle(490,2,100);
+          circle(410,10,100);
+          circle(345,10,70);
+          circle(290,10,100);
+          circle(220,20,90);
+          circle(150,25,100);
+          circle(100,60,90);
+          circle(50,120,100);
+          circle(30,180,80);
+          circle(25,240,90);
+          circle(23,290,60);
+          circle(15,350,90);
+          circle(10,420,90);
+          circle(10,480,80);
+          circle(5,540,90);
+          circle(7,610,90);
+          circle(5,670,80);
+          circle(20,720,90);
+          circle(25,780,100);
+          circle(80,805,90);
+          circle(140,815,90);
+          circle(200,815,80);
+          circle(255,818,90);
+          circle(320,820,80);
+          circle(370,825,80);
+          circle(420,825,90);
+          circle(480,820,80);
+          circle(540,820,90);
+          circle(600,825,90);
+          circle(670,820,90);
+          circle(730,810,70);
+          circle(790,820,90);
+          circle(850,810,90);
+          circle(920,810,90);
+          circle(990,800,90);
+          circle(0,0,250);
+          circle(0,155,100);
           
           //Putting items in the bin
           if(mouseButton == LEFT){
@@ -779,7 +826,8 @@ void keyPressed(){
       }
       
       if(!(710<player.getX()&&player.getX()<820&&player.getY()-10<160)
-      &&!(845<player.getX()&&player.getX()<880&&player.getY()-10<160)){
+      &&!(845<player.getX()&&player.getX()<880&&player.getY()-10<160)
+      &&!(player.getY()-10<30)){
         player.Up();
       }
       
@@ -805,9 +853,9 @@ void keyPressed(){
       
     }else{
       
-      //if(!()){
+      if(!(player.getY()+10>740)){
         player.Down();
-      //}
+      }
     }
   }
   
@@ -824,7 +872,8 @@ void keyPressed(){
       
     }else{
       
-    if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<900&&780<player.getX())){
+    if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<900&&780<player.getX())
+    && !(player.getX()-10<50)){
         player.Left();
       }
     }
