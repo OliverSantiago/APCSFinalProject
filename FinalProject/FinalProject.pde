@@ -210,6 +210,45 @@ void draw(){
         
           background(124,227,124);
           
+         
+          //Shop keeper 
+          //Head
+          float x = 241;
+          float y = 140;
+          noStroke();
+          fill(255,238,139);
+          circle(x+10,y-5,20);
+          
+          //Pants
+          stroke(52,59,255);
+          strokeWeight(10);
+          line(x+5,y+30,x+1,y+43);
+          line(x+15,y+30,x+17,y+43);
+          
+          //Shirt
+          noStroke();
+          //fill(0,203,103);
+          fill(255,0,0);
+          rect(x,y,20,30);
+          stroke(255,0,0);
+          strokeWeight(5);
+          line(x,y+3,x-10,y+15);
+          line(x+18,y+3,x+30,y+15);
+          
+          //Makes shop
+          noStroke();
+          //fill(227,207,30);
+          //rect(500,100,50,60);
+          //fill(196,234,99);
+          //rect(505,115,40,20);
+          fill(227,207,30);
+          rect(188,121,10,80);
+          rect(304,121,10,80);
+          fill(234,145,0);
+          triangle(188,121,314,121,251,80);
+          fill(255,255,0);
+          rect(188,180,126,20);
+          
           //Movement Between Screens
           if(!set_x_coor){
             player.setX(1);
@@ -227,15 +266,9 @@ void draw(){
             can_move_back = false;
           }
           
-          //Makes shop
-          noStroke();
-          fill(227,207,30);
-          rect(500,100,50,60);
-          fill(196,234,99);
-          rect(505,115,40,20);
           
           //Buying items
-          if(mouseButton == LEFT && dist(525.0,130.0, player.getX(), player.getY())<= 50 && dist(mouseX,mouseY,525.0,130.0)<=50){
+          if(mouseButton == LEFT && dist(241,140, player.getX(), player.getY())<= 120 && dist(mouseX,mouseY,241,140)<=100){
             buy_screen = true; 
           }
           
@@ -247,7 +280,7 @@ void draw(){
               buy_screen_opened = true;
             }
             
-            if(dist(525.0,130.0, player.getX(),  player.getY())>50 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
+            if(dist(241,140, player.getX(),  player.getY())>120 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
               buy_screen = false;
               buy_screen_opened = false;
             }
@@ -404,7 +437,7 @@ void draw(){
               
               //Hitbox around plot
               if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){//Change if plot or player size changes!!
                 all_plots[i][j].mouse_on();
               }else{
                 all_plots[i][j].mouse_off();
@@ -490,7 +523,7 @@ void draw(){
             player.get_selected_item(moving_item_index).display(mouseX,mouseY);
           }
           if(moving_item&&mouseButton==LEFT){
-            if (dist((float)mouseX,(float)mouseY,740,132)<15){
+            if (dist((float)mouseX,(float)mouseY,745,165)<30){
               sell(player.get_selected_item(moving_item_index));
               player.removeFromStack(moving_item_index);
               moving_item = false;
@@ -531,7 +564,7 @@ void draw(){
             player.get_selected_item(moving_item_index).display(mouseX,mouseY);
           }
           if(moving_Stack&&mouseButton==LEFT){
-            if (dist((float)mouseX,(float)mouseY,740,132)<15){
+            if (dist((float)mouseX,(float)mouseY,745,165)<30){
               sell(player.get_selected_item(moving_item_index));
               player.removeStack(moving_item_index);
               moving_Stack = false;
@@ -670,7 +703,7 @@ void mousePressed(){
             if (player.get_current_item().tool_type().equals("hoe")){
               //println("works2");
               if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){//Change if plot or player size changes!!
                 all_plots[i][j].till();
               }
             }
@@ -679,7 +712,7 @@ void mousePressed(){
             if (player.get_current_item().tool_type().equals("watering_can")){
               //println("works3");
               if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){//Change if plot or player size changes!!
                 all_plots[i][j].water();
               }
             }
@@ -688,7 +721,7 @@ void mousePressed(){
           }else if(player.get_current_item_index() <  player.size()
                    &&player.get_current_item().get_Class().equals("Seed")){
                   if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                      dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                      dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){
                         if (all_plots[i][j].plant(player.get_current_item())){
                           player.removeFromStack(player.get_current_item_index());
                         }
@@ -698,7 +731,7 @@ void mousePressed(){
            //If player is holding none of above, harvest crop (if possible)
           else{
             if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){
                     Item crop = all_plots[i][j].harvest();
                     boolean existing_stack = false;
                     for (int x = 0; x < player.size(); x++){
@@ -731,17 +764,24 @@ void keyPressed(){
       if(player.getY()-10>=300&&(!(640<player.getX()&&player.getX()<690&&player.getY()-10<400))){
         player.Up();
       }
+    }else if(town){
+      
+      if(!(188<player.getX()&&player.getX()<304&&100<player.getY()&&player.getY()-10<160)){
+        player.Up();
+      }
+            
     }else{
       
-      if(820<=player.getX()&&player.getX()<=835&&player.getY()-10<=160){
+      if(820<=player.getX()&&player.getX()<=845&&player.getY()-10<=160){
         inside = true;
         player.setX(340);
         player.setY(470);
       }
       
-      //if(!(800<=player.getX()&&player.getX()<=880&&player.getY()-10<=125) && !(720<=player.getX()&&player.getX()<=755&&player.getY()-10<=120)){
+      if(!(710<player.getX()&&player.getX()<820&&player.getY()-10<160)
+      &&!(845<player.getX()&&player.getX()<880&&player.getY()-10<160)){
         player.Up();
-      //}
+      }
       
     }
   }
@@ -751,16 +791,21 @@ void keyPressed(){
       if(330<=player.getX()&&player.getX()<=380&&player.getY()+40>=520){
         inside = false;
         player.setX(821);
-        player.setY(121);
+        player.setY(135);
       }
       
       if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=480){
         player.Down();
       }
+    }else if(town){
+      
+      if(!(188<player.getX()&&player.getX()<304&&player.getY()<100&&player.getY()+10>30)){
+        player.Down();
+      }
+      
     }else{
       
-      //if(!(800<player.getX()&&player.getX()<880&&player.getY()+10>90&&player.getY()<110)
-        //&& !(725<player.getX()&&player.getX()<755&&player.getY()+10>110&&player.getY()<116)){
+      //if(!()){
         player.Down();
       //}
     }
@@ -771,25 +816,37 @@ void keyPressed(){
       if(player.getX()-10>=310){
         player.Left();
       }
+    }else if(town){
+      
+      if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<315&&player.getX()>300)){
+        player.Left();
+      }
+      
     }else{
       
-      //if(!(80<player.getY()&&player.getY()<150&&player.getX()-10<880&&player.getX()>800)
-      //&&!(115<player.getY()&&player.getY()<140&&player.getX()-10<755&&player.getX()>725)){
+    if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<900&&780<player.getX())){
         player.Left();
-      //}
+      }
     }
   }
+  
   if(keyCode == 68){
     if(inside){
       if(player.getX()+10<=665){
         player.Right();
       }
+    }else if(town){
+      
+      if(!(30<player.getY()&&player.getY()<160&&player.getX()+10>170&&player.getX()<310)){
+        player.Right();
+      }
+      
+      
     }else{
       
-      //if(!(80<player.getY()&&player.getY()<150&&player.getX()+10>790&&player.getX()<880)
-       //&& !(115<player.getY()&&player.getY()<140&&player.getX()+10>715&&player.getX()<755)){
+      if(!(player.getX()+10>700&&player.getX()<730&&player.getY()<140)){
         player.Right();
-      //}
+      }
     }
   }
   
