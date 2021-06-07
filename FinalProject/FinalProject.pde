@@ -266,6 +266,55 @@ void draw(){
             can_move_back = false;
           }
           
+          //Tree Border
+          noStroke();
+          fill(102,191,90);
+          circle(1000-990,40,100);
+          circle(1000-930,40,100);
+          circle(1000-870,35,100);
+          circle(1000-820,10,100);
+          circle(1000-760,5,90);
+          circle(1000-690,0,100);
+          circle(1000-620,2,80);
+          circle(1000-570,2,90);
+          circle(1000-490,2,100);
+          circle(1000-410,10,100);
+          circle(1000-345,10,70);
+          circle(1000-290,10,100);
+          circle(1000-220,20,90);
+          circle(1000-150,25,100);
+          circle(1000-100,60,90);
+          circle(1000-50,120,100);
+          circle(1000-30,180,80);
+          circle(1000-25,240,90);
+          circle(1000-23,290,60);
+          circle(1000-15,350,90);
+          circle(1000-10,420,90);
+          circle(1000-10,480,80);
+          circle(1000-5,540,90);
+          circle(1000-7,610,90);
+          circle(1000-5,670,80);
+          circle(1000-20,720,90);
+          circle(1000-25,780,100);
+          circle(1000-80,805,90);
+          circle(1000-140,815,90);
+          circle(1000-200,815,80);
+          circle(1000-255,818,90);
+          circle(1000-320,820,80);
+          circle(1000-370,825,80);
+          circle(1000-420,825,90);
+          circle(1000-480,820,80);
+          circle(1000-540,820,90);
+          circle(1000-600,825,90);
+          circle(1000-670,820,90);
+          circle(1000-730,810,70);
+          circle(1000-790,820,90);
+          circle(1000-850,810,90);
+          circle(1000-920,810,90);
+          circle(1000-990,800,90);
+          circle(1000-0,0,250);
+          circle(1000-0,155,100);
+          
           
           //Buying items
           if(mouseButton == LEFT && dist(241,140, player.getX(), player.getY())<= 120 && dist(mouseX,mouseY,241,140)<=100){
@@ -503,8 +552,8 @@ void draw(){
           circle(290,10,100);
           circle(220,20,90);
           circle(150,25,100);
-          circle(100,60,90);
-          circle(50,120,100);
+          circle(100,50,90);
+          circle(30,120,100);
           circle(30,180,80);
           circle(25,240,90);
           circle(23,290,60);
@@ -813,7 +862,8 @@ void keyPressed(){
       }
     }else if(town){
       
-      if(!(188<player.getX()&&player.getX()<304&&100<player.getY()&&player.getY()-10<160)){
+      if(!(188<player.getX()&&player.getX()<304&&100<player.getY()&&player.getY()-10<160)
+      && !(player.getY()-10<30)){
         player.Up();
       }
             
@@ -847,7 +897,8 @@ void keyPressed(){
       }
     }else if(town){
       
-      if(!(188<player.getX()&&player.getX()<304&&player.getY()<100&&player.getY()+10>30)){
+      if(!(188<player.getX()&&player.getX()<304&&player.getY()<100&&player.getY()+10>30)
+      && !(player.getY()+10>740)){
         player.Down();
       }
       
@@ -866,7 +917,8 @@ void keyPressed(){
       }
     }else if(town){
       
-      if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<315&&player.getX()>300)){
+      if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<315&&player.getX()>300)
+      && !(player.getX()-10<0)){
         player.Left();
       }
       
@@ -886,14 +938,16 @@ void keyPressed(){
       }
     }else if(town){
       
-      if(!(30<player.getY()&&player.getY()<160&&player.getX()+10>170&&player.getX()<310)){
+      if(!(30<player.getY()&&player.getY()<160&&player.getX()+10>170&&player.getX()<310)
+      &&!(player.getX()+10>1000-50)){
         player.Right();
       }
       
       
     }else{
       
-      if(!(player.getX()+10>700&&player.getX()<730&&player.getY()<140)){
+      if(!(player.getX()+10>700&&player.getX()<730&&player.getY()<140)
+      && !(player.getX()+10>1000)){
         player.Right();
       }
     }
