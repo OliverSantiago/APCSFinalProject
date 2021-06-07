@@ -249,6 +249,79 @@ void draw(){
           fill(255,255,0);
           rect(188,180,126,20);
           
+          //Path
+          fill(207,207,209);
+          beginShape();
+          vertex(120,240);
+          vertex(130,225);
+          vertex(230,226);
+          vertex(309,221);
+          vertex(423,222);
+          vertex(524,271);
+          vertex(551,334);
+          vertex(547,396);
+          vertex(550,487);
+          vertex(563,556);
+          vertex(560,644);
+          vertex(530,670);
+          vertex(507,661);
+          vertex(500,662);
+          vertex(497,572);
+          vertex(500,493);
+          vertex(495,416);
+          vertex(489,343);
+          vertex(461,290);
+          vertex(356,271);
+          vertex(257,270);
+          vertex(127,275);
+          endShape();
+          
+          //Mayor House
+          noStroke();
+          fill(131,131,149);
+          rect(650,300,150,100);
+          fill(211,171,105);
+          triangle(630,300,820,300,770,250);
+          fill(0);
+          rect(700,330,50,70);
+          
+          //Community Center
+          fill(129,115,94);
+          beginShape();
+          vertex(167,534);
+          vertex(167,620);
+          vertex(343,620);
+          vertex(343,551);
+          vertex(320,555);
+          vertex(301,543);
+          vertex(297,527);
+          vertex(300,507);
+          vertex(253,505);
+          vertex(241,519);
+          vertex(241,550);
+          vertex(228,524);
+          vertex(223,512);
+          vertex(190,514);
+          endShape();
+          
+          fill(0);
+          rect(230,620-60,50,60);
+          
+          fill(206,143,42);
+          beginShape();
+          vertex(215,560);
+          vertex(218,565);
+          vertex(285,576);
+          vertex(285,571);
+          endShape();
+          
+          beginShape();
+          vertex(282,588);
+          vertex(282,596);
+          vertex(222,606);
+          vertex(222,600);
+          endShape();
+          
           //Movement Between Screens
           if(!set_x_coor){
             player.setX(1);
@@ -537,6 +610,7 @@ void draw(){
           }
                               
           //Makes the house and bin
+          noStroke();
           fill(255,159,13);
           rect(780,80,100,100);
           fill(0);
