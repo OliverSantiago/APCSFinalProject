@@ -88,12 +88,12 @@ public class Plot{
   void plant_display(int x, int y){
     noStroke();
     if (current_seed.percent_grown() < 25){
-      //stroke(0);
-      //strokeWeight(1);
-      //fill(#764B08);
-      //circle(x+15,y+20,3);
-      //circle(x+20,y+15,2);
-      //circle(x+12,y+12,3);
+      stroke(0);
+      strokeWeight(1);
+      fill(#764B08);
+      circle(x+15,y+20,3);
+      circle(x+20,y+15,2);
+      circle(x+12,y+12,3);
       
     }
     else if (current_seed.percent_grown() < 50){
@@ -128,6 +128,9 @@ public class Plot{
         fill(#337E36);
         square(x+13,y+16,3);
         ellipse(x+15,y+12,6,9);
+      }
+      if (current_crop.get_type() == 5){
+        
       }
       //fill(#46E53F);
       //circle(x+15,y+15,10);
