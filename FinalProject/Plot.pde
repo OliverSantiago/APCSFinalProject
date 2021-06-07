@@ -141,7 +141,28 @@ public class Plot{
       }
     }
     else if (current_seed.percent_grown() < 75){
-      
+      if (current_crop.get_type() == 1){
+        stroke(#07790C);
+        strokeWeight(3);
+        bezier(x+15,y+15,x+17,y+10,x+20,y+14,x+21,y+16);
+        bezier(x+15,y+15,x+10,y+10,x+12,y+14,x+9,y+16);
+        strokeWeight(2);
+        line(x+15,y+11,x+11,y+10);
+        line(x+15,y+11,x+19,y+9);
+        stroke(#026C06);
+        strokeWeight(4);
+        line(x+15,y+20,x+15,y+8);
+      }
+      if (current_crop.get_type() == 2){
+        stroke(#07790C);
+        strokeWeight(2);
+        fill(#07790C);
+        ellipse(x+15,y+18,5,8);
+        noStroke();
+        fill(#07790C);
+        ellipse(x+11,y+14,7,5);
+        ellipse(x+20,y+14,7,5);
+      }
     }
     else if (current_seed.percent_grown() < 100){
       
