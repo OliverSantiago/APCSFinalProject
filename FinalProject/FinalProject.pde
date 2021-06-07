@@ -17,7 +17,7 @@ boolean new_day = true;
 boolean ask_to_sleep = false;
 boolean has_left_bed = false;
 
-int time_increment = 1000;
+int time_increment = 5000;
 int time = 600;
 int money = 0;
 int new_money = 0;
@@ -50,7 +50,7 @@ void setup(){
   //Player, plots, tools, and time
   player = new Player();
   
-  all_plots = new Plot[10][10];
+  all_plots = new Plot[25][13];
   for(int i = 0; i < all_plots.length; i++){
     for(int j = 0; j < all_plots[i].length; j++){
       all_plots[i][j]=new Plot();
@@ -208,7 +208,7 @@ void draw(){
       }else{
         if(town){//Screen for Town
         
-          background(124,227,124);
+          background(127,216,114);
           
          
           //Shop keeper 
@@ -475,11 +475,46 @@ void draw(){
         }else{//Screen for Farm
         
           //Makes the background
-          background(255,241,191);
+          background(127,216,114);
+          //fill(255,241,191);
+          fill(250,219,116);
+          beginShape();
+          vertex(126,224);
+          vertex(224,212);
+          vertex(364,233);
+          vertex(465,218);
+          vertex(596,239);
+          vertex(675,217);
+          vertex(716,225);
+          vertex(777,233);
+          vertex(843,234);
+          vertex(907,251);
+          vertex(907,349);
+          vertex(927,425);
+          vertex(920,517);
+          vertex(937,604);
+          vertex(916,671);
+          vertex(840,680);
+          vertex(745,660);
+          vertex(661,674);
+          vertex(565,660);
+          vertex(474,675);
+          vertex(381,652);
+          vertex(292,667);
+          vertex(179,674);
+          vertex(123,652);
+          vertex(109,607);
+          vertex(114,527);
+          vertex(103,461);
+          vertex(122,381);
+          vertex(109,324);
+          vertex(130,271);
+          endShape();
+          
           
           //Makes plots
-          int x_coor = 300;
-          int y_coor = 300;
+          int x_coor = 140;
+          int y_coor = 250;
           
           for(int i = 0; i < all_plots.length; i++){
             for(int j = 0; j < all_plots[i].length; j++){
@@ -498,7 +533,7 @@ void draw(){
               
             }
             x_coor+=30;
-            y_coor = 300;
+            y_coor = 250;
           }
                               
           //Makes the house and bin
@@ -782,8 +817,8 @@ void draw(){
 void mousePressed(){
   //println(mouseX);
   //println(mouseY);
-  int x_coor = 300;
-  int y_coor = 300;
+  int x_coor = 140;
+  int y_coor = 250;
   
   for (int i = 0; i < all_plots.length; i++){
     for (int j = 0; j < all_plots[0].length; j++){
@@ -848,7 +883,7 @@ void mousePressed(){
         y_coor += 30;
     }
     x_coor += 30;
-    y_coor = 300;
+    y_coor = 250;
   }
 }
 

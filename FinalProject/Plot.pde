@@ -77,7 +77,8 @@ public class Plot{
       }else{
         noStroke();
       }
-      fill(222,188,65);
+      //fill(222,188,65);
+      fill(250,219,116);
       rect(x,y,30,30);
     }
     if (current_seed != null){
