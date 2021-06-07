@@ -133,7 +133,7 @@ void draw(){
         //Door
         stroke(0);
         fill(0);
-        rect(330,530,30,30);
+        rect(330,530,50,30);
         
         //Top of Bed
         noStroke();
@@ -156,12 +156,12 @@ void draw(){
         
         
         //Sleep
-        if(!(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<390)){
+        if(!(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<400)){
           has_left_bed = true;
           ask_to_sleep = false;
         }
         
-        if(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<390&&has_left_bed){
+        if(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<400&&has_left_bed){
           ask_to_sleep = true;
         }
         
@@ -210,6 +210,45 @@ void draw(){
         
           background(124,227,124);
           
+         
+          //Shop keeper 
+          //Head
+          float x = 241;
+          float y = 140;
+          noStroke();
+          fill(255,238,139);
+          circle(x+10,y-5,20);
+          
+          //Pants
+          stroke(52,59,255);
+          strokeWeight(10);
+          line(x+5,y+30,x+1,y+43);
+          line(x+15,y+30,x+17,y+43);
+          
+          //Shirt
+          noStroke();
+          //fill(0,203,103);
+          fill(255,0,0);
+          rect(x,y,20,30);
+          stroke(255,0,0);
+          strokeWeight(5);
+          line(x,y+3,x-10,y+15);
+          line(x+18,y+3,x+30,y+15);
+          
+          //Makes shop
+          noStroke();
+          //fill(227,207,30);
+          //rect(500,100,50,60);
+          //fill(196,234,99);
+          //rect(505,115,40,20);
+          fill(227,207,30);
+          rect(188,121,10,80);
+          rect(304,121,10,80);
+          fill(234,145,0);
+          triangle(188,121,314,121,251,80);
+          fill(255,255,0);
+          rect(188,180,126,20);
+          
           //Movement Between Screens
           if(!set_x_coor){
             player.setX(1);
@@ -227,15 +266,58 @@ void draw(){
             can_move_back = false;
           }
           
-          //Makes shop
+          //Tree Border
           noStroke();
-          fill(227,207,30);
-          rect(500,100,50,60);
-          fill(196,234,99);
-          rect(505,115,40,20);
+          fill(102,191,90);
+          circle(1000-990,40,100);
+          circle(1000-930,40,100);
+          circle(1000-870,35,100);
+          circle(1000-820,10,100);
+          circle(1000-760,5,90);
+          circle(1000-690,0,100);
+          circle(1000-620,2,80);
+          circle(1000-570,2,90);
+          circle(1000-490,2,100);
+          circle(1000-410,10,100);
+          circle(1000-345,10,70);
+          circle(1000-290,10,100);
+          circle(1000-220,20,90);
+          circle(1000-150,25,100);
+          circle(1000-100,60,90);
+          circle(1000-50,120,100);
+          circle(1000-30,180,80);
+          circle(1000-25,240,90);
+          circle(1000-23,290,60);
+          circle(1000-15,350,90);
+          circle(1000-10,420,90);
+          circle(1000-10,480,80);
+          circle(1000-5,540,90);
+          circle(1000-7,610,90);
+          circle(1000-5,670,80);
+          circle(1000-20,720,90);
+          circle(1000-25,780,100);
+          circle(1000-80,805,90);
+          circle(1000-140,815,90);
+          circle(1000-200,815,80);
+          circle(1000-255,818,90);
+          circle(1000-320,820,80);
+          circle(1000-370,825,80);
+          circle(1000-420,825,90);
+          circle(1000-480,820,80);
+          circle(1000-540,820,90);
+          circle(1000-600,825,90);
+          circle(1000-670,820,90);
+          circle(1000-730,810,70);
+          circle(1000-790,820,90);
+          circle(1000-850,810,90);
+          circle(1000-920,810,90);
+          circle(1000-990,800,90);
+          circle(1000-0,0,250);
+          circle(1000-0,155,100);
+          
           
           //Buying items
-          if(mouseButton == LEFT && dist(525.0,130.0, player.getX(), player.getY())<= 50 && dist(mouseX,mouseY,525.0,130.0)<=50){
+          if(mouseButton == LEFT && dist(241,140, player.getX(), player.getY())<= 120 && dist(mouseX,mouseY,241,140)<=100){
             buy_screen = true; 
           }
           
@@ -247,7 +329,7 @@ void draw(){
               buy_screen_opened = true;
             }
             
-            if(dist(525.0,130.0, player.getX(),  player.getY())>50 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
+            if(dist(241,140, player.getX(),  player.getY())>120 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
               buy_screen = false;
               buy_screen_opened = false;
             }
@@ -404,7 +486,7 @@ void draw(){
               
               //Hitbox around plot
               if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){//Change if plot or player size changes!!
                 all_plots[i][j].mouse_on();
               }else{
                 all_plots[i][j].mouse_off();
@@ -418,17 +500,19 @@ void draw(){
             x_coor+=30;
             y_coor = 300;
           }
-          
-                    
+                              
           //Makes the house and bin
-          fill(34,121,224);
-          rect(800,100,80,50);
+          fill(255,159,13);
+          rect(780,80,100,100);
           fill(0);
-          rect(830,125,15,25);
+          rect(810,130,40,50);
+          fill(234,59,0);
+          triangle(760,90,830,60,900,90);
           
           fill(232,211,108);
-          rect(725,125,30,15);
+          rect(715,150,60,30);
           
+   
           
           //Makes the player
           strokeWeight(0);
@@ -451,7 +535,54 @@ void draw(){
           }
 
           
-
+          //Tree Border
+          noStroke();
+          fill(102,191,90);
+          circle(990,-1,100);
+          circle(930,5,80);
+          circle(870,2,90);
+          circle(820,-3,100);
+          circle(760,-10,90);
+          circle(690,0,100);
+          circle(620,2,80);
+          circle(570,2,90);
+          circle(490,2,100);
+          circle(410,10,100);
+          circle(345,10,70);
+          circle(290,10,100);
+          circle(220,20,90);
+          circle(150,25,100);
+          circle(100,50,90);
+          circle(30,120,100);
+          circle(30,180,80);
+          circle(25,240,90);
+          circle(23,290,60);
+          circle(15,350,90);
+          circle(10,420,90);
+          circle(10,480,80);
+          circle(5,540,90);
+          circle(7,610,90);
+          circle(5,670,80);
+          circle(20,720,90);
+          circle(25,780,100);
+          circle(80,805,90);
+          circle(140,815,90);
+          circle(200,815,80);
+          circle(255,818,90);
+          circle(320,820,80);
+          circle(370,825,80);
+          circle(420,825,90);
+          circle(480,820,80);
+          circle(540,820,90);
+          circle(600,825,90);
+          circle(670,820,90);
+          circle(730,810,70);
+          circle(790,820,90);
+          circle(850,810,90);
+          circle(920,810,90);
+          circle(990,800,90);
+          circle(0,0,250);
+          circle(0,155,100);
           
           //Putting items in the bin
           if(mouseButton == LEFT){
@@ -488,7 +619,7 @@ void draw(){
             player.get_selected_item(moving_item_index).display(mouseX,mouseY);
           }
           if(moving_item&&mouseButton==LEFT){
-            if (dist((float)mouseX,(float)mouseY,740,132)<15){
+            if (dist((float)mouseX,(float)mouseY,745,165)<30){
               sell(player.get_selected_item(moving_item_index));
               player.removeFromStack(moving_item_index);
               moving_item = false;
@@ -529,7 +660,7 @@ void draw(){
             player.get_selected_item(moving_item_index).display(mouseX,mouseY);
           }
           if(moving_Stack&&mouseButton==LEFT){
-            if (dist((float)mouseX,(float)mouseY,740,132)<15){
+            if (dist((float)mouseX,(float)mouseY,745,165)<30){
               sell(player.get_selected_item(moving_item_index));
               player.removeStack(moving_item_index);
               moving_Stack = false;
@@ -668,7 +799,7 @@ void mousePressed(){
             if (player.get_current_item().tool_type().equals("hoe")){
               //println("works2");
               if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){//Change if plot or player size changes!!
                 all_plots[i][j].till();
               }
             }
@@ -677,7 +808,7 @@ void mousePressed(){
             if (player.get_current_item().tool_type().equals("watering_can")){
               //println("works3");
               if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){//Change if plot or player size changes!!
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){//Change if plot or player size changes!!
                 all_plots[i][j].water();
               }
             }
@@ -686,7 +817,7 @@ void mousePressed(){
           }else if(player.get_current_item_index() <  player.size()
                    &&player.get_current_item().get_Class().equals("Seed")){
                   if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                      dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                      dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){
                         if (all_plots[i][j].plant(player.get_current_item())){
                           player.removeFromStack(player.get_current_item_index());
                         }
@@ -696,7 +827,7 @@ void mousePressed(){
            //If player is holding none of above, harvest crop (if possible)
           else{
             if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
-                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=15){
+                  dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){
                     Item crop = all_plots[i][j].harvest();
                     boolean existing_stack = false;
                     for (int x = 0; x < player.size(); x++){
@@ -726,18 +857,27 @@ void keyPressed(){
   //Movement Controls
   if(keyCode == 87){
     if(inside){
-      if(player.getY()-10>=315){
+      if(player.getY()-10>=300&&(!(640<player.getX()&&player.getX()<690&&player.getY()-10<400))){
         player.Up();
       }
+    }else if(town){
+      
+      if(!(188<player.getX()&&player.getX()<304&&100<player.getY()&&player.getY()-10<160)
+      && !(player.getY()-10<30)){
+        player.Up();
+      }
+            
     }else{
       
-      if(830<=player.getX()&&player.getX()<=845&&player.getY()-10<=140){
+      if(820<=player.getX()&&player.getX()<=845&&player.getY()-10<=160){
         inside = true;
-        player.setX(330);
+        player.setX(340);
         player.setY(470);
       }
       
-      if(!(800<=player.getX()&&player.getX()<=880&&player.getY()-10<=125) && !(720<=player.getX()&&player.getX()<=755&&player.getY()-10<=120)){
+      if(!(710<player.getX()&&player.getX()<820&&player.getY()-10<160)
+      &&!(845<player.getX()&&player.getX()<880&&player.getY()-10<160)
+      &&!(player.getY()-10<30)){
         player.Up();
       }
       
@@ -746,19 +886,25 @@ void keyPressed(){
   
   if(keyCode == 83){
     if(inside){
-      if(330<=player.getX()&&player.getX()<=360&&player.getY()+40>=530){
+      if(330<=player.getX()&&player.getX()<=380&&player.getY()+40>=520){
         inside = false;
-        player.setX(831);
-        player.setY(131);
+        player.setX(821);
+        player.setY(135);
       }
       
-      if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=509){
+      if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=480){
         player.Down();
       }
+    }else if(town){
+      
+      if(!(188<player.getX()&&player.getX()<304&&player.getY()<100&&player.getY()+10>30)
+      && !(player.getY()+10>740)){
+        player.Down();
+      }
+      
     }else{
       
-      if(!(800<player.getX()&&player.getX()<880&&player.getY()+10>90&&player.getY()<110)
-        && !(725<player.getX()&&player.getX()<755&&player.getY()+10>110&&player.getY()<116)){
+      if(!(player.getY()+10>740)){
         player.Down();
       }
     }
@@ -769,23 +915,39 @@ void keyPressed(){
       if(player.getX()-10>=310){
         player.Left();
       }
+    }else if(town){
+      
+      if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<315&&player.getX()>300)
+      && !(player.getX()-10<0)){
+        player.Left();
+      }
+      
     }else{
       
-      if(!(80<player.getY()&&player.getY()<150&&player.getX()-10<880&&player.getX()>800)
-      &&!(115<player.getY()&&player.getY()<140&&player.getX()-10<755&&player.getX()>725)){
+    if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<900&&780<player.getX())
+    && !(player.getX()-10<50)){
         player.Left();
       }
     }
   }
+  
   if(keyCode == 68){
     if(inside){
-      if(player.getX()+10<=680){
+      if(player.getX()+10<=665){
         player.Right();
       }
+    }else if(town){
+      
+      if(!(30<player.getY()&&player.getY()<160&&player.getX()+10>170&&player.getX()<310)
+      &&!(player.getX()+10>1000-50)){
+        player.Right();
+      }
+      
+      
     }else{
       
-      if(!(80<player.getY()&&player.getY()<150&&player.getX()+10>790&&player.getX()<880)
-        && !(115<player.getY()&&player.getY()<140&&player.getX()+10>715&&player.getX()<755)){
+      if(!(player.getX()+10>700&&player.getX()<730&&player.getY()<140)
+      && !(player.getX()+10>1000)){
         player.Right();
       }
     }
