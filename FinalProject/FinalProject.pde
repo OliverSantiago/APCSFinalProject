@@ -966,27 +966,29 @@ void keyPressed(){
   //Movement Controls
   if(keyCode == 87){
     if(inside){
-      if(player.getY()-10>=300&&(!(640<player.getX()&&player.getX()<690&&player.getY()-10<400))){
+      if(player.getY()-10>=300&&(!(640<player.getX()&&player.getX()<690&&player.getY()-10<400))){//Border for walls
         player.Up();
       }
     }else if(town){
       
-      if(!(188<player.getX()&&player.getX()<304&&100<player.getY()&&player.getY()-10<160)
-      && !(player.getY()-10<30)){
+      if(!(188<player.getX()&&player.getX()<304&&100<player.getY()&&player.getY()-10<160)//Border for shop
+      && !(640<player.getX()&&player.getX()<805&&player.getY()>300&&player.getY()-10<350)//Border for mayor house
+      && !(152<player.getX()&&player.getX()<348&&player.getY()>540&&player.getY()-10<580)//Border for Community Center
+      && !(player.getY()-10<30)){//Border for tree
         player.Up();
       }
             
     }else{
       
-      if(820<=player.getX()&&player.getX()<=845&&player.getY()-10<=160){
+      if(820<=player.getX()&&player.getX()<=845&&player.getY()-10<=160){//Going inside house
         inside = true;
         player.setX(340);
         player.setY(470);
       }
       
-      if(!(710<player.getX()&&player.getX()<820&&player.getY()-10<160)
-      &&!(845<player.getX()&&player.getX()<880&&player.getY()-10<160)
-      &&!(player.getY()-10<30)){
+      if(!(710<player.getX()&&player.getX()<820&&player.getY()-10<160)//Border for house
+      &&!(845<player.getX()&&player.getX()<880&&player.getY()-10<160)//Border for bin
+      &&!(player.getY()-10<30)){//Border for tree
         player.Up();
       }
       
@@ -995,25 +997,27 @@ void keyPressed(){
   
   if(keyCode == 83){
     if(inside){
-      if(330<=player.getX()&&player.getX()<=380&&player.getY()+40>=520){
+      if(330<=player.getX()&&player.getX()<=380&&player.getY()+40>=520){//Border for walls
         inside = false;
         player.setX(821);
         player.setY(135);
       }
       
-      if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=480){
+      if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=480){//Going to farm
         player.Down();
       }
     }else if(town){
       
-      if(!(188<player.getX()&&player.getX()<304&&player.getY()<100&&player.getY()+10>30)
-      && !(player.getY()+10>740)){
+      if(!(188<player.getX()&&player.getX()<304&&player.getY()<100&&player.getY()+10>30)//Border for shop
+      && !(640<player.getX()&&player.getX()<805&&player.getY()<350&&player.getY()+10>200)//Border for mayor house 
+      && !(152<player.getX()&&player.getX()<348&&player.getY()<550&&player.getY()+10>460)//Border for Community Center
+      && !(player.getY()+10>740)){//Border for trees
         player.Down();
       }
       
     }else{
       
-      if(!(player.getY()+10>740)){
+      if(!(player.getY()+10>740)){//Border for trees
         player.Down();
       }
     }
@@ -1021,20 +1025,22 @@ void keyPressed(){
   
   if(keyCode == 65){
     if(inside){
-      if(player.getX()-10>=310){
+      if(player.getX()-10>=310){//Border for walls
         player.Left();
       }
     }else if(town){
       
-      if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<315&&player.getX()>300)
-      && !(player.getX()-10<0)){
+      if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<315&&player.getX()>300)//Border for shop
+      && !(200<player.getY()&&player.getY()<350&&player.getX()>700&&player.getX()-10<805)//Border for mayor house
+      && !(460<player.getY()&&player.getY()<580&&player.getX()>200&&player.getX()-10<348)//Border for Community Center
+      && !(player.getX()-10<0)){//Border for trees
         player.Left();
       }
       
     }else{
       
-    if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<900&&780<player.getX())
-    && !(player.getX()-10<50)){
+    if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<900&&780<player.getX())//Border for House/Bin
+    && !(player.getX()-10<50)){//Border for trees
         player.Left();
       }
     }
@@ -1042,21 +1048,23 @@ void keyPressed(){
   
   if(keyCode == 68){
     if(inside){
-      if(player.getX()+10<=665){
+      if(player.getX()+10<=665){//Border for walls
         player.Right();
       }
     }else if(town){
       
-      if(!(30<player.getY()&&player.getY()<160&&player.getX()+10>170&&player.getX()<310)
-      &&!(player.getX()+10>1000-50)){
+      if(!(30<player.getY()&&player.getY()<160&&player.getX()+10>170&&player.getX()<310)//Border for shop
+      && !(200<player.getY()&&player.getY()<350&&player.getX()<700&&player.getX()+10>640)//Border for mayor house
+      && !(460<player.getY()&&player.getY()<580&&player.getX()<200&&player.getX()+10>152)//Border for Community Center
+      && !(player.getX()+10>1000-50)){//Border for town
         player.Right();
       }
       
       
     }else{
       
-      if(!(player.getX()+10>700&&player.getX()<730&&player.getY()<140)
-      && !(player.getX()+10>1000)){
+      if(!(player.getX()+10>700&&player.getX()<730&&player.getY()<140)//Border for House/bin
+      && !(player.getX()+10>1000)){//Border for trees
         player.Right();
       }
     }
