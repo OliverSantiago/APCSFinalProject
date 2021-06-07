@@ -81,19 +81,66 @@ public class Plot{
       rect(x,y,30,30);
     }
     if (current_seed != null){
-      noStroke();
-      if (current_seed.percent_grown() < 50){
-        fill(#46E53F);
-        circle(x+15,y+15,5);
+      plant_display(x,y);
+    }
+  }
+  
+  void plant_display(int x, int y){
+    noStroke();
+    if (current_seed.percent_grown() < 25){
+      //stroke(0);
+      //strokeWeight(1);
+      //fill(#764B08);
+      //circle(x+15,y+20,3);
+      //circle(x+20,y+15,2);
+      //circle(x+12,y+12,3);
+      
+    }
+    else if (current_seed.percent_grown() < 50){
+      if (current_crop.get_type() == 1){
+        stroke(#07790C);
+        strokeWeight(3);
+        bezier(x+15,y+14,x+16,y+9,x+18,y+12,x+19,y+14);
+        strokeWeight(2);
+        bezier(x+15,y+15,x+12,y+10,x+12,y+14,x+11,y+15);
+        stroke(#026C06);
+        strokeWeight(2);
+        line(x+15,y+20,x+15,y+11);
       }
-      else if (current_seed.percent_grown() < 100){
-        fill(#46E53F);
-        circle(x+15,y+15,10);
+      if (current_crop.get_type() == 2){
+        stroke(#07790C);
+        strokeWeight(2);
+        line(x+15,y+20,x+15,y+11);
+        noStroke();
+        fill(#07790C);
+        ellipse(x+11,y+14,7,5);
+        ellipse(x+20,y+14,7,5);
       }
-      if (ready_to_harvest){
-        fill(#43FF2C);
-        circle(x+15,y+15,17);
+      if (current_crop.get_type() == 3){
+        stroke(#07790C);
+        strokeWeight(2);
+        line(x+15,y+21,x+15,y+14);
+        strokeWeight(5);
+        line(x+17,y+16,x+12,y+13);
       }
+      if (current_crop.get_type() == 4){
+        noStroke();
+        fill(#337E36);
+        square(x+13,y+16,3);
+        ellipse(x+15,y+12,6,9);
+      }
+      //fill(#46E53F);
+      //circle(x+15,y+15,10);
+    }
+    else if (current_seed.percent_grown() < 75){
+      
+    }
+    else if (current_seed.percent_grown() < 100){
+      
+    }
+    else{
+      fill(#43FF2C);
+      circle(x+15,y+15,17);
     }
   }
   
