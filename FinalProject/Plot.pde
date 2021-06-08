@@ -290,6 +290,24 @@ public class Plot{
         line(x+14,y+16,x+14,y+18);
       }
       if (current_seed.get_type() == 2){
+        noStroke();
+        fill(#FFA5D5);
+        ellipse(x+15,y+18,16,15);
+        noStroke();
+        stroke(#07790C);
+        strokeWeight(2);
+        fill(#07790C);
+        ellipse(x+15,y+11,5,10);
+        stroke(#048309);
+        strokeWeight(6);
+        line(x+19,y+11,x+20,y+12);
+        line(x+11,y+11,x+10,y+12);
+        fill(#07790C);
+        noStroke();
+        ellipse(x+11,y+8,7,5);
+        ellipse(x+20,y+8,7,5);
+      }
+      if (current_seed.get_type() == 3){
         
       }
       //fill(#43FF2C);
