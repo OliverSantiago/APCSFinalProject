@@ -274,8 +274,26 @@ public class Plot{
       }
     }
     else{
-      fill(#43FF2C);
-      circle(x+15,y+15,17);
+      if (current_seed.get_type() == 1){
+        stroke(#026C06);
+        strokeWeight(6);
+        line(x+15,y+23,x+15,y+7);
+        stroke(#07790C);
+        strokeWeight(6);
+        bezier(x+15,y+20,x+17,y+15,x+20,y+19,x+21,y+21);
+        bezier(x+15,y+20,x+10,y+15,x+12,y+19,x+9,y+21);        
+        bezier(x+15,y+10,x+17,y+10,x+20,y+11,x+21,y+13);
+        strokeWeight(4);
+        line(x+14,y+9,x+11,y+13);
+        stroke(#FCEA1C);
+        line(x+18,y+10,x+17,y+7);
+        line(x+14,y+16,x+14,y+18);
+      }
+      if (current_seed.get_type() == 2){
+        
+      }
+      //fill(#43FF2C);
+      //circle(x+15,y+15,17);
     }
   }
   
