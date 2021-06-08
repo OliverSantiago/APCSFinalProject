@@ -243,6 +243,20 @@ public class Plot{
         circle(x+14,y+17,9);
       }
       if (current_seed.get_type() == 4){
+        noStroke();
+        fill(#337E36);
+        rect(x+14,y+18,3,5);
+        ellipse(x+10,y+15,8,7);
+        stroke(#337E36);
+        strokeWeight(8);
+        line(x+17,y+13,x+18,y+11);
+        line(x+16,y+16,x+19,y+17);
+        line(x+14,y+16,x+11,y+19);
+        stroke(#055508);
+        strokeWeight(1);
+        ellipse(x+15,y+15,6,8);
+      }
+      if (current_seed.get_type() == 5){
         
       }
     }
