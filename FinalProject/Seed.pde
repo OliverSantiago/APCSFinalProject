@@ -21,31 +21,31 @@ class Seed extends Item{
     watered = false;
     if (seed_type == 1.0){
       corn = true;
-      daysForHarvest = 1; //14, less for testing purpose
+      daysForHarvest = 5; //14, less for testing purpose
       value = 20;
       crop = new Crop(1.0);
     }
     if (seed_type == 2.0){
       melon = true;
-      daysForHarvest = 1; //18, less for testing purpose
+      daysForHarvest = 5; //18, less for testing purpose
       value = 80;
       crop = new Crop(2.0);
     }
     if (seed_type == 3.0){
       potato = true;
-      daysForHarvest = 1; //6, less for testing purposes
+      daysForHarvest = 5; //6, less for testing purposes
       value = 50;
       crop = new Crop(3.0);
     }
     if (seed_type == 4.0){
       pumpkin = true;
-      daysForHarvest = 2; //13, less for testing purpose
+      daysForHarvest = 5; //13, less for testing purpose
       value = 100;
       crop = new Crop(4.0);
     }
     if (seed_type == 5.0){
       tomato = true;
-      daysForHarvest = 1; //11, less for testing purpose
+      daysForHarvest = 5; //11, less for testing purpose
       value = 50;
       crop = new Crop(5.0);
     }

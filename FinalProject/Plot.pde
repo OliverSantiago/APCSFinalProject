@@ -89,17 +89,16 @@ public class Plot{
   void plant_display(int x, int y){
     noStroke();
     if (current_seed.percent_grown() < 10){
-      //stroke(0);
-      //strokeWeight(1);
-      //fill(#764B08);
-      //circle(x+15,y+20,3);
-      //circle(x+20,y+15,2);
-      //circle(x+12,y+12,3);
-      
-      
+      stroke(0);
+      strokeWeight(1);
+      fill(#764B08);
+      circle(x+15,y+20,3);
+      circle(x+20,y+15,2);
+      circle(x+12,y+12,3);
+     
     }
     else if (current_seed.percent_grown() < 40){
-      if (current_crop.get_type() == 1){
+      if (current_seed.get_type() == 1){
         stroke(#07790C);
         strokeWeight(3);
         bezier(x+15,y+14,x+16,y+9,x+18,y+12,x+19,y+14);
@@ -109,7 +108,7 @@ public class Plot{
         strokeWeight(2);
         line(x+15,y+20,x+15,y+11);
       }
-      if (current_crop.get_type() == 2){
+      if (current_seed.get_type() == 2){
         stroke(#07790C);
         strokeWeight(2);
         line(x+15,y+20,x+15,y+11);
@@ -118,20 +117,20 @@ public class Plot{
         ellipse(x+11,y+14,7,5);
         ellipse(x+20,y+14,7,5);
       }
-      if (current_crop.get_type() == 3){
+      if (current_seed.get_type() == 3){
         stroke(#07790C);
         strokeWeight(2);
         line(x+15,y+21,x+15,y+14);
         strokeWeight(5);
         line(x+17,y+16,x+12,y+13);
       }
-      if (current_crop.get_type() == 4){
+      if (current_seed.get_type() == 4){
         noStroke();
         fill(#337E36);
         rect(x+14,y+18,3,5);
         ellipse(x+15,y+15,6,9);
       }
-      if (current_crop.get_type() == 5){
+      if (current_seed.get_type() == 5){
         stroke(#07790C);
         strokeWeight(4);
         line(x+15,y+20,x+15,y+18);
@@ -141,7 +140,7 @@ public class Plot{
       }
     }
     else if (current_seed.percent_grown() < 70){
-      if (current_crop.get_type() == 1){
+      if (current_seed.get_type() == 1){
         stroke(#07790C);
         strokeWeight(3);
         bezier(x+15,y+15,x+17,y+10,x+20,y+14,x+21,y+16);
@@ -153,7 +152,7 @@ public class Plot{
         strokeWeight(4);
         line(x+15,y+20,x+15,y+8);
       }
-      if (current_crop.get_type() == 2){
+      if (current_seed.get_type() == 2){
         stroke(#07790C);
         strokeWeight(2);
         fill(#07790C);
@@ -163,7 +162,7 @@ public class Plot{
         ellipse(x+11,y+14,7,5);
         ellipse(x+20,y+14,7,5);
       }
-      if (current_crop.get_type() == 3){
+      if (current_seed.get_type() == 3){
         stroke(#07790C);
         strokeWeight(4);
         line(x+15,y+21,x+15,y+14);
@@ -173,7 +172,7 @@ public class Plot{
         fill(#07790C);
         circle(x+21,y+16,7);
       }
-      if (current_crop.get_type() == 4){
+      if (current_seed.get_type() == 4){
         noStroke();
         fill(#337E36);
         rect(x+14,y+18,3,5);
@@ -334,10 +333,23 @@ public class Plot{
         bezier(x+15,y+7,x+14,y+6,x+14,y+5,x+13,y+5);
       }
       if (current_seed.get_type() == 5){
-        
+        stroke(#469349);
+        strokeWeight(4);
+        line(x+15,y+24,x+15,y+9);
+        stroke(#0B9D11);
+        line(x+19,y+11,x+22,y+14);
+        line(x+11,y+17,x+8,y+19);
+        line(x+18,y+11,x+21,y+7);
+        strokeWeight(6);
+        line(x+16,y+13,x+17,y+15);
+        line(x+12,y+8,x+8,y+9);
+        noStroke();
+        fill(#9B1313);
+        circle(x+19,y+17,5);
+        circle(x+12,y+12,5);
+        circle(x+17,y+8,5);
+        circle(x+13,y+18,5);
       }
-      //fill(#43FF2C);
-      //circle(x+15,y+15,17);
     }
   }
   
