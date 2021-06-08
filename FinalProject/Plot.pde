@@ -123,6 +123,7 @@ public class Plot{
         ellipse(x+11,y+14,7,5);
         ellipse(x+20,y+14,7,5);
       }
+<<<<<<< HEAD
       if (current_crop.get_type() == 3){
         stroke(#07790C);
         strokeWeight(2);
@@ -136,6 +137,8 @@ public class Plot{
         square(x+13,y+16,3);
         ellipse(x+15,y+12,6,9);
       }
+=======
+>>>>>>> parent of f84d445... changed visuals for potato crop after 25%
       //fill(#46E53F);
       //circle(x+15,y+15,10);
     }
