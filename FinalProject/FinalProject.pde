@@ -14,14 +14,20 @@ boolean donate_screen = false;
 boolean donate_500 = false;
 boolean donate_1000 = false;
 boolean donate_1500 = false;
-Crop[] corn_bundle = new Crop[5];
-Crop[] melon_bundle = new Crop[5];
-Crop[] potato_bundle = new Crop[5];
-Crop[] pumpkin_bundle = new Crop[5];
-Crop[] tomato_bundle = new Crop[5];
-Crop[] quality_corn_bundle = new Crop[3];
-Crop[] quality_potato_bundle = new Crop[3];
-Crop[] quality_pumpkin_bundle = new Crop[3];
+ArrayList<Crop> corn_bundle = new ArrayList<Crop>(5);
+ArrayList<Crop> melon_bundle = new ArrayList<Crop>(5);
+ArrayList<Crop> potato_bundle = new ArrayList<Crop>(5);
+ArrayList<Crop> pumpkin_bundle = new ArrayList<Crop>(5);
+ArrayList<Crop> tomato_bundle = new ArrayList<Crop>(5);
+ArrayList<Crop> quality_corn_bundle = new ArrayList<Crop>(3);
+ArrayList<Crop> quality_potato_bundle = new ArrayList<Crop>(3);
+ArrayList<Crop> quality_pumpkin_bundle = new ArrayList<Crop>(3);
+//Crops for donating, do not remove
+Crop donate_corn = new Crop(1);
+Crop donate_melon = new Crop(2);
+Crop donate_potato = new Crop(3);
+Crop donate_pumpkin = new Crop(4);
+Crop donate_tomato = new Crop(5);
 
 boolean buy_screen = false;
 boolean buy_screen_opened = false;
@@ -334,9 +340,82 @@ void draw(){
               rect(471,220,60,60);
               rect(598,220,60,60);
               rect(725,220,60,60);
-              if(corn_bundle.length<5){
-                shop_corn.display(
+              
+              if(corn_bundle.size()<5){
+                donate_corn.setQuality(1);
+                donate_corn.display(233,233);
+                textSize(20);
+                fill(150);
+                text(Integer.toString(5-corn_bundle.size()),260,270);
               }
+              
+              if(melon_bundle.size()<5){
+                donate_melon.setQuality(1);
+                donate_melon.display(360,233);
+                textSize(20);
+                fill(150);
+                text(Integer.toString(5-melon_bundle.size()),387,270);
+              }
+              
+              if(potato_bundle.size()<5){
+                donate_potato.setQuality(1);
+                donate_potato.display(487,233);
+                textSize(20);
+                fill(150);
+                text(Integer.toString(5-potato_bundle.size()),514,270);
+              }
+              
+              if(pumpkin_bundle.size()<5){
+                donate_pumpkin.setQuality(1);
+                donate_pumpkin.display(614,233);
+                textSize(20);
+                fill(150);
+                text(Integer.toString(5-pumpkin_bundle.size()),641,270);
+              }
+              
+              if(tomato_bundle.size()<5){
+                donate_tomato.setQuality(1);
+                donate_tomato.display(741,233);
+                textSize(20);
+                fill(150);
+                text(Integer.toString(5-tomato_bundle.size()),768,270);
+              }
+              
+              //Quality Crop Bundle
+              strokeWeight(3);
+              stroke(234,155,7);
+              //fill(255,186,57);
+              noFill();
+              rect(280,320,60,60);
+              rect(470,320,60,60);
+              rect(660,320,60,60);
+              
+              if(quality_corn_bundle.size()<3){
+                donate_corn.setQuality(3);
+                donate_corn.display(296,333);
+                textSize(20);
+                fill(150);
+                text(Integer.toString(3-quality_corn_bundle.size()),323,370);
+              }
+              
+              if(quality_potato_bundle.size()<3){
+                donate_potato.setQuality(3);
+                donate_potato.display(486,333);
+                textSize(20);
+                fill(150);
+                text(Integer.toString(3-quality_potato_bundle.size()),513,370);
+              }
+              
+              if(quality_pumpkin_bundle.size()<3){
+                donate_pumpkin.setQuality(3);
+                donate_pumpkin.display(676,333);
+                textSize(20);
+                fill(150);
+                text(Integer.toString(3-quality_pumpkin_bundle.size()),703,370);
+              }
+              
+              //Donate Money
+              
             }
             
           }else{

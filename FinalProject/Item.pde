@@ -24,6 +24,10 @@ public class Item{
     return "bloh";
   }
   
+  void setQuality(int x){
+    
+  }
+  
   int get_type(){
     return -1;
   }
