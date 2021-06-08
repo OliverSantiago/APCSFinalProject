@@ -128,8 +128,8 @@ public class Plot{
       if (current_crop.get_type() == 4){
         noStroke();
         fill(#337E36);
-        square(x+13,y+16,3);
-        ellipse(x+15,y+12,6,9);
+        rect(x+14,y+18,3,5);
+        ellipse(x+15,y+15,6,9);
       }
       if (current_crop.get_type() == 5){
         stroke(#07790C);
@@ -162,6 +162,31 @@ public class Plot{
         fill(#07790C);
         ellipse(x+11,y+14,7,5);
         ellipse(x+20,y+14,7,5);
+      }
+      if (current_crop.get_type() == 3){
+        stroke(#07790C);
+        strokeWeight(4);
+        line(x+15,y+21,x+15,y+14);
+        strokeWeight(7);
+        line(x+17,y+16,x+12,y+13);
+        noStroke();
+        fill(#07790C);
+        circle(x+21,y+16,7);
+      }
+      if (current_crop.get_type() == 4){
+        noStroke();
+        fill(#337E36);
+        rect(x+14,y+18,3,5);
+        ellipse(x+10,y+15,8,7);
+        stroke(#337E36);
+        strokeWeight(8);
+        line(x+17,y+13,x+18,y+11);
+        stroke(#055508);
+        strokeWeight(1);
+        ellipse(x+15,y+15,6,8);
+      }
+      if (current_seed.get_type() == 5){
+        
       }
     }
     else if (current_seed.percent_grown() < 100){
