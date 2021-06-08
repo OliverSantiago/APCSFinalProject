@@ -2,11 +2,26 @@ Player player;
 Plot [][] all_plots;
 boolean first_screen = true;
 boolean end_day = false;
-int savedTime;
 
 boolean town = false;
 boolean can_move_back = true;
 boolean set_x_coor = true;
+
+boolean mayor_house = false;
+boolean player_displayed = false;
+boolean donate_screen = false;
+
+boolean donate_500 = false;
+boolean donate_1000 = false;
+boolean donate_1500 = false;
+Crop[] corn_bundle = new Crop[5];
+Crop[] melon_bundle = new Crop[5];
+Crop[] potato_bundle = new Crop[5];
+Crop[] pumpkin_bundle = new Crop[5];
+Crop[] tomato_bundle = new Crop[5];
+Crop[] quality_corn_bundle = new Crop[3];
+Crop[] quality_potato_bundle = new Crop[3];
+Crop[] quality_pumpkin_bundle = new Crop[3];
 
 boolean buy_screen = false;
 boolean buy_screen_opened = false;
@@ -17,6 +32,7 @@ boolean new_day = true;
 boolean ask_to_sleep = false;
 boolean has_left_bed = false;
 
+int savedTime;
 int time_increment = 5000;
 int time = 600;
 int money = 0;
@@ -208,343 +224,460 @@ void draw(){
       }else{
         if(town){//Screen for Town
         
-          background(127,216,114);
-          
-         
-          //Shop keeper 
-          //Head
-          float x = 241;
-          float y = 140;
-          noStroke();
-          fill(255,238,139);
-          circle(x+10,y-5,20);
-          
-          //Pants
-          stroke(52,59,255);
-          strokeWeight(10);
-          line(x+5,y+30,x+1,y+43);
-          line(x+15,y+30,x+17,y+43);
-          
-          //Shirt
-          noStroke();
-          //fill(0,203,103);
-          fill(255,0,0);
-          rect(x,y,20,30);
-          stroke(255,0,0);
-          strokeWeight(5);
-          line(x,y+3,x-10,y+15);
-          line(x+18,y+3,x+30,y+15);
-          
-          //Makes shop
-          noStroke();
-          //fill(227,207,30);
-          //rect(500,100,50,60);
-          //fill(196,234,99);
-          //rect(505,115,40,20);
-          fill(227,207,30);
-          rect(188,121,10,80);
-          rect(304,121,10,80);
-          fill(234,145,0);
-          triangle(188,121,314,121,251,80);
-          fill(255,255,0);
-          rect(188,180,126,20);
-          
-          //Path
-          fill(207,207,209);
-          beginShape();
-          vertex(120,240);
-          vertex(130,225);
-          vertex(230,226);
-          vertex(309,221);
-          vertex(423,222);
-          vertex(524,271);
-          vertex(551,334);
-          vertex(547,396);
-          vertex(550,487);
-          vertex(563,556);
-          vertex(560,644);
-          vertex(530,670);
-          vertex(507,661);
-          vertex(500,662);
-          vertex(497,572);
-          vertex(500,493);
-          vertex(495,416);
-          vertex(489,343);
-          vertex(461,290);
-          vertex(356,271);
-          vertex(257,270);
-          vertex(127,275);
-          endShape();
-          
-          //Mayor House
-          noStroke();
-          fill(131,131,149);
-          rect(650,300,150,100);
-          fill(211,171,105);
-          triangle(630,300,820,300,770,250);
-          fill(0);
-          rect(700,330,50,70);
-          
-          //Community Center
-          fill(129,115,94);
-          beginShape();
-          vertex(167,534);
-          vertex(167,620);
-          vertex(343,620);
-          vertex(343,551);
-          vertex(320,555);
-          vertex(301,543);
-          vertex(297,527);
-          vertex(300,507);
-          vertex(253,505);
-          vertex(241,519);
-          vertex(241,550);
-          vertex(228,524);
-          vertex(223,512);
-          vertex(190,514);
-          endShape();
-          
-          fill(0);
-          rect(230,620-60,50,60);
-          
-          fill(206,143,42);
-          beginShape();
-          vertex(215,560);
-          vertex(218,565);
-          vertex(285,576);
-          vertex(285,571);
-          endShape();
-          
-          beginShape();
-          vertex(282,588);
-          vertex(282,596);
-          vertex(222,606);
-          vertex(222,600);
-          endShape();
-          
-          //Movement Between Screens
-          if(!set_x_coor){
-            player.setX(1);
-            set_x_coor = true;
-          }
-          strokeWeight(0);
-          stroke(0);
-          player.display();
-          if(player.getX()>=20){
-            can_move_back = true;
-          }
-          if(player.getX()<=10&&can_move_back){
-            town = false;
-            set_x_coor = false;
-            can_move_back = false;
-          }
-          
-          //Tree Border
-          noStroke();
-          fill(102,191,90);
-          circle(1000-990,40,100);
-          circle(1000-930,40,100);
-          circle(1000-870,35,100);
-          circle(1000-820,10,100);
-          circle(1000-760,5,90);
-          circle(1000-690,0,100);
-          circle(1000-620,2,80);
-          circle(1000-570,2,90);
-          circle(1000-490,2,100);
-          circle(1000-410,10,100);
-          circle(1000-345,10,70);
-          circle(1000-290,10,100);
-          circle(1000-220,20,90);
-          circle(1000-150,25,100);
-          circle(1000-100,60,90);
-          circle(1000-50,120,100);
-          circle(1000-30,180,80);
-          circle(1000-25,240,90);
-          circle(1000-23,290,60);
-          circle(1000-15,350,90);
-          circle(1000-10,420,90);
-          circle(1000-10,480,80);
-          circle(1000-5,540,90);
-          circle(1000-7,610,90);
-          circle(1000-5,670,80);
-          circle(1000-20,720,90);
-          circle(1000-25,780,100);
-          circle(1000-80,805,90);
-          circle(1000-140,815,90);
-          circle(1000-200,815,80);
-          circle(1000-255,818,90);
-          circle(1000-320,820,80);
-          circle(1000-370,825,80);
-          circle(1000-420,825,90);
-          circle(1000-480,820,80);
-          circle(1000-540,820,90);
-          circle(1000-600,825,90);
-          circle(1000-670,820,90);
-          circle(1000-730,810,70);
-          circle(1000-790,820,90);
-          circle(1000-850,810,90);
-          circle(1000-920,810,90);
-          circle(1000-990,800,90);
-          circle(1000-0,0,250);
-          circle(1000-0,155,100);
-          
-          
-          //Buying items
-          if(mouseButton == LEFT && dist(241,140, player.getX(), player.getY())<= 120 && dist(mouseX,mouseY,241,140)<=100){
-            buy_screen = true; 
-          }
-          
-          if(buy_screen){
+          if(mayor_house){//Inside mayors house
+            background(0);
+                    
+            //Make house
             
+            //Floor
+            noStroke();
+            fill(49,200,203);
+            rect(300,330,400,200);
             
-            if(!buy_screen_opened){
-              can_press = false;
-              buy_screen_opened = true;
-            }
+            //Wall
+            fill(78,129,46);
+            rect(300,230,400,100);
             
-            if(dist(241,140, player.getX(),  player.getY())>120 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
-              buy_screen = false;
-              buy_screen_opened = false;
-            }
-            
-            //Main Box
+            //Border
+            stroke(245,209,77);
             strokeWeight(10);
-            stroke(0);
-            fill(255,207,116);
-            rect(150,100,700,500);
+            noFill();
+            rect(300,230,400,300);
             
-            //X out box
+            //Door
+            stroke(0);
+            fill(0);
+            rect(330,530,50,30);
+            
+            //Displays player behind mayor
+            if(player.getY()<350){
+              player.display();
+              player_displayed = true;
+            }
+            
+            //Mayor
+            int x=600;
+            int y=350;
+            //Head
+            noStroke();
+            fill(165,111,30);
+            circle(x+10,y-5,20);
+            
+            //Pants
+            stroke(240,46,46);
+            strokeWeight(10);
+            line(x+5,y+30,x+1,y+43);
+            line(x+15,y+30,x+17,y+43);
+            
+            //Shirt
+            noStroke();
+            //fill(0,203,103);
+            fill(165,30,149);
+            rect(x,y,20,30);
+            stroke(165,30,149);
             strokeWeight(5);
-            stroke(0);
-            fill(216,216,216);
-            rect(130,80,50,50);
+            line(x,y+3,x-10,y+15);
+            line(x+18,y+3,x+30,y+15);
+
+            //Displays character in front of mayor
+            if(!player_displayed){
+              player.display();
+            }
+            player_displayed = false;
             
-            //Displayed items to be purchased
-            strokeWeight(3);
-            stroke(0);
-            line(150,200,850,200);
-            shop_corn.display(200,135);
-            textSize(50);
-            fill(0);
-            text("Corn: "+ shop_corn.getPrice() + "0 coins", 260, 170);
-        
-            strokeWeight(3);
-            stroke(0);
-            line(150,300,850,300);
-            shop_melon.display(200,235);
-            textSize(50);
-            fill(0);
-            text("Melon: "+ shop_melon.getPrice() + "0 coins", 260, 270);
             
-            strokeWeight(3);
-            stroke(0);
-            line(150,400,850,400);
-            shop_potato.display(200,335);
-            textSize(50);
-            fill(0);
-            text("Potato: "+ shop_potato.getPrice() + "0 coins", 260, 370);
-            
-            strokeWeight(3);
-            stroke(0);
-            line(150,500,850,500);
-            shop_pumpkin.display(200,435);
-            textSize(50);
-            fill(0);
-            text("Pumpkin: "+ shop_pumpkin.getPrice() + "0 coins", 260, 470);
-            
-            shop_tomato.display(200,535);
-            textSize(50);
-            fill(0);
-            text("Tomato: "+ shop_tomato.getPrice() + "0 coins", 260, 570);
-            strokeWeight(0);
-            
-            //Purchasing items
-            if(mousePressed && can_press && (150<=mouseX && mouseX <= 850 && 100<mouseY && mouseY<=200) && money >= shop_corn.getPrice()){
-              can_press = false;
-              boolean added = false;
-              Item corn = new Seed(1.0);
-              for(int i = 0; i < player.size(); i++){
-                if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==1){
-                  player.addToStack(i,corn);
-                  added = true;
-                  break;
-                }
-              }
-              if (!added){
-                player.addNextItem(corn);
-              }
-              money -= corn.getPrice();
+            //Donate Screen
+            if(mouseButton == LEFT && dist(610,360, player.getX(), player.getY())<= 100 && dist(mouseX,mouseY,610,360)<=100){
+              donate_screen = true; 
             }
             
-            if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 200<mouseY && mouseY<=300) && money >= shop_melon.getPrice()){
-              can_press = false;
-              boolean added = false;
-              Item melon = new Seed(2.0);
-              for(int i = 0; i < player.size(); i++){
-                if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==2){
-                  player.addToStack(i,melon);
-                  added = true;
-                  break;
-                }
-              }
-              if (!added){
-                player.addNextItem(melon);
-              }
-              money -= melon.getPrice();
-            }
-            
-            if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 300<mouseY && mouseY<=400) && money >= shop_potato.getPrice()){
-              can_press = false;
-              boolean added = false;
-              Item potato = new Seed(3.0);
-              for(int i = 0; i < player.size(); i++){
-                if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==3){
-                  player.addToStack(i,potato);
-                  added = true;
-                  break;
-                }
-              }
-              if (!added){
-                player.addNextItem(potato);
-              }
-              money -= potato.getPrice();
-            }
-            
-            if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 400<mouseY && mouseY<=500) && money >= shop_pumpkin.getPrice()){
-              can_press = false;
-              boolean added = false;
-              Item pumpkin = new Seed(4.0);
-              for(int i = 0; i < player.size(); i++){
-                if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==4){
-                  player.addToStack(i,pumpkin);
-                  added = true;
-                  break;
-                }
-              }
-              if (!added){
-                player.addNextItem(pumpkin);
-              }
-              money -= pumpkin.getPrice();
-            }
-            
-            if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 500<mouseY && mouseY<=600) && money >= shop_tomato.getPrice()){
-              can_press = false;
-              boolean added = false;
-              Item tomato = new Seed(5.0);
-              for(int i = 0; i < player.size(); i++){
-                if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==5){
-                  player.addToStack(i,tomato);
-                  added = true;
-                  break;
-                }
-              }
-              if (!added){
-                player.addNextItem(tomato);
-              }
-              money -= tomato.getPrice();
-            }
-          }
+            if(donate_screen){
               
+              if(dist(610,360, player.getX(),  player.getY())>100 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
+                donate_screen = false;
+              }
+              
+              //Main Box
+              strokeWeight(10);
+              stroke(234,155,7);
+              fill(255,207,116);
+              rect(150,100,700,500);
+              
+              //X out box
+              strokeWeight(5);
+              stroke(100);
+              fill(216,216,216);
+              rect(130,80,50,50);
+              stroke(0);
+              
+              //Mayor Speech
+              strokeWeight(7);
+              stroke(234,155,7);
+              line(150,200,850,200);
+              textSize(50);
+              fill(0);
+              text("Hi there, able to donate?", 200, 170);
+              
+              //Lines
+              strokeWeight(3);
+              line(150,300,850,300);
+              line(150,400,850,400);
+              strokeWeight(0);
+              stroke(0);
+              
+              //Crop Bundle
+              strokeWeight(3);
+              stroke(234,155,7);
+              noFill();
+              rect(217,220,60,60);
+              rect(344,220,60,60);
+              rect(471,220,60,60);
+              rect(598,220,60,60);
+              rect(725,220,60,60);
+              if(corn_bundle.length<5){
+                shop_corn.display(
+              }
+            }
+            
+          }else{
+          
+            background(127,216,114);
+            
+           
+            //Shop keeper 
+            //Head
+            float x = 241;
+            float y = 140;
+            noStroke();
+            fill(255,238,139);
+            circle(x+10,y-5,20);
+            
+            //Pants
+            stroke(52,59,255);
+            strokeWeight(10);
+            line(x+5,y+30,x+1,y+43);
+            line(x+15,y+30,x+17,y+43);
+            
+            //Shirt
+            noStroke();
+            //fill(0,203,103);
+            fill(255,0,0);
+            rect(x,y,20,30);
+            stroke(255,0,0);
+            strokeWeight(5);
+            line(x,y+3,x-10,y+15);
+            line(x+18,y+3,x+30,y+15);
+            
+            //Makes shop
+            noStroke();
+            //fill(227,207,30);
+            //rect(500,100,50,60);
+            //fill(196,234,99);
+            //rect(505,115,40,20);
+            fill(227,207,30);
+            rect(188,121,10,80);
+            rect(304,121,10,80);
+            fill(234,145,0);
+            triangle(188,121,314,121,251,80);
+            fill(255,255,0);
+            rect(188,180,126,20);
+            
+            //Path
+            fill(207,207,209);
+            beginShape();
+            vertex(120,240);
+            vertex(130,225);
+            vertex(230,226);
+            vertex(309,221);
+            vertex(423,222);
+            vertex(524,271);
+            vertex(551,334);
+            vertex(547,396);
+            vertex(550,487);
+            vertex(563,556);
+            vertex(560,644);
+            vertex(530,670);
+            vertex(507,661);
+            vertex(500,662);
+            vertex(497,572);
+            vertex(500,493);
+            vertex(495,416);
+            vertex(489,343);
+            vertex(461,290);
+            vertex(356,271);
+            vertex(257,270);
+            vertex(127,275);
+            endShape();
+            
+            //Mayor House
+            noStroke();
+            fill(131,131,149);
+            rect(650,300,150,100);
+            fill(211,171,105);
+            triangle(630,300,820,300,770,250);
+            fill(0);
+            rect(700,330,50,70);
+            
+            //Community Center
+            fill(129,115,94);
+            beginShape();
+            vertex(167,534);
+            vertex(167,620);
+            vertex(343,620);
+            vertex(343,551);
+            vertex(320,555);
+            vertex(301,543);
+            vertex(297,527);
+            vertex(300,507);
+            vertex(253,505);
+            vertex(241,519);
+            vertex(241,550);
+            vertex(228,524);
+            vertex(223,512);
+            vertex(190,514);
+            endShape();
+            
+            fill(0);
+            rect(230,620-60,50,60);
+            
+            fill(206,143,42);
+            beginShape();
+            vertex(215,560);
+            vertex(218,565);
+            vertex(285,576);
+            vertex(285,571);
+            endShape();
+            
+            beginShape();
+            vertex(282,588);
+            vertex(282,596);
+            vertex(222,606);
+            vertex(222,600);
+            endShape();
+            
+            //Movement Between Screens
+            if(!set_x_coor){
+              player.setX(1);
+              set_x_coor = true;
+            }
+            strokeWeight(0);
+            stroke(0);
+            player.display();
+            if(player.getX()>=20){
+              can_move_back = true;
+            }
+            if(player.getX()<=10&&can_move_back){
+              town = false;
+              set_x_coor = false;
+              can_move_back = false;
+            }
+            
+            //Tree Border
+            noStroke();
+            fill(102,191,90);
+            circle(1000-990,40,100);
+            circle(1000-930,40,100);
+            circle(1000-870,35,100);
+            circle(1000-820,10,100);
+            circle(1000-760,5,90);
+            circle(1000-690,0,100);
+            circle(1000-620,2,80);
+            circle(1000-570,2,90);
+            circle(1000-490,2,100);
+            circle(1000-410,10,100);
+            circle(1000-345,10,70);
+            circle(1000-290,10,100);
+            circle(1000-220,20,90);
+            circle(1000-150,25,100);
+            circle(1000-100,60,90);
+            circle(1000-50,120,100);
+            circle(1000-30,180,80);
+            circle(1000-25,240,90);
+            circle(1000-23,290,60);
+            circle(1000-15,350,90);
+            circle(1000-10,420,90);
+            circle(1000-10,480,80);
+            circle(1000-5,540,90);
+            circle(1000-7,610,90);
+            circle(1000-5,670,80);
+            circle(1000-20,720,90);
+            circle(1000-25,780,100);
+            circle(1000-80,805,90);
+            circle(1000-140,815,90);
+            circle(1000-200,815,80);
+            circle(1000-255,818,90);
+            circle(1000-320,820,80);
+            circle(1000-370,825,80);
+            circle(1000-420,825,90);
+            circle(1000-480,820,80);
+            circle(1000-540,820,90);
+            circle(1000-600,825,90);
+            circle(1000-670,820,90);
+            circle(1000-730,810,70);
+            circle(1000-790,820,90);
+            circle(1000-850,810,90);
+            circle(1000-920,810,90);
+            circle(1000-990,800,90);
+            circle(1000-0,0,250);
+            circle(1000-0,155,100);
+            
+            
+            //Buying items
+            if(mouseButton == LEFT && dist(241,140, player.getX(), player.getY())<= 120 && dist(mouseX,mouseY,241,140)<=100){
+              buy_screen = true; 
+            }
+            
+            if(buy_screen){
+              
+              
+              if(!buy_screen_opened){
+                can_press = false;
+                buy_screen_opened = true;
+              }
+              
+              if(dist(241,140, player.getX(),  player.getY())>120 || (mousePressed && dist(mouseX,mouseY,150.0,100.0)<=100)){
+                buy_screen = false;
+                buy_screen_opened = false;
+              }
+              
+              //Main Box
+              strokeWeight(10);
+              stroke(0);
+              fill(255,207,116);
+              rect(150,100,700,500);
+              
+              //X out box
+              strokeWeight(5);
+              stroke(0);
+              fill(216,216,216);
+              rect(130,80,50,50);
+              
+              //Displayed items to be purchased
+              strokeWeight(3);
+              stroke(0);
+              line(150,200,850,200);
+              shop_corn.display(200,135);
+              textSize(50);
+              fill(0);
+              text("Corn: "+ shop_corn.getPrice() + "0 coins", 260, 170);
+          
+              strokeWeight(3);
+              stroke(0);
+              line(150,300,850,300);
+              shop_melon.display(200,235);
+              textSize(50);
+              fill(0);
+              text("Melon: "+ shop_melon.getPrice() + "0 coins", 260, 270);
+              
+              strokeWeight(3);
+              stroke(0);
+              line(150,400,850,400);
+              shop_potato.display(200,335);
+              textSize(50);
+              fill(0);
+              text("Potato: "+ shop_potato.getPrice() + "0 coins", 260, 370);
+              
+              strokeWeight(3);
+              stroke(0);
+              line(150,500,850,500);
+              shop_pumpkin.display(200,435);
+              textSize(50);
+              fill(0);
+              text("Pumpkin: "+ shop_pumpkin.getPrice() + "0 coins", 260, 470);
+              
+              shop_tomato.display(200,535);
+              textSize(50);
+              fill(0);
+              text("Tomato: "+ shop_tomato.getPrice() + "0 coins", 260, 570);
+              strokeWeight(0);
+              
+              //Purchasing items
+              if(mousePressed && can_press && (150<=mouseX && mouseX <= 850 && 100<mouseY && mouseY<=200) && money >= shop_corn.getPrice()){
+                can_press = false;
+                boolean added = false;
+                Item corn = new Seed(1.0);
+                for(int i = 0; i < player.size(); i++){
+                  if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==1){
+                    player.addToStack(i,corn);
+                    added = true;
+                    break;
+                  }
+                }
+                if (!added){
+                  player.addNextItem(corn);
+                }
+                money -= corn.getPrice();
+              }
+              
+              if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 200<mouseY && mouseY<=300) && money >= shop_melon.getPrice()){
+                can_press = false;
+                boolean added = false;
+                Item melon = new Seed(2.0);
+                for(int i = 0; i < player.size(); i++){
+                  if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==2){
+                    player.addToStack(i,melon);
+                    added = true;
+                    break;
+                  }
+                }
+                if (!added){
+                  player.addNextItem(melon);
+                }
+                money -= melon.getPrice();
+              }
+              
+              if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 300<mouseY && mouseY<=400) && money >= shop_potato.getPrice()){
+                can_press = false;
+                boolean added = false;
+                Item potato = new Seed(3.0);
+                for(int i = 0; i < player.size(); i++){
+                  if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==3){
+                    player.addToStack(i,potato);
+                    added = true;
+                    break;
+                  }
+                }
+                if (!added){
+                  player.addNextItem(potato);
+                }
+                money -= potato.getPrice();
+              }
+              
+              if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 400<mouseY && mouseY<=500) && money >= shop_pumpkin.getPrice()){
+                can_press = false;
+                boolean added = false;
+                Item pumpkin = new Seed(4.0);
+                for(int i = 0; i < player.size(); i++){
+                  if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==4){
+                    player.addToStack(i,pumpkin);
+                    added = true;
+                    break;
+                  }
+                }
+                if (!added){
+                  player.addNextItem(pumpkin);
+                }
+                money -= pumpkin.getPrice();
+              }
+              
+              if(mousePressed &&  can_press && (150<=mouseX && mouseX <= 850 && 500<mouseY && mouseY<=600) && money >= shop_tomato.getPrice()){
+                can_press = false;
+                boolean added = false;
+                Item tomato = new Seed(5.0);
+                for(int i = 0; i < player.size(); i++){
+                  if (player.get_selected_item(i).get_Class().equals("Seed")&&player.get_selected_item(i).get_type()==5){
+                    player.addToStack(i,tomato);
+                    added = true;
+                    break;
+                  }
+                }
+                if (!added){
+                  player.addNextItem(tomato);
+                }
+                money -= tomato.getPrice();
+              }
+            }
+          }               
         }else{//Screen for Farm
         
           //Makes the background
@@ -779,7 +912,7 @@ void draw(){
         }
               
       //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
-        if (time>=1200 && time<=2400){
+        if (time>=1200 && time<=2400 && !mayor_house){
           noStroke();
           fill(34,126,237,100);
           rect(0,0,width,height);
@@ -971,11 +1104,25 @@ void keyPressed(){
       }
     }else if(town){
       
-      if(!(188<player.getX()&&player.getX()<304&&100<player.getY()&&player.getY()-10<160)//Border for shop
-      && !(640<player.getX()&&player.getX()<805&&player.getY()>300&&player.getY()-10<350)//Border for mayor house
-      && !(152<player.getX()&&player.getX()<348&&player.getY()>540&&player.getY()-10<580)//Border for Community Center
-      && !(player.getY()-10<30)){//Border for tree
-        player.Up();
+      if(mayor_house){
+        
+        if(player.getY()-10>=300){//Border for walls
+          player.Up();
+        }
+        
+      }else{
+        if(700<player.getX()&&player.getX()<750&&player.getY()>300&&player.getY()-20<360){//Going inside mayor house
+          mayor_house = true;
+          player.setX(340);
+          player.setY(470);
+        }
+        
+        if(!(188<player.getX()&&player.getX()<304&&100<player.getY()&&player.getY()-10<160)//Border for shop
+        && !(640<player.getX()&&player.getX()<805&&player.getY()>300&&player.getY()-10<350)//Border for mayor house
+        && !(152<player.getX()&&player.getX()<348&&player.getY()>540&&player.getY()-10<580)//Border for Community Center
+        && !(player.getY()-10<30)){//Border for tree
+          player.Up();
+        }
       }
             
     }else{
@@ -997,22 +1144,36 @@ void keyPressed(){
   
   if(keyCode == 83){
     if(inside){
-      if(330<=player.getX()&&player.getX()<=380&&player.getY()+40>=520){//Border for walls
+      if(330<=player.getX()&&player.getX()<=380&&player.getY()+40>=520){//Going to town
         inside = false;
         player.setX(821);
         player.setY(135);
       }
       
-      if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=480){//Going to farm
+      if((!(player.getX()>=640 && player.getY()<=390))&&player.getY()+10<=480){//Border for walls
         player.Down();
       }
     }else if(town){
       
-      if(!(188<player.getX()&&player.getX()<304&&player.getY()<100&&player.getY()+10>30)//Border for shop
-      && !(640<player.getX()&&player.getX()<805&&player.getY()<350&&player.getY()+10>200)//Border for mayor house 
-      && !(152<player.getX()&&player.getX()<348&&player.getY()<550&&player.getY()+10>460)//Border for Community Center
-      && !(player.getY()+10>740)){//Border for trees
-        player.Down();
+      if(mayor_house){
+        
+        if(player.getY()+10<=480){//Border for walls
+          player.Down();
+        }
+        
+        if(330<=player.getX()&&player.getX()<=380&&player.getY()+40>=520){//Going to town
+          mayor_house = false;
+          player.setX(720);
+          player.setY(380);
+        }
+        
+      }else{
+        if(!(188<player.getX()&&player.getX()<304&&player.getY()<100&&player.getY()+10>30)//Border for shop
+        && !(640<player.getX()&&player.getX()<805&&player.getY()<350&&player.getY()+10>200)//Border for mayor house 
+        && !(152<player.getX()&&player.getX()<348&&player.getY()<550&&player.getY()+10>460)//Border for Community Center
+        && !(player.getY()+10>740)){//Border for trees
+          player.Down();
+        }
       }
       
     }else{
@@ -1030,11 +1191,17 @@ void keyPressed(){
       }
     }else if(town){
       
-      if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<315&&player.getX()>300)//Border for shop
-      && !(200<player.getY()&&player.getY()<350&&player.getX()>700&&player.getX()-10<805)//Border for mayor house
-      && !(460<player.getY()&&player.getY()<580&&player.getX()>200&&player.getX()-10<348)//Border for Community Center
-      && !(player.getX()-10<0)){//Border for trees
-        player.Left();
+      if(mayor_house){
+        if(player.getX()-10>=310){//Border for walls
+          player.Left();
+        }
+      }else{
+        if(!(30<player.getY()&&player.getY()<160&&player.getX()-10<315&&player.getX()>300)//Border for shop
+        && !(200<player.getY()&&player.getY()<350&&player.getX()>700&&player.getX()-10<805)//Border for mayor house
+        && !(460<player.getY()&&player.getY()<580&&player.getX()>200&&player.getX()-10<348)//Border for Community Center
+        && !(player.getX()-10<0)){//Border for trees
+          player.Left();
+        }
       }
       
     }else{
@@ -1053,13 +1220,18 @@ void keyPressed(){
       }
     }else if(town){
       
-      if(!(30<player.getY()&&player.getY()<160&&player.getX()+10>170&&player.getX()<310)//Border for shop
-      && !(200<player.getY()&&player.getY()<350&&player.getX()<700&&player.getX()+10>640)//Border for mayor house
-      && !(460<player.getY()&&player.getY()<580&&player.getX()<200&&player.getX()+10>152)//Border for Community Center
-      && !(player.getX()+10>1000-50)){//Border for town
-        player.Right();
+      if(mayor_house){
+        if(player.getX()+10<=665){//Border for walls
+          player.Right();
+        }
+      }else{
+        if(!(30<player.getY()&&player.getY()<160&&player.getX()+10>170&&player.getX()<310)//Border for shop
+        && !(200<player.getY()&&player.getY()<350&&player.getX()<700&&player.getX()+10>640)//Border for mayor house
+        && !(460<player.getY()&&player.getY()<580&&player.getX()<200&&player.getX()+10>152)//Border for Community Center
+        && !(player.getX()+10>1000-50)){//Border for town
+          player.Right();
+        }
       }
-      
       
     }else{
       
@@ -1154,6 +1326,9 @@ void end_of_day_calculate(){
   new_day = true;
   inside = true;
   town = false;
+  buy_screen = false;
+  mayor_house = false;
+  donate_screen = false;
   has_left_bed = false;
   for(int i = 0; i < Sold.size(); i++){
     new_money+=Sold.get(i).get(0).getPrice() * Sold.get(i).size();

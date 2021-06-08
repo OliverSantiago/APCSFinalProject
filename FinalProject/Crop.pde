@@ -52,6 +52,18 @@ class Crop extends Item{
     return quality;
   }
   
+  void setQuality(int x){
+    if(x==1){
+      quality = "standard";
+    }
+    if(x==2){
+      quality = "silver";
+    }
+    if(x==3){
+      quality = "gold";
+    }
+  }
+  
   int get_type(){
     if (corn){
       return 1;
