@@ -308,6 +308,20 @@ public class Plot{
         ellipse(x+20,y+8,7,5);
       }
       if (current_seed.get_type() == 3){
+        noStroke();
+        fill(#C6B194);
+        ellipse(x+15,y+20,10,8);
+        stroke(#07790C);
+        strokeWeight(4);
+        line(x+15,y+15,x+15,y+8);
+        strokeWeight(7);
+        line(x+17,y+10,x+12,y+7);
+        noStroke();
+        fill(#07790C);
+        circle(x+21,y+10,7);
+        circle(x+14,y+11,9);
+      }
+      if (current_seed.get_type() == 4){
         
       }
       //fill(#43FF2C);
