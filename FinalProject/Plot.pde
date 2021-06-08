@@ -94,21 +94,10 @@ public class Plot{
       circle(x+15,y+20,3);
       circle(x+20,y+15,2);
       circle(x+12,y+12,3);
-       
     }
     else if (current_seed.percent_grown() < 50){
-      if (current_crop.get_type() == 1){
-        stroke(#07790C);
-        strokeWeight(3);
-        bezier(x+15,y+14,x+16,y+9,x+18,y+12,x+19,y+14);
-        strokeWeight(2);
-        bezier(x+15,y+15,x+12,y+10,x+12,y+14,x+11,y+15);
-        stroke(#026C06);
-        strokeWeight(2);
-        line(x+15,y+20,x+15,y+11);
-      }
-      //fill(#46E53F);
-      //circle(x+15,y+15,10);
+      fill(#46E53F);
+      circle(x+15,y+15,10);
     }
     else if (current_seed.percent_grown() < 75){
       
