@@ -107,15 +107,6 @@ public class Plot{
         strokeWeight(2);
         line(x+15,y+20,x+15,y+11);
       }
-      if (current_crop.get_type() == 2){
-        stroke(#07790C);
-        strokeWeight(2);
-        line(x+15,y+20,x+15,y+11);
-        noStroke();
-        fill(#07790C);
-        ellipse(x+11,y+14,7,5);
-        ellipse(x+20,y+14,7,5);
-      }
       //fill(#46E53F);
       //circle(x+15,y+15,10);
     }
