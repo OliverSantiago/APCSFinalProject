@@ -415,6 +415,30 @@ void draw(){
               }
               
               //Donate Money
+              strokeWeight(3);
+              stroke(234,155,7);
+              noFill();
+              rect(217,420,254,60);
+              rect(531,420,254,60);
+              rect(373,520,254,60);
+              
+              if(!donate_500){
+                textSize(35);
+                fill(0);
+                text("Donate 500",235,465);          
+              }
+              
+              if(!donate_1000){
+                textSize(35);
+                fill(0);
+                text("Donate 1000",549,465);          
+              }
+              
+              if(!donate_1500){
+                textSize(35);
+                fill(0);
+                text("Donate 1500",391,565);          
+              }
               
             }
             
