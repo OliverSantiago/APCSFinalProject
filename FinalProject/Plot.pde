@@ -96,9 +96,9 @@ public class Plot{
       //circle(x+20,y+15,2);
       //circle(x+12,y+12,3);
       
-      
+        
     }
-    else if (current_seed.percent_grown() < 50){
+    else if (current_seed.percent_grown() < 40){
       if (current_crop.get_type() == 1){
         stroke(#07790C);
         strokeWeight(3);
@@ -140,7 +140,7 @@ public class Plot{
         line(x+15,y+17,x+17,y+12);
       }
     }
-    else if (current_seed.percent_grown() < 75){
+    else if (current_seed.percent_grown() < 70){
       if (current_crop.get_type() == 1){
         stroke(#07790C);
         strokeWeight(3);
@@ -198,7 +198,22 @@ public class Plot{
       }
     }
     else if (current_seed.percent_grown() < 100){
-      
+      if (current_seed.get_type() == 1){
+        stroke(#026C06);
+        strokeWeight(5);
+        line(x+15,y+23,x+15,y+7);
+        stroke(#07790C);
+        strokeWeight(5);
+        bezier(x+15,y+20,x+17,y+15,x+20,y+19,x+21,y+21);
+        bezier(x+15,y+20,x+10,y+15,x+12,y+19,x+9,y+21);
+        
+        bezier(x+15,y+10,x+17,y+10,x+20,y+11,x+21,y+13);
+        strokeWeight(3);
+        line(x+14,y+9,x+11,y+13);
+      }
+      if (current_seed.get_type() == 2){
+        
+      }
     }
     else{
       fill(#43FF2C);
