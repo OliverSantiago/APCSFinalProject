@@ -257,7 +257,20 @@ public class Plot{
         ellipse(x+15,y+15,6,8);
       }
       if (current_seed.get_type() == 5){
-        
+        stroke(#469349);
+        strokeWeight(4);
+        line(x+15,y+24,x+15,y+9);
+        stroke(#0B9D11);
+        line(x+19,y+11,x+22,y+14);
+        line(x+11,y+17,x+8,y+15);
+        line(x+18,y+11,x+21,y+7);
+        strokeWeight(6);
+        line(x+16,y+13,x+17,y+15);
+        line(x+12,y+8,x+8,y+9);
+        noStroke();
+        fill(#E3F597);
+        circle(x+19,y+17,5);
+        circle(x+12,y+12,5);
       }
     }
     else{
