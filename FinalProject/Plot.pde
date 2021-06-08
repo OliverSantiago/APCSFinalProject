@@ -322,6 +322,18 @@ public class Plot{
         circle(x+14,y+11,9);
       }
       if (current_seed.get_type() == 4){
+        stroke(#AA4C15);
+        strokeWeight(1);
+        fill(#C66C38);
+        ellipse(x+15,y+16,20,18);
+        strokeWeight(2);
+        bezier(x+15,y+7,x+9,y+12,x+9,y+19,x+14,y+24);
+        bezier(x+15,y+8,x+21,y+12,x+21,y+19,x+17,y+24);
+        stroke(#07790C);
+        strokeWeight(4);
+        bezier(x+15,y+7,x+14,y+6,x+14,y+5,x+13,y+5);
+      }
+      if (current_seed.get_type() == 5){
         
       }
       //fill(#43FF2C);
