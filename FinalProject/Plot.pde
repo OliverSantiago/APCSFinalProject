@@ -186,7 +186,15 @@ public class Plot{
         ellipse(x+15,y+15,6,8);
       }
       if (current_seed.get_type() == 5){
-        
+        stroke(#469349);
+        strokeWeight(4);
+        line(x+15,y+22,x+15,y+9);
+        stroke(#53A556);
+        line(x+19,y+11,x+22,y+14);
+        line(x+11,y+17,x+8,y+15);
+        strokeWeight(6);
+        line(x+17,y+17,x+18,y+19);
+        line(x+12,y+8,x+8,y+9);
       }
     }
     else if (current_seed.percent_grown() < 100){
