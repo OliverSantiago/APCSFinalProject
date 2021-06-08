@@ -96,7 +96,24 @@ public class Plot{
       //circle(x+20,y+15,2);
       //circle(x+12,y+12,3);
       
-        
+      stroke(#4A954D);
+        strokeWeight(4);
+        line(x+15,y+22,x+15,y+18);
+        noStroke();
+        fill(#FFA5D5);
+        circle(x+20,y+21,6);
+        stroke(#07790C);
+        strokeWeight(2);
+        fill(#07790C);
+        ellipse(x+15,y+15,5,10);
+        stroke(#048309);
+        strokeWeight(6);
+        line(x+19,y+14,x+20,y+15);
+        line(x+11,y+14,x+10,y+15);
+        fill(#07790C);
+        noStroke();
+        ellipse(x+11,y+11,7,5);
+        ellipse(x+20,y+11,7,5);
     }
     else if (current_seed.percent_grown() < 40){
       if (current_crop.get_type() == 1){
@@ -212,7 +229,24 @@ public class Plot{
         line(x+14,y+9,x+11,y+13);
       }
       if (current_seed.get_type() == 2){
-        
+        stroke(#4A954D);
+        strokeWeight(4);
+        line(x+15,y+22,x+15,y+18);
+        noStroke();
+        fill(#FFA5D5);
+        circle(x+20,y+21,6);
+        stroke(#07790C);
+        strokeWeight(2);
+        fill(#07790C);
+        ellipse(x+15,y+15,5,10);
+        stroke(#048309);
+        strokeWeight(6);
+        line(x+19,y+14,x+20,y+15);
+        line(x+11,y+14,x+10,y+15);
+        fill(#07790C);
+        noStroke();
+        ellipse(x+11,y+11,7,5);
+        ellipse(x+20,y+11,7,5);
       }
     }
     else{
