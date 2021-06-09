@@ -1143,6 +1143,7 @@ void draw(){
       stroke(#B98642);
       fill(255,207,116);
       rect(350,450,300,200);
+      noStroke();
       fill(0);
       textSize(15);
       if (screen == 1){
@@ -1178,6 +1179,21 @@ void draw(){
         text("Talk to the mayor to offer your",370,570);
         text("donations to rebuild the center.",370,595);
       }
+      fill(0);
+      rect(332,642,10,10);
+      rect(316,626,27,12);
+      if (inside || mayor_house){
+        fill(255);
+      }else{
+        fill(0);
+      }
+      textSize(10);
+      text("Skip:",310,650);
+      text("Next:",290,635);
+      fill(255);
+      textSize(8);
+      text("X",335,650);
+      text("SPACE",317,635);
       }
     }
   }
@@ -1407,6 +1423,9 @@ void keyPressed(){
   //Moving Through Tutorial
   if (keyCode == 32){
     screen++;
+  }
+  if (keyCode == 88){
+    screen+=5;
   }
   
   //Item Select
