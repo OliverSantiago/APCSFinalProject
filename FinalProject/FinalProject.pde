@@ -3,6 +3,8 @@ Plot [][] all_plots;
 boolean first_screen = true;
 boolean end_day = false;
 
+boolean tutorial = true;
+
 boolean town = false;
 boolean can_move_back = true;
 boolean set_x_coor = true;
@@ -64,15 +66,14 @@ void setup(){
   //Title
   PImage title_screen = loadImage("stardewvalley.jpg");
   image(title_screen,-310,0);
-  textSize(34);
   fill(#DB9E4D);
   PFont font = createFont("IndieFlower-Regular.ttf",34);
   textFont(font);
   text("Press any button to start",320,600);
-  font = createFont("Lucida Sans",40);
-  textFont(font);
+  PFont def_font = createFont("Lucida Sans",34);
+  textFont(def_font);
   
-  //Title and Controls
+  //Title and Controls: Old Version
   //textSize(32);
   //fill(0, 102, 153, 204);
   //text("Stardew Valley", 12, 60);
@@ -144,6 +145,7 @@ void draw(){
       }
     }else{
       if(inside){
+        
         background(0);
                 
         //Make house
@@ -1131,6 +1133,36 @@ void draw(){
       textSize(20);
       fill(0, 102, 153, 204);
       text("Money: "+money, 10, 60);
+    }
+    if (tutorial){
+      float screen = 3;
+      strokeWeight(10);
+      stroke(#B98642);
+      fill(255,207,116);
+      rect(350,450,300,200);
+      fill(0);
+      textSize(15);
+      if (screen == 1){
+        text("Hi! Welcome to Stardew Valley! This",370,490);
+        text("is a short guide to get your",370,515);
+        text("grandfather's plot up and running!",370,540);
+        text("To move, use the keys W,A,S, and D",370,565);
+      }
+      if (screen == 2){
+        text("Let's look at farming. To till a",370,490);
+        text("crop, select the hoe tool and left",370,515);
+        text("click on a plot. Plant a seed, water",370,540);
+        text("with the watering can, and wait for",370,565);
+        text("your crops to grow!",370,590);
+      }
+      if (screen == 3){
+        text("When you harvest your crops, you",370,490);
+        text("can sell them by clicking on them",370,515);
+        text("in your inventory and then clicking",370,540);
+        text("on the bin next to your house.",370,565);
+        text("Right click on your crops to move",370,595);
+        text("and sell a stack.",370,620);
+      }
     }
   }
 }
