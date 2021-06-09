@@ -14,14 +14,14 @@ boolean donate_screen = false;
 boolean donate_500 = false;
 boolean donate_1000 = false;
 boolean donate_1500 = false;
-ArrayList<Crop> corn_bundle = new ArrayList<Crop>(5);
-ArrayList<Crop> melon_bundle = new ArrayList<Crop>(5);
-ArrayList<Crop> potato_bundle = new ArrayList<Crop>(5);
-ArrayList<Crop> pumpkin_bundle = new ArrayList<Crop>(5);
-ArrayList<Crop> tomato_bundle = new ArrayList<Crop>(5);
-ArrayList<Crop> quality_corn_bundle = new ArrayList<Crop>(3);
-ArrayList<Crop> quality_potato_bundle = new ArrayList<Crop>(3);
-ArrayList<Crop> quality_pumpkin_bundle = new ArrayList<Crop>(3);
+ArrayList<Item> corn_bundle = new ArrayList<Item>(5);
+ArrayList<Item> melon_bundle = new ArrayList<Item>(5);
+ArrayList<Item> potato_bundle = new ArrayList<Item>(5);
+ArrayList<Item> pumpkin_bundle = new ArrayList<Item>(5);
+ArrayList<Item> tomato_bundle = new ArrayList<Item>(5);
+ArrayList<Item> quality_corn_bundle = new ArrayList<Item>(3);
+ArrayList<Item> quality_potato_bundle = new ArrayList<Item>(3);
+ArrayList<Item> quality_pumpkin_bundle = new ArrayList<Item>(3);
 //Crops for donating, do not remove
 Crop donate_corn = new Crop(1);
 Crop donate_melon = new Crop(2);
@@ -99,16 +99,53 @@ void setup(){
   //player.addNextItem(seed5);
   
   //Starting seeds
-  Item seed1 = new Seed(1);
-  Item seed2 = new Seed(1);
-  Item seed3 = new Seed(1);
-  Item seed4 = new Seed(1);
-  Item seed5 = new Seed(1);
-  player.addNextItem(seed1);
-  player.addToStack(2,seed2);
-  player.addToStack(2,seed3);
-  player.addToStack(2,seed4);
-  player.addToStack(2,seed5);
+  //Item seed1 = new Seed(1);
+  //Item seed2 = new Seed(1);
+  //Item seed3 = new Seed(1);
+  //Item seed4 = new Seed(1);
+  //Item seed5 = new Seed(1);
+  //player.addNextItem(seed1);
+  //player.addToStack(2,seed2);
+  //player.addToStack(2,seed3);
+  //player.addToStack(2,seed4);
+  //player.addToStack(2,seed5);
+  
+  //Testing donations
+  Item c = new Crop(1);
+  c.setQuality(1);
+  player.addNextItem(c);
+  player.addToStack(2,c);
+  player.addToStack(2,c);
+  player.addToStack(2,c);
+  player.addToStack(2,c);
+  Item m = new Crop(2);
+  m.setQuality(1);
+  player.addNextItem(m);
+  player.addToStack(3,m);
+  player.addToStack(3,m);
+  player.addToStack(3,m);
+  player.addToStack(3,m);
+  Item po = new Crop(3);
+  po.setQuality(1);
+  player.addNextItem(po);
+  player.addToStack(4,po);
+  player.addToStack(4,po);
+  player.addToStack(4,po);
+  player.addToStack(4,po);
+  Item pu = new Crop(4);
+  pu.setQuality(1);
+  player.addNextItem(pu);
+  player.addToStack(5,po);
+  player.addToStack(5,po);
+  player.addToStack(5,po);
+  player.addToStack(5,po);
+  Item t = new Crop(5);
+  t.setQuality(1);
+  player.addNextItem(t);
+  player.addToStack(6,t);
+  player.addToStack(6,t);
+  player.addToStack(6,t);
+  player.addToStack(6,t);
   
   //Starting money
   money += 500;
@@ -438,6 +475,126 @@ void draw(){
                 textSize(35);
                 fill(0);
                 text("Donate 1500",391,565);          
+              }
+              
+              //Donating
+              if(mouseButton == LEFT){
+                if (dist((float)mouseX,(float)mouseY,375,725)<=25){
+                  moving_item = true;
+                  moving_item_index = 2;
+                }else if (dist((float)mouseX,(float)mouseY,425,725)<=25){
+                  moving_item = true;
+                  moving_item_index = 3;
+                }else if (dist((float)mouseX,(float)mouseY,475,725)<=25){
+                  moving_item = true;
+                  moving_item_index = 4;
+                }else if (dist((float)mouseX,(float)mouseY,525,725)<=25){
+                  moving_item = true;
+                  moving_item_index = 5;
+                }else if (dist((float)mouseX,(float)mouseY,575,725)<=25){
+                  moving_item = true;
+                  moving_item_index = 6;
+                }else if (dist((float)mouseX,(float)mouseY,625,725)<=25){
+                  moving_item = true;
+                  moving_item_index = 7;
+                }else if (dist((float)mouseX,(float)mouseY,675,725)<=25){
+                  moving_item = true;
+                  moving_item_index = 8;
+                }else if (dist((float)mouseX,(float)mouseY,725,725)<=25){
+                  moving_item = true;
+                  moving_item_index = 9;
+                }
+              }
+              if(moving_item_index>=player.size()){
+                moving_item = false;
+              }
+              if(moving_item){
+                player.get_selected_item(moving_item_index).display(mouseX,mouseY);
+              }
+              
+              //Donate Corn
+              if(moving_item&&mouseButton==LEFT){
+                if (217<mouseX&&mouseX<277&&220<mouseY&&mouseY<280
+                &&corn_bundle.size()<5
+                &&player.get_selected_item(moving_item_index).get_Class().equals("Crop")
+                &&player.get_selected_item(moving_item_index).get_type()==1
+                &&player.get_selected_item(moving_item_index).getQuality().equals("standard")){
+                  int size = player.Stacksize(moving_item_index);
+                  int bundle_size = corn_bundle.size();
+                  for(int i = 0; i < size && i < 5-bundle_size;i++){
+                    corn_bundle.add(player.get_selected_item(moving_item_index));
+                    player.removeFromStack(moving_item_index);
+                  }
+                  moving_item = false;
+                }
+              }
+              
+              //Donate Melon
+              if(moving_item&&mouseButton==LEFT){
+                if (344<mouseX&&mouseX<404&&220<mouseY&&mouseY<280
+                &&melon_bundle.size()<5
+                &&player.get_selected_item(moving_item_index).get_Class().equals("Crop")
+                &&player.get_selected_item(moving_item_index).get_type()==2
+                &&player.get_selected_item(moving_item_index).getQuality().equals("standard")){
+                  int size = player.Stacksize(moving_item_index);
+                  int bundle_size = melon_bundle.size();
+                  for(int i = 0; i < size && i < 5-bundle_size;i++){
+                    melon_bundle.add(player.get_selected_item(moving_item_index));
+                    player.removeFromStack(moving_item_index);
+                  }
+                  moving_item = false;
+                }
+              }
+              
+              //Donate Potato
+              if(moving_item&&mouseButton==LEFT){
+                if (471<mouseX&&mouseX<531&&220<mouseY&&mouseY<280
+                &&potato_bundle.size()<5
+                &&player.get_selected_item(moving_item_index).get_Class().equals("Crop")
+                &&player.get_selected_item(moving_item_index).get_type()==3
+                &&player.get_selected_item(moving_item_index).getQuality().equals("standard")){
+                  int size = player.Stacksize(moving_item_index);
+                  int bundle_size = potato_bundle.size();
+                  for(int i = 0; i < size && i < 5-bundle_size;i++){
+                    potato_bundle.add(player.get_selected_item(moving_item_index));
+                    player.removeFromStack(moving_item_index);
+                  }
+                  moving_item = false;
+                }
+              }
+              
+              //Donate Pumpkin
+              if(moving_item&&mouseButton==LEFT){
+                if (598<mouseX&&mouseX<658&&220<mouseY&&mouseY<280
+                &&pumpkin_bundle.size()<5
+                &&player.get_selected_item(moving_item_index).get_Class().equals("Crop")
+                &&player.get_selected_item(moving_item_index).get_type()==4
+                &&player.get_selected_item(moving_item_index).getQuality().equals("standard")){
+                  int size = player.Stacksize(moving_item_index);
+                  int bundle_size = pumpkin_bundle.size();
+                  for(int i = 0; i < size && i < 5-bundle_size;i++){
+                    pumpkin_bundle.add(player.get_selected_item(moving_item_index));
+                    player.removeFromStack(moving_item_index);
+                  }
+                  moving_item = false;
+                }
+              }
+              
+              //Donato Tomato
+              if(moving_item&&mouseButton==LEFT){
+                if (725<mouseX&&mouseX<785&&220<mouseY&&mouseY<280
+                &&tomato_bundle.size()<5
+                &&player.get_selected_item(moving_item_index).get_Class().equals("Crop")
+                &&player.get_selected_item(moving_item_index).get_type()==5
+                &&player.get_selected_item(moving_item_index).getQuality().equals("standard")){
+                  int size = player.Stacksize(moving_item_index);
+                  int bundle_size = tomato_bundle.size();
+                  for(int i = 0; i < size && i < 5-bundle_size;i++){
+                    tomato_bundle.add(player.get_selected_item(moving_item_index));
+                    player.removeFromStack(moving_item_index);
+                  }
+                  moving_item = false;
+                }
               }
               
             }
