@@ -14,6 +14,8 @@ boolean donate_screen = false;
 boolean donate_500 = false;
 boolean donate_1000 = false;
 boolean donate_1500 = false;
+boolean donate_crops = false;
+boolean donate_quality_crops = false;
 ArrayList<Item> corn_bundle = new ArrayList<Item>(5);
 ArrayList<Item> melon_bundle = new ArrayList<Item>(5);
 ArrayList<Item> potato_bundle = new ArrayList<Item>(5);
@@ -28,6 +30,8 @@ Crop donate_melon = new Crop(2);
 Crop donate_potato = new Crop(3);
 Crop donate_pumpkin = new Crop(4);
 Crop donate_tomato = new Crop(5);
+
+boolean community_center_done = false;
 
 boolean buy_screen = false;
 boolean buy_screen_opened = false;
@@ -110,7 +114,7 @@ void setup(){
   //player.addToStack(2,seed4);
   //player.addToStack(2,seed5);
   
-  //Testing donations
+  //Testing donations, to be removed
   Item c = new Crop(1);
   c.setQuality(1);
   player.addNextItem(c);
@@ -147,8 +151,30 @@ void setup(){
   player.addToStack(6,t);
   player.addToStack(6,t);
   
+  Item c2 = new Crop(1);
+  c2.setQuality(3);
+  player.addNextItem(c2);
+  player.addToStack(7,c2);
+  player.addToStack(7,c2);
+  player.addToStack(7,c2);
+  player.addToStack(7,c2);
+  Item po2 = new Crop(3);
+  po2.setQuality(3);
+  player.addNextItem(po2);
+  player.addToStack(8,po2);
+  player.addToStack(8,po2);
+  player.addToStack(8,po2);
+  player.addToStack(8,po2);
+  Item pu2 = new Crop(4);
+  pu2.setQuality(3);
+  player.addNextItem(pu2);
+  player.addToStack(9,pu2);
+  player.addToStack(9,pu2);
+  player.addToStack(9,pu2);
+  player.addToStack(9,pu2);
+  
   //Starting money
-  money += 500;
+  money += 5500;
 }
 
 void draw(){  
@@ -330,7 +356,7 @@ void draw(){
             
             
             //Donate Screen
-            if(mouseButton == LEFT && dist(610,360, player.getX(), player.getY())<= 100 && dist(mouseX,mouseY,610,360)<=100){
+            if(mouseButton == LEFT && dist(610,360, player.getX(), player.getY())<= 100 && dist(mouseX,mouseY,610,360)<=50){
               donate_screen = true; 
             }
             
@@ -384,6 +410,8 @@ void draw(){
                 textSize(20);
                 fill(150);
                 text(Integer.toString(5-corn_bundle.size()),260,270);
+              }else{
+                checkmark(217,250);
               }
               
               if(melon_bundle.size()<5){
@@ -392,6 +420,8 @@ void draw(){
                 textSize(20);
                 fill(150);
                 text(Integer.toString(5-melon_bundle.size()),387,270);
+              }else{
+                checkmark(344,250);
               }
               
               if(potato_bundle.size()<5){
@@ -400,6 +430,8 @@ void draw(){
                 textSize(20);
                 fill(150);
                 text(Integer.toString(5-potato_bundle.size()),514,270);
+              }else{
+                checkmark(471,250);
               }
               
               if(pumpkin_bundle.size()<5){
@@ -408,6 +440,8 @@ void draw(){
                 textSize(20);
                 fill(150);
                 text(Integer.toString(5-pumpkin_bundle.size()),641,270);
+              }else{
+                checkmark(598,250);
               }
               
               if(tomato_bundle.size()<5){
@@ -416,6 +450,8 @@ void draw(){
                 textSize(20);
                 fill(150);
                 text(Integer.toString(5-tomato_bundle.size()),768,270);
+              }else{
+                checkmark(725,250);
               }
               
               //Quality Crop Bundle
@@ -433,6 +469,8 @@ void draw(){
                 textSize(20);
                 fill(150);
                 text(Integer.toString(3-quality_corn_bundle.size()),323,370);
+              }else{
+                checkmark(280,350);
               }
               
               if(quality_potato_bundle.size()<3){
@@ -441,6 +479,8 @@ void draw(){
                 textSize(20);
                 fill(150);
                 text(Integer.toString(3-quality_potato_bundle.size()),513,370);
+              }else{
+                checkmark(470,350);
               }
               
               if(quality_pumpkin_bundle.size()<3){
@@ -449,9 +489,11 @@ void draw(){
                 textSize(20);
                 fill(150);
                 text(Integer.toString(3-quality_pumpkin_bundle.size()),703,370);
+              }else{
+                checkmark(660,350);
               }
               
-              //Donate Money
+              //Money Bundle
               strokeWeight(3);
               stroke(234,155,7);
               noFill();
@@ -463,18 +505,24 @@ void draw(){
                 textSize(35);
                 fill(0);
                 text("Donate 500",235,465);          
+              }else{
+                checkmark(317,450);
               }
               
               if(!donate_1000){
                 textSize(35);
                 fill(0);
                 text("Donate 1000",549,465);          
+              }else{
+                checkmark(631,450);
               }
               
               if(!donate_1500){
                 textSize(35);
                 fill(0);
                 text("Donate 1500",391,565);          
+              }else{
+                checkmark(473,550);
               }
               
               //Donating
@@ -597,6 +645,96 @@ void draw(){
                 }
               }
               
+              //Donating Quality Corn
+              if(moving_item&&mouseButton==LEFT){
+                if (280<mouseX&&mouseX<340&&320<mouseY&&mouseY<380
+                &&quality_corn_bundle.size()<3
+                &&player.get_selected_item(moving_item_index).get_Class().equals("Crop")
+                &&player.get_selected_item(moving_item_index).get_type()==1
+                &&player.get_selected_item(moving_item_index).getQuality().equals("gold")){
+                  int size = player.Stacksize(moving_item_index);
+                  int bundle_size = quality_corn_bundle.size();
+                  for(int i = 0; i < size && i < 3-bundle_size;i++){
+                    quality_corn_bundle.add(player.get_selected_item(moving_item_index));
+                    player.removeFromStack(moving_item_index);
+                  }
+                  moving_item = false;
+                }
+              }
+              
+              //Donating Quality Potato
+              if(moving_item&&mouseButton==LEFT){
+                if (470<mouseX&&mouseX<530&&320<mouseY&&mouseY<380
+                &&quality_potato_bundle.size()<3
+                &&player.get_selected_item(moving_item_index).get_Class().equals("Crop")
+                &&player.get_selected_item(moving_item_index).get_type()==3
+                &&player.get_selected_item(moving_item_index).getQuality().equals("gold")){
+                  int size = player.Stacksize(moving_item_index);
+                  int bundle_size = quality_potato_bundle.size();
+                  for(int i = 0; i < size && i < 3-bundle_size;i++){
+                    quality_potato_bundle.add(player.get_selected_item(moving_item_index));
+                    player.removeFromStack(moving_item_index);
+                  }
+                  moving_item = false;
+                }
+              }
+              
+              //Donating Pumpkin
+              if(moving_item&&mouseButton==LEFT){
+                if (660<mouseX&&mouseX<720&&320<mouseY&&mouseY<380
+                &&quality_pumpkin_bundle.size()<3
+                &&player.get_selected_item(moving_item_index).get_Class().equals("Crop")
+                &&player.get_selected_item(moving_item_index).get_type()==4
+                &&player.get_selected_item(moving_item_index).getQuality().equals("gold")){
+                  int size = player.Stacksize(moving_item_index);
+                  int bundle_size = quality_pumpkin_bundle.size();
+                  for(int i = 0; i < size && i < 3-bundle_size;i++){
+                    quality_pumpkin_bundle.add(player.get_selected_item(moving_item_index));
+                    player.removeFromStack(moving_item_index);
+                  }
+                  moving_item = false;
+                }
+              }
+              
+              //Donating 500
+              if(mouseButton==LEFT
+              &&217<mouseX&&mouseX<471&&420<mouseY&&mouseY<480
+              &&!donate_500
+              &&money-500>=0){
+                donate_500 = true;
+                money-=500;
+              }
+              
+              //Donating 1000
+              if(mouseButton==LEFT
+              &&531<mouseX&&mouseX<785&&420<mouseY&&mouseY<480
+              &&!donate_1000
+              &&money-1000>=0){
+                donate_1000 = true;
+                money-=1000;
+              }
+              
+              //Donating 1500
+              if(mouseButton==LEFT
+              &&373<mouseX&&mouseX<627&&520<mouseY&&mouseY<580
+              &&!donate_1500
+              &&money-1500>=0){
+                donate_1500 = true;
+                money-=1500;
+              }
+              
+              if(donate_500&&donate_1000&&donate_1500
+              &&corn_bundle.size()==5
+              &&melon_bundle.size()==5
+              &&potato_bundle.size()==5
+              &&pumpkin_bundle.size()==5
+              &&tomato_bundle.size()==5
+              &&quality_corn_bundle.size()==3
+              &&quality_potato_bundle.size()==3
+              &&quality_pumpkin_bundle.size()==3){
+                community_center_done = true;
+              }
+                            
             }
             
           }else{
@@ -679,41 +817,45 @@ void draw(){
             rect(700,330,50,70);
             
             //Community Center
-            fill(129,115,94);
-            beginShape();
-            vertex(167,534);
-            vertex(167,620);
-            vertex(343,620);
-            vertex(343,551);
-            vertex(320,555);
-            vertex(301,543);
-            vertex(297,527);
-            vertex(300,507);
-            vertex(253,505);
-            vertex(241,519);
-            vertex(241,550);
-            vertex(228,524);
-            vertex(223,512);
-            vertex(190,514);
-            endShape();
-            
-            fill(0);
-            rect(230,620-60,50,60);
-            
-            fill(206,143,42);
-            beginShape();
-            vertex(215,560);
-            vertex(218,565);
-            vertex(285,576);
-            vertex(285,571);
-            endShape();
-            
-            beginShape();
-            vertex(282,588);
-            vertex(282,596);
-            vertex(222,606);
-            vertex(222,600);
-            endShape();
+            if(community_center_done){
+              
+            }else{
+              fill(129,115,94);
+              beginShape();
+              vertex(167,534);
+              vertex(167,620);
+              vertex(343,620);
+              vertex(343,551);
+              vertex(320,555);
+              vertex(301,543);
+              vertex(297,527);
+              vertex(300,507);
+              vertex(253,505);
+              vertex(241,519);
+              vertex(241,550);
+              vertex(228,524);
+              vertex(223,512);
+              vertex(190,514);
+              endShape();
+              
+              fill(0);
+              rect(230,620-60,50,60);
+              
+              fill(206,143,42);
+              beginShape();
+              vertex(215,560);
+              vertex(218,565);
+              vertex(285,576);
+              vertex(285,571);
+              endShape();
+              
+              beginShape();
+              vertex(282,588);
+              vertex(282,596);
+              vertex(222,606);
+              vertex(222,600);
+              endShape();
+            }
             
             //Movement Between Screens
             if(!set_x_coor){
@@ -1579,6 +1721,20 @@ void sell(Item sold_item){
       Sold.add(temp);
     }
   }
+}
+
+void checkmark(int x, int y){
+  noStroke();
+  fill(57,255,71);
+  beginShape();
+  vertex(x+5,y);//398,381
+  vertex(x+23,y+25);
+  vertex(x+35,y+25);
+  vertex(x+60,y-25);
+  vertex(x+49,y-25);
+  vertex(x+28,y+7);
+  vertex(x+20,y-5);
+  endShape();
 }
 
 void end_of_day_calculate(){
