@@ -4,6 +4,9 @@ boolean first_screen = true;
 boolean end_day = false;
 
 boolean tutorial = true;
+boolean next = false;
+boolean skip = false;
+float screen = 1;
 
 boolean town = false;
 boolean can_move_back = true;
@@ -1135,7 +1138,7 @@ void draw(){
       text("Money: "+money, 10, 60);
     }
     if (tutorial){
-      float screen = 3;
+      if (screen <= 5){
       strokeWeight(10);
       stroke(#B98642);
       fill(255,207,116);
@@ -1162,6 +1165,19 @@ void draw(){
         text("on the bin next to your house.",370,565);
         text("Right click on your crops to move",370,595);
         text("and sell a stack.",370,620);
+      }
+      if (screen == 4){
+        text("Walk over to the right side",370,490);
+        text("to see the shop, the mayor's house,",370,515);
+        text("and the community center.",370,540);
+      }
+      if (screen == 5){
+        text("The center is closed for now",370,490);
+        text("but it can be restored using",370,515);
+        text("crops and money you have earned.",370,540);
+        text("Talk to the mayor to offer your",370,570);
+        text("donations to rebuild the center.",370,595);
+      }
       }
     }
   }
@@ -1388,7 +1404,10 @@ void keyPressed(){
     }
   }
   
-  
+  //Moving Through Tutorial
+  if (keyCode == 32){
+    screen++;
+  }
   
   //Item Select
   if(keyCode == 49){
