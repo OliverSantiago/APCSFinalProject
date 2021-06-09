@@ -278,7 +278,7 @@ public class Plot{
         strokeWeight(6);
         line(x+15,y+23,x+15,y+7);
         stroke(#07790C);
-        strokeWeight(6);
+        strokeWeight(4);
         bezier(x+15,y+20,x+17,y+15,x+20,y+19,x+21,y+21);
         bezier(x+15,y+20,x+10,y+15,x+12,y+19,x+9,y+21);        
         bezier(x+15,y+10,x+17,y+10,x+20,y+11,x+21,y+13);
