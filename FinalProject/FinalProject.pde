@@ -59,15 +59,26 @@ Item shop_tomato = new Seed(5);
 void setup(){
   //Size and background
   size(1000,800);//TBD
-  background(100,184,255);
+  //background(100,184,255);
+  
+  //Title
+  PImage title_screen = loadImage("stardewvalley.jpg");
+  image(title_screen,-310,0);
+  textSize(34);
+  fill(#DB9E4D);
+  PFont font = createFont("IndieFlower-Regular.ttf",34);
+  textFont(font);
+  text("Press any button to start",320,600);
+  font = createFont("Lucida Sans",40);
+  textFont(font);
   
   //Title and Controls
-  textSize(32);
-  fill(0, 102, 153, 204);
-  text("Stardew Valley", 12, 60);
-  textSize(25);
-  fill(0, 102, 153, 204);
-  text("Controls: WASD to move, Right-click to use.", 12, 100);
+  //textSize(32);
+  //fill(0, 102, 153, 204);
+  //text("Stardew Valley", 12, 60);
+  //textSize(25);
+  //fill(0, 102, 153, 204);
+  //text("Controls: WASD to move, Right-click to use.", 12, 100);
   
   //Player, plots, tools, and time
   player = new Player();
