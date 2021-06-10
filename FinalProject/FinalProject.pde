@@ -1592,7 +1592,7 @@ void mousePressed(){
           }
           
            //If player is holding none of above, harvest crop (if possible)
-          else{
+          else if (player.size() < 10){
             if (dist((float)mouseX,(float)mouseY,x_coor+15,y_coor+15)<=15&&
                   dist(player.getX()+5,player.getY()+10,x_coor+15,y_coor+15)<=25){
                     Item crop = all_plots[i][j].harvest();
