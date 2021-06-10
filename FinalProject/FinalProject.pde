@@ -1377,17 +1377,9 @@ void draw(){
         }
               
       //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
-        if (time>=1500 && time<=1800 && !mayor_house){
-          noStroke();
-          fill(77,158,255,100);
-          rect(0,0,width,height);
-        }else if(time>=1800 && time <= 2100 && !mayor_house){
+        if (time>=1200 && time<=2400 && !mayor_house){
           noStroke();
           fill(34,126,237,night_val);
-          rect(0,0,width,height);
-        }else if(time>=2100 && time <= 2400 && !mayor_house){
-          noStroke();
-          fill(3,80,170,100);
           rect(0,0,width,height);
         }if(time>=2400){
            end_of_day_calculate();
