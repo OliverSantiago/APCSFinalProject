@@ -128,7 +128,7 @@ void setup(){
   player.addToStack(2,seed4);
   player.addToStack(2,seed5);
   
-  ////Testing donations, to be removed
+  ////Testing donations, to be removed//Uncomment if you want all items needed for Community Center (and comment out starting seeds above)
   //Item c = new Crop(1);
   //c.setQuality(1);
   //player.addNextItem(c);
@@ -199,9 +199,13 @@ void draw(){
   if(!first_screen){
     if(end_day){
       background(0);
-      textSize(50);
       fill(255);
-      text(money+" + "+new_money+" = " + Integer.toString(money+new_money), 12, 60);
+      textSize(30);
+      text("  Old \nMoney",width/2-200,height/2-100);
+      text("Earned \nMoney",width/2-70,height/2-100);
+      text(" Total \nMoney",width/2+70,height/2-100);
+      textSize(50);
+      text(money+" + "+new_money+" = " + Integer.toString(money+new_money), width/2-200, height/2);
       if(mousePressed||keyPressed){
         end_day = false;
         money+=new_money;
@@ -285,6 +289,7 @@ void draw(){
         //Sleep
         if(!(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<400)){
           has_left_bed = true;
+          tutorial = false;
           ask_to_sleep = false;
         }
         
@@ -1882,6 +1887,7 @@ void end_of_day_calculate(){
   end_day = true;
   new_day = true;
   inside = true;
+  tutorial = false;
   town = false;
   buy_screen = false;
   mayor_house = false;
