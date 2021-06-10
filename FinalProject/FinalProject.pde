@@ -198,7 +198,7 @@ void draw(){
     //End of Screen
   if(!first_screen){
     if(end_day){
-      background(196,234,99);
+      background(0);
       textSize(50);
       fill(255);
       text(money+" + "+new_money+" = " + Integer.toString(money+new_money), 12, 60);
@@ -288,7 +288,7 @@ void draw(){
           ask_to_sleep = false;
         }
         
-        if(645<player.getX()&&player.getX()<695&&320<player.getY()&&player.getY()<400&&has_left_bed){
+        if(645<player.getX()&&player.getX()<695&&player.getY()<400&&has_left_bed){
           ask_to_sleep = true;
         }
         
@@ -1376,9 +1376,17 @@ void draw(){
         }
               
       //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
-        if (time>=1200 && time<=2400 && !mayor_house){
+        if (time>=1500 && time<=1800 && !mayor_house){
+          noStroke();
+          fill(77,158,255,100);
+          rect(0,0,width,height);
+        }else if(time>=1800 && time <= 2100 && !mayor_house){
           noStroke();
           fill(34,126,237,100);
+          rect(0,0,width,height);
+        }else if(time>=2100 && time <= 2400 && !mayor_house){
+          noStroke();
+          fill(3,80,170,100);
           rect(0,0,width,height);
         }if(time>=2400){
            end_of_day_calculate();
@@ -1491,37 +1499,37 @@ void draw(){
       fill(0);
       textSize(15);
       if (screen == 1){
-        text("Hi! Welcome to Stardew Valley! This",370,490);
-        text("is a short guide to get your",370,515);
-        text("brand new plot up and running!",370,540);
-        text("To move, use the keys W,A,S, and D",370,570);
+        text("Hi! Welcome to Stardew Valley! This",367,487);
+        text("is a short guide to get your",367,512);
+        text("brand new farm up and running!",367,537);
+        text("To move, use the keys W, A, S, and D.",367,567);
       }
       if (screen == 2){
-        text("Let's look at farming. To till a",370,490);
-        text("crop, select the hoe tool and left",370,515);
-        text("click on a plot. Plant a seed, water",370,540);
-        text("with the watering can, and wait for",370,565);
-        text("your crops to grow!",370,590);
+        text("Let's look at farming. To till a",367,487);
+        text("plot, select the hoe tool and left",367,512);
+        text("click on a plot. Then you can plant",367,537);
+        text("seeds, water with the watering can,",367,562);
+        text("and wait for your crops to grow!",367,587);
       }
       if (screen == 3){
-        text("When you harvest your crops, you",370,490);
-        text("can sell them by clicking on them",370,515);
-        text("in your inventory and then clicking",370,540);
-        text("on the bin next to your house.",370,565);
-        text("Right click on your crops to move",370,595);
-        text("and sell a stack.",370,620);
+        text("You can sell your crops by clicking on",367,487);
+        text("them in your inventory and then",367,512);
+        text("clicking on the bin next to your",367,537);
+        text(" house. Left click on your crops to sell",367,562);
+        text("a single crop and right click to sell",367,592);
+        text("a stack. Press the Q key to stop \n holding.",367,617);
       }
       if (screen == 4){
-        text("Walk over to the right side",370,490);
-        text("to see the shop, the mayor's house,",370,515);
-        text("and the community center.",370,540);
+        text("Walk over to the right side",367,487);
+        text("to see the Shop, the Mayor's house,",367,512);
+        text("and the Community Center.",367,537);
       }
       if (screen == 5){
-        text("The center is closed for now",370,490);
-        text("but it can be restored using the",370,515);
-        text("crops and money you have earned.",370,540);
-        text("Talk to the mayor to offer your",370,570);
-        text("donations to rebuild the center.",370,595);
+        text("The center is closed for now,",367,487);
+        text("but it can be restored using the",367,512);
+        text("crops and money you have earned.",367,537);
+        text("Talk to the Mayor to offer your",367,567);
+        text("donations to rebuild the center.",367,592);
       }
       fill(0);
       rect(332,642,10,10);
