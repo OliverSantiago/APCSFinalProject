@@ -4,8 +4,6 @@ boolean first_screen = true;
 boolean end_day = false;
 
 boolean tutorial = true;
-boolean next = false;
-boolean skip = false;
 float screen = 1;
 
 boolean town = false;
@@ -1485,7 +1483,6 @@ void draw(){
       text("Money: "+money, 10, 60);
     }
     if (tutorial){
-      if (screen <= 5){
       strokeWeight(10);
       stroke(#B98642);
       fill(255,207,116);
@@ -1541,7 +1538,6 @@ void draw(){
       textSize(8);
       text("X",335,650);
       text("SPACE",317,635);
-      }
     }
   }
 }
@@ -1775,9 +1771,12 @@ void keyPressed(){
   //Moving Through Tutorial
   if (keyCode == 32){
     screen++;
+    if (screen > 5){
+      tutorial = false;
+    }
   }
   if (keyCode == 88){
-    screen+=5;
+    tutorial = false;
   }
   
   //Item Select
