@@ -1496,8 +1496,8 @@ void draw(){
       if (screen == 1){
         text("Hi! Welcome to Stardew Valley! This",370,490);
         text("is a short guide to get your",370,515);
-        text("grandfather's plot up and running!",370,540);
-        text("To move, use the keys W,A,S, and D",370,565);
+        text("brand new plot up and running!",370,540);
+        text("To move, use the keys W,A,S, and D",370,570);
       }
       if (screen == 2){
         text("Let's look at farming. To till a",370,490);
@@ -1521,7 +1521,7 @@ void draw(){
       }
       if (screen == 5){
         text("The center is closed for now",370,490);
-        text("but it can be restored using",370,515);
+        text("but it can be restored using the",370,515);
         text("crops and money you have earned.",370,540);
         text("Talk to the mayor to offer your",370,570);
         text("donations to rebuild the center.",370,595);
