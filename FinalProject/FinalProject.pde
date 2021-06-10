@@ -2,7 +2,7 @@ Player player;
 Plot [][] all_plots;
 boolean first_screen = true;
 boolean end_day = false;
-float night_val = 30;
+float night_val = 0;
 
 boolean tutorial = true;
 float screen = 1;
@@ -48,7 +48,7 @@ boolean ask_to_sleep = false;
 boolean has_left_bed = false;
 
 int savedTime;
-int time_increment = 300;
+int time_increment = 1000;
 int time = 600;
 int money = 0;
 int new_money = 0;
@@ -1474,8 +1474,11 @@ void draw(){
         if (time % 100 >= 60){
           time += 40;
         }
-        if (time >= 2000 <= 2100){
-          night_val += 10;
+        if (time >= 1200 && time <= 1600){
+          night_val += 1;
+        }
+        if (time > 1600 && time < 2100){
+          night_val += 2;
         }
         savedTime = millis();
       }
