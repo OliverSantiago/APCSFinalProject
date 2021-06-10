@@ -2,6 +2,7 @@ Player player;
 Plot [][] all_plots;
 boolean first_screen = true;
 boolean end_day = false;
+float night_val = 0;
 
 boolean tutorial = true;
 float screen = 1;
@@ -1409,17 +1410,9 @@ void draw(){
         }
               
       //Puts "filter" based on time, will change so colors make more sense, currently just changes after time reaches 1200;
-        if (time>=1500 && time<=1800 && !mayor_house){
+        if (time>=1200 && time<=2400 && !mayor_house){
           noStroke();
-          fill(77,158,255,100);
-          rect(0,0,width,height);
-        }else if(time>=1800 && time <= 2100 && !mayor_house){
-          noStroke();
-          fill(34,126,237,100);
-          rect(0,0,width,height);
-        }else if(time>=2100 && time <= 2400 && !mayor_house){
-          noStroke();
-          fill(3,80,170,100);
+          fill(34,126,237,night_val);
           rect(0,0,width,height);
         }if(time>=2400){
            end_of_day_calculate();
@@ -1514,6 +1507,12 @@ void draw(){
         if (time % 100 >= 60){
           time += 40;
         }
+        if (time >= 1200 && time <= 1600){
+          night_val += 1;
+        }
+        if (time > 1600 && time < 2100){
+          night_val += 2;
+        }
         savedTime = millis();
       }
       textSize(20);
@@ -1523,7 +1522,7 @@ void draw(){
       fill(0, 102, 153, 204);
       text("Money: "+money, 10, 60);
     }
-    if (tutorial){
+    if (tutorial && !end_day){
       strokeWeight(10);
       stroke(#B98642);
       fill(255,207,116);
