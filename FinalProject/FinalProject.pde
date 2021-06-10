@@ -188,7 +188,7 @@ void setup(){
   //player.addToStack(9,pu2);
   
   //Starting money
-  money += 500;
+  money += 550;
 }
 
 void draw(){  
@@ -199,13 +199,41 @@ void draw(){
   if(!first_screen){
     if(end_day){
       background(0);
-      fill(255);
+      
+      //Main Box
+      strokeWeight(10);
+      stroke(234,155,7);
+      fill(255,207,116);
+      rect(150,300,700,200);
+      
+      
+      fill(0);
       textSize(30);
-      text("  Old \nMoney",width/2-200,height/2-100);
-      text("Earned \nMoney",width/2-70,height/2-100);
-      text(" Total \nMoney",width/2+70,height/2-100);
+      text("Old Money",170,350);
       textSize(50);
-      text(money+" + "+new_money+" = " + Integer.toString(money+new_money), width/2-200, height/2);
+      text(money,170,450);
+      
+      stroke(234,155,7);
+      strokeWeight(10);
+      line(350,430,375,430);
+      line(362,418,362,442);
+      
+      textSize(30);
+      text("Earned Money",390,350);
+      textSize(50);
+      text(new_money,390,450);
+      
+      stroke(234,155,7);
+      strokeWeight(10);
+      line(610,420,635,420);
+      line(610,440,635,440);
+      
+      textSize(30);
+      text("Total Money",650,350);
+      textSize(50);
+      text(money+new_money,650,450);
+      //textSize(50);
+      //text(money+" + "+new_money+" = " + Integer.toString(money+new_money), width/2-200, height/2);
       if(mousePressed||keyPressed){
         end_day = false;
         money+=new_money;
