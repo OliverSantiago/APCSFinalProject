@@ -8,6 +8,11 @@ Shane Decatur
 
 https://docs.google.com/document/d/1k316ZCcv5fZhJ0Xw1nEw3c_Qkn3JgrAG2Is2r0V6LFY/edit?usp=sharing
 
+Instructions 
+
+Run Processing file. Navigate program using buttons and mouse. 
+
+
 Development log
 
 Oliver:
@@ -22,7 +27,21 @@ Oliver:
 
 6/1: New screen for the town, made temporary shop stand. 
 
-6/3:  Made buying screen for new items that adds to inventory and decreases money. Updated display for inventory to show number of items in stack. Reorganized code for clarity. Made a new house screen that the player spawns in and movement between it and the farm. Added sleeping in bed to progress to next day. Fixed the selling of stacks of items. 
+6/3: Made buying screen for new items that adds to inventory and decreases money. Updated display for inventory to show number of items in stack. Reorganized code for clarity. Made a new house screen that the player spawns in and movement between it and the farm. Added movement barriers for the house. Added sleeping in bed to progress to next day. Fixed the selling of stacks of items. 
+
+6/4: Finalized Demo branch. New player display and size, readjusted borders within house accordingly. Redesigned house, borders, and location/size.
+
+6/5: Redesigned shop and town. Added borders to shop.
+
+6/6: Added visual tree border around town and farm and according movement borders preventing player from walking off screen. Redesigned plot placement and farm layout.
+
+6/7: Began making Mayor's house and Community Center visuals and movemnent borders.
+
+6/8: Interior of Mayor house, started donation screen visuals. Then added the actual donation crops, and the removal of donated items from inventory.
+
+6/9: Finished all donations to Community Center, including higher quality crops and money. Added a final thank you message in the Community Center. Reset money, time, and starting items to default settings. 
+
+6/10: Fixed glitches with sleeping in the bed, some movement bugs, and started improving the day/night cycle. Changed tool designs, and made new final screen with old money, money earned, and new total money. 
 
 
 Shane:
