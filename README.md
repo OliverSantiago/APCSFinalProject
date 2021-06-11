@@ -50,3 +50,5 @@ Shane:
 6/8: Finished the remaining crop visuals. Made a new title screen.
 
 6/9: Edited look of grown corn, made a short working tutorial/guide for when game is first started. Added in next+skip options and icons for tutorial. Fixed bugs with harvesting and edited growth times in Seed class.
+
+6/10: Edited the day/night cycle and fixed some small bugs
